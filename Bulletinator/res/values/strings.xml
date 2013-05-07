@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Bulletinator</string>
+    <string name="action_settings">Settings</string>
+    <string name="label1">Current</string>
+    <string name="label2">Nearby</string>
+    <string name="label3">All Bldgs</string>
+    <string name="body1">body one</string>
+    <string name="body2">body two</string>
+    <string name="body3">body three</string>
+    <string name="icon">Icon</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_bulletin">Bulletin</string>
+    <string name="content_description">Flyer image</string>
+    <string name="title_activity_bulletinn">Bulletinn</string>
+
+</resources>
