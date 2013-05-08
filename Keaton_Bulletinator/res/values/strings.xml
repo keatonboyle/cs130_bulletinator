@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+   <string name="app_name">Keaton_Bulletinator</string>
+   <string name="action_settings">Settings</string>
+   <string name="ellipsis">&#8230;</string>
+   <string name="ajson_button_text">Get JSON</string>
+   <string name="json_parse_button_text">Parse JSON</string>
+   <string name="get_gps_button_text">Get GPS</string>
+</resources>
