@@ -12,13 +12,20 @@ public class Bulletin implements Serializable {
 	private String contact;
 	// Used for location of image
 	private int imageId;
+	private int iconId;
+	private int layoutType;
+	private int bltId;
 
-	public Bulletin(String t, String d, String b, String c, int iId) {
+	public Bulletin(String t, String d, String b, String c, int iId, int icId, int bId, int l) {
 		bodyText = b;
 		description = d;
 		title = t;
 		imageId = iId;
 		contact = c;
+		iconId =icId;
+		bltId = bId;
+		// Use if statements to decide the layout type (image view, no image view, etc.)
+		layoutType = l;
 	}
 
 	public String getBodyText() {
@@ -39,5 +46,17 @@ public class Bulletin implements Serializable {
 
 	public String getContactInfo() {
 		return contact;
+	}
+	
+	public int getIconId() {
+		return iconId;
+	}
+	
+	public int getLayoutType() {
+		return layoutType;
+	}
+	
+	public int getBulletinId() {
+		return bltId;
 	}
 }

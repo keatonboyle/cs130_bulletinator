@@ -20,11 +20,16 @@ public class MainActivity extends Activity {
 	// For testing
 	private String[] bNames = { "Boelter Hall", "Engineering V", "Humanities" };
 	private String[] bullDescriptions = {
-			"The axiomatic weather examines the meat.",
-			"The standing disgust exchanges the land.",
-			"The payment combines the unique quality.",
-			"The reading informs the yummy twist.",
-			"The guide assembles the typical edge." };
+			"Free food!",
+			"Tutoring positions available.",
+			"Volunteers needed.",
+			};
+	private int[] ids = { R.drawable.food_icon, R.drawable.tutoring_icon, 
+			R.drawable.volunteering_icon
+	};
+	private int[] fIds = { R.drawable.flyer, R.drawable.tutor_flyer,
+			R.drawable.volunteers_needed
+	};
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -88,7 +93,7 @@ public class MainActivity extends Activity {
 		switch (curTab) {
 		case CURRENT: {
 			bldgs = new ArrayList<Building>();
-			bldgs.add(buildings.get(1));
+			bldgs.add(buildings.get(0));
 			return bldgs;
 		}
 		case NEARBY: {
@@ -143,14 +148,17 @@ public class MainActivity extends Activity {
 		for (int i = 0; i < bNames.length; i++) {
 			String name = bNames[i];
 			ArrayList<Bulletin> barr = new ArrayList<Bulletin>();
-			for (int j = 0; j < 5; j++) {
+			for (int j = 0; j < 3; j++) {
 				String title = "Bulletin #" + j;
 				String description = bullDescriptions[j];
-				String bodyText = bullDescriptions[j] + " "
-						+ bullDescriptions[j] + " " + bullDescriptions[j];
+				String bodyText = "Volunteers needed for decision making study. " +
+						"Please contact if interested.";
+				int layoutType = ids[j]==R.drawable.tutoring_icon?0:1;
 				Bulletin b = new Bulletin(title, description, bodyText,
-						"555-555-5555", R.drawable.flyer);
+						"555-555-5555", fIds[j], ids[j], 0, layoutType);
 				barr.add(b);
+				if (bNames[i].equals("Engineering V"))
+					break;
 			}
 			Building bldg = new Building(name, barr);
 			buildings.add(bldg);
