@@ -4,17 +4,10 @@ import java.io.Serializable;
 
 public class Bulletin implements Serializable {
 	private static final long serialVersionUID = 1L;
-	// Text shown in bulletin activity
-	private String bodyText;
-	private String title;
-	// Used for bulletin preview
-	private String description;
-	private String contact;
-	// Used for location of image
-	private int imageId;
-	private int iconId;
+
+	private String title, bodyText, description, contact;
+	private int imageId, iconId, bltId;
 	private int layoutType;
-	private int bltId;
 
 	public Bulletin(String t, String d, String b, String c, int iId, int icId, int bId, int l) {
 		bodyText = b;
