@@ -8,14 +8,14 @@ public class Bulletin implements Serializable {
 	private String title, bodyText, description, contact;
 	private int imageId, iconId, bltId;
 
-	public Bulletin(String t, String d, String b, String c, 
-			int iId, int icId, int bId) {
+	public Bulletin(String t, String d, String b, String c, int iId, int icId,
+			int bId) {
 		bodyText = b;
 		description = d;
 		title = t;
 		imageId = iId;
 		contact = c;
-		iconId =icId;
+		iconId = icId;
 		bltId = bId;
 	}
 
@@ -38,11 +38,11 @@ public class Bulletin implements Serializable {
 	public String getContactInfo() {
 		return contact;
 	}
-	
+
 	public int getIconId() {
 		return iconId;
 	}
-	
+
 	public int getBulletinId() {
 		return bltId;
 	}

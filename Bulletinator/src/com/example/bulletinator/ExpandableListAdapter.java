@@ -15,10 +15,9 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 	private List<Building> buildings;
 	private Context context;
 	private List<String> curBldgs;
-	// adapter must know which tab it is connected to...
 	private MainActivity activity;
 	private int tab;
-	
+
 	public ExpandableListAdapter(Context c, List<Building> bldgs, int t) {
 		context = c;
 		buildings = bldgs;
@@ -34,8 +33,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
 	@Override
 	public long getChildId(int groupPosition, int childPosition) {
-		// TODO Auto-generated method stub
-		return 0;
+		return buildings.get(groupPosition).getBulletins().get(childPosition)
+				.getBulletinId();
 	}
 
 	@Override
@@ -101,9 +100,11 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		textView.setText(bldg.getName());
 		textView.setTextSize(30);
 		if (tab > 0)
-			((ViewGroup.MarginLayoutParams) textView.getLayoutParams()).setMargins(60, 0, 0, 0);
+			((ViewGroup.MarginLayoutParams) textView.getLayoutParams())
+					.setMargins(60, 0, 0, 0);
 		else
-			((ViewGroup.MarginLayoutParams) textView.getLayoutParams()).setMargins(10, 0, 0, 0);
+			((ViewGroup.MarginLayoutParams) textView.getLayoutParams())
+					.setMargins(10, 0, 0, 0);
 
 		return convertView;
 	}
@@ -118,7 +119,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 	public boolean isChildSelectable(int groupPosition, int childPosition) {
 		return true;
 	}
-	
+
 	@Override
 	public void onGroupCollapsed(int groupPosition) {
 		curBldgs.remove(buildings.get(groupPosition).getName());

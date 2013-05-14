@@ -23,7 +23,7 @@ public abstract class ParentFragment extends Fragment {
 		// Inflate current buildings layout
 		View view = inflater.inflate(R.layout.list_view, container, false);
 
-		// Populate bulletins that MainActivity retrieved?
+		// Populate bulletins that MainActivity retrieved
 		buildings = ((MainActivity) getActivity()).getBuildings();
 
 		// Populate list with bulletins
@@ -61,6 +61,7 @@ public abstract class ParentFragment extends Fragment {
 			expandableListView.setGroupIndicator(null);
 		}
 		// TODO: When/How often should this happen?
+		// Re-expand previously expanded groups
 		else {
 			List<String> bldgs = ((MainActivity) getActivity())
 					.getCurBldgs(getTab());
@@ -70,6 +71,22 @@ public abstract class ParentFragment extends Fragment {
 					expandableListView.expandGroup(i);
 			}
 		}
+		// Re-instantiate scroll position
+		int position[] = ((MainActivity) getActivity()).getPos(getTab());
+		expandableListView.setSelectionFromTop(position[0], position[1]);
+
 		return view;
+	}
+
+	// Save scroll position
+	@Override
+	public void onPause() {
+		super.onPause();
+		int tab = getTab();
+		View v = expandableListView.getChildAt(0);
+		int top = (v == null) ? 0 : v.getTop();
+		((MainActivity) getActivity()).setPos(tab,
+				expandableListView.getFirstVisiblePosition(), top);
+
 	}
 }

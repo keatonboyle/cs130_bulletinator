@@ -335,3 +335,22 @@ org.eclipse.core.internal.resources.ResourceException: Resource '/android-pinned
 
 !ENTRY org.eclipse.ui 2 2 2013-05-14 09:40:44.502
 !MESSAGE Invalid property category path: ValidationPropertiesPage (bundle: org.eclipse.wst.xml.ui, propertyPage: org.eclipse.wst.xml.ui.propertyPage.project.validation)
+
+!ENTRY org.eclipse.ui 4 4 2013-05-14 13:36:46.097
+!MESSAGE Referenced part does not exist yet: org.eclipse.ui.views.ProblemView.
+
+!ENTRY org.eclipse.jdt.debug 4 125 2013-05-14 14:14:47.526
+!MESSAGE Internal error logged from JDI Debug: 
+!STACK 1
+org.eclipse.debug.core.DebugException: VM does not support access watchpoints.
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint.notSupported(JavaWatchpoint.java:195)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint.createRequest(JavaWatchpoint.java:163)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.handleClassPrepareEvent(JavaBreakpoint.java:374)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaBreakpoint.handleEvent(JavaBreakpoint.java:290)
+	at org.eclipse.jdt.internal.debug.core.breakpoints.JavaWatchpoint.handleEvent(JavaWatchpoint.java:475)
+	at org.eclipse.jdt.internal.debug.core.EventDispatcher.dispatch(EventDispatcher.java:152)
+	at org.eclipse.jdt.internal.debug.core.EventDispatcher.access$0(EventDispatcher.java:100)
+	at org.eclipse.jdt.internal.debug.core.EventDispatcher$1.run(EventDispatcher.java:249)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 1 org.eclipse.debug.core 4 5011 2013-05-14 14:14:47.526
+!MESSAGE VM does not support access watchpoints.

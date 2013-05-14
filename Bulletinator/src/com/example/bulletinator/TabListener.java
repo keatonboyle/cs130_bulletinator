@@ -34,7 +34,7 @@ public class TabListener<T extends Fragment> implements ActionBar.TabListener {
 		// Check if the fragment is already initialized
 		FragmentManager manager = mActivity.getFragmentManager();
 		Fragment pFragment = manager.findFragmentByTag(mTag);
-		
+
 		// Prevent overlapping fragments on rotate
 		if (pFragment != null) {
 			mFragment = pFragment;

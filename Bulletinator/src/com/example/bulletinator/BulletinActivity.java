@@ -31,14 +31,13 @@ public class BulletinActivity extends Activity {
 			image.setScaleType(ScaleType.CENTER_INSIDE);
 			// Fix white space
 			image.setAdjustViewBounds(true);
-		}
-		else {
+		} else {
 			// No flyer, set up image, text, contact
 			setContentView(R.layout.activity_bulletin);
-			
+
 			image = (ImageView) findViewById(R.id.flyer);
 			image.setImageResource(bulletin.getImageId());
-			
+
 			TextView body = (TextView) findViewById(R.id.bodyText);
 			body.setText(bulletin.getBodyText());
 

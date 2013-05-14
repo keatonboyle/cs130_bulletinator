@@ -8,44 +8,35 @@ import java.util.Set;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
 	public static final String BULLETIN = "BULLETIN";
 	public static final int CURRENT = 0, NEARBY = 1, ALL = 2;
 	private List<Building> buildings;
 	private List<String> nearbyExpandedBldgs, allExpandedBldgs;
+	private int curPos[], nearPos[], allPos[];
 	private int curTab;
 
 	// For testing
 	private String[] bNames = { "Boelter Hall", "Engineering V", "Humanities" };
-	private String[] bullDescriptions = {
-			"Free food!",
-			"Tutoring positions available.",
-			"Volunteers needed.",
-			};
-	private int[] ids = { R.drawable.food_icon, R.drawable.tutoring_icon, 
-			R.drawable.volunteering_icon
-	};
+	private String[] bullDescriptions = { "Free food!",
+			"Tutoring positions available.", "Volunteers needed.", };
+	private int[] ids = { R.drawable.food_icon, R.drawable.tutoring_icon,
+			R.drawable.volunteering_icon };
 	private int[] fIds = { R.drawable.flyer, R.drawable.tutor_flyer,
-			R.drawable.volunteers_needed
-	};//////////
+			R.drawable.volunteers_needed };// ////////
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		// TODO: Create fragments by giving it an adapter? Use a parent class or
-		// just
-		// the same fragment class w/ different adapter?? and its own variable
-		// to know which fragment it is? use some kind of id to id the fragment
-		// as current
-		// etc. use the set fragment params thing? USE tab listener to see if i
-		// can
-		// only use one fragment class, in tab listener maybe "set" the adapter
-		// so have the fragment class have a set adapter function
-		
+
+		restorePreferences();
+
 		ActionBar actionBar = getActionBar();
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
@@ -59,7 +50,7 @@ public class MainActivity extends Activity {
 				.setTabListener(
 						new TabListener<CurrentFragment>(this, tab1,
 								CurrentFragment.class));
-		actionBar.addTab(tab);
+		actionBar.addTab(tab, 0, curTab == 0 ? true : false);
 
 		tab = actionBar
 				.newTab()
@@ -67,7 +58,7 @@ public class MainActivity extends Activity {
 				.setTabListener(
 						new TabListener<NearbyFragment>(this, tab2,
 								NearbyFragment.class));
-		actionBar.addTab(tab);
+		actionBar.addTab(tab, 1, curTab == 1 ? true : false);
 
 		tab = actionBar
 				.newTab()
@@ -75,9 +66,8 @@ public class MainActivity extends Activity {
 				.setTabListener(
 						new TabListener<AllFragment>(this, tab3,
 								AllFragment.class));
-		actionBar.addTab(tab);
+		actionBar.addTab(tab, 2, curTab == 2 ? true : false);
 
-		restorePreferences();
 		createDummyBulletins();
 	}
 
@@ -90,7 +80,7 @@ public class MainActivity extends Activity {
 	// Decides which buildings a fragment will receive
 	public List<Building> getBuildings() {
 		List<Building> bldgs;
-				
+
 		switch (curTab) {
 		case CURRENT: {
 			bldgs = new ArrayList<Building>();
@@ -108,12 +98,7 @@ public class MainActivity extends Activity {
 		}
 	}
 
-	/*
-	 * TODO: Saving last stuff you saw 3. If in nearby fragment, only if those buildings are still
-	 * nearby 4. If in all fragment, keep every building that was expanded
-	 * expanded? 5. Use getLastVisiblePosition on expandableListAdapter to
-	 * return to same place in list?
-	 */
+	// Save preferences: scroll position, selected tab, expanded buildings
 	@Override
 	public void onPause() {
 		super.onPause();
@@ -130,7 +115,13 @@ public class MainActivity extends Activity {
 		bldgSet = new HashSet<String>(allExpandedBldgs);
 		editor.putStringSet("lastAllExpandedBuildings", bldgSet);
 
-		// Save list position in each tab
+		// Save list position (index & top) in each tab
+		editor.putInt("curPosIndex", curPos[0]);
+		editor.putInt("nearPosIndex", nearPos[0]);
+		editor.putInt("allPosIndex", allPos[0]);
+		editor.putInt("curPosTop", curPos[1]);
+		editor.putInt("nearPosTop", nearPos[1]);
+		editor.putInt("allPosTop", allPos[1]);
 
 		// Note: Only those buildings still nearby should become expanded
 		// Since the fragments all call getBuildings before re-populating.
@@ -138,15 +129,6 @@ public class MainActivity extends Activity {
 		// re-expanded!
 
 		editor.commit();
-	}
-
-	@Override
-	public void onResume() {
-		// TODO: Re-instantiate selected tab elsewhere?
-		super.onResume();
-		SharedPreferences settings = getPreferences(MODE_PRIVATE);
-		getActionBar().selectTab(
-				getActionBar().getTabAt(settings.getInt("lastTab", 0)));
 	}
 
 	private void createDummyBulletins() {
@@ -158,8 +140,9 @@ public class MainActivity extends Activity {
 			for (int j = 0; j < 3; j++) {
 				String title = "Bulletin #" + j;
 				String description = bullDescriptions[j];
-				String bodyText = j==2? "Volunteers needed for decision making study. " +
-						"Please contact if interested.": null;
+				String bodyText = j == 2 ? "Volunteers needed for decision making study. "
+						+ "Please contact if interested."
+						: null;
 				Bulletin b = new Bulletin(title, description, bodyText,
 						"555-555-5555", fIds[j], ids[j], 0);
 				barr.add(b);
@@ -172,7 +155,7 @@ public class MainActivity extends Activity {
 	}
 
 	public void setCurBldgs(int tab, List<String> bldgs) {
-		switch(tab) {
+		switch (tab) {
 		case NEARBY: {
 			nearbyExpandedBldgs = bldgs;
 			return;
@@ -181,35 +164,95 @@ public class MainActivity extends Activity {
 			allExpandedBldgs = bldgs;
 			return;
 		}
-		default: return;
+		default:
+			return;
 		}
 	}
 
 	public List<String> getCurBldgs(int tab) {
-		switch(tab) {
-		case NEARBY: 
+		switch (tab) {
+		case NEARBY:
 			return nearbyExpandedBldgs;
 		case ALL:
 			return allExpandedBldgs;
-		default: return null;
+		default:
+			return null;
 		}
 	}
-	
+
 	public void setCurTab(int tab) {
 		curTab = tab;
 	}
-	
+
 	public void restorePreferences() {
+		if (curPos == null || nearPos == null || allPos == null) {
+			curPos = new int[2];
+			nearPos = new int[2];
+			allPos = new int[2];
+		}
+
 		// Restore last tab
 		SharedPreferences settings = getPreferences(MODE_PRIVATE);
 		curTab = settings.getInt("lastTab", 0);
 
 		// Restore last expanded buildings (by tab)
-		Set<String> bldgSet = settings.getStringSet("lastNearbyExpandedBuildings", new HashSet<String>());
+		Set<String> bldgSet = settings.getStringSet(
+				"lastNearbyExpandedBuildings", new HashSet<String>());
 		List<String> bldgs = new ArrayList<String>(bldgSet);
 		nearbyExpandedBldgs = bldgs;
-		bldgSet = settings.getStringSet("lastAllExpandedBuildings", new HashSet<String>());
+		bldgSet = settings.getStringSet("lastAllExpandedBuildings",
+				new HashSet<String>());
 		bldgs = new ArrayList<String>(bldgSet);
 		allExpandedBldgs = bldgs;
+
+		// Restore position in each tab
+		curPos[0] = settings.getInt("curPosIndex", 0);
+		nearPos[0] = settings.getInt("nearPosIndex", 0);
+		allPos[0] = settings.getInt("allPosIndex", 0);
+		curPos[1] = settings.getInt("curPosTop", 0);
+		nearPos[1] = settings.getInt("nearPosTop", 0);
+		allPos[1] = settings.getInt("allPosTop", 0);
+	}
+
+	public void setPos(int tab, int index, int top) {
+		switch (tab) {
+		case MainActivity.CURRENT: {
+			curPos[0] = index;
+			curPos[1] = top;
+			return;
+		}
+		case MainActivity.NEARBY: {
+			nearPos[0] = index;
+			nearPos[1] = top;
+			return;
+		}
+		case MainActivity.ALL: {
+			allPos[0] = index;
+			allPos[1] = top;
+			return;
+		}
+		}
+	}
+
+	public int[] getPos(int tab) {
+		switch (tab) {
+		case MainActivity.CURRENT:
+			return curPos;
+		case MainActivity.NEARBY:
+			return nearPos;
+		case MainActivity.ALL:
+			return allPos;
+		default:
+			return null;
+		}
+	}
+
+	public void toast(String t) {
+		Context context = getApplicationContext();
+		CharSequence text = t;
+		int duration = Toast.LENGTH_SHORT;
+
+		Toast toast = Toast.makeText(context, text, duration);
+		toast.show();
 	}
 }
