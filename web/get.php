@@ -54,6 +54,13 @@
    function getBuildingData($bid)
    {
       $responseType = 'BUILDING_RESPONSE';
+      $result = queryDB("SELECT * FROM Building WHERE bid = " . $bid)
+      $payload = mysql_fetch_row($payload);
+
+      $dummyResponse = array(type => $responseType,
+                             payload => $payload);
+
+      sendResponse($dummyResponse);
    }
 
    function getAllBuildings()
