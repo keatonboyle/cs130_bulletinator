@@ -86,8 +86,7 @@
       if($fid < 0 || !(intval($fid)))
          handleError($GLOBALS['ERR_INVALID_FILE_ID']);
 
-      // Need to query database to figure out file extension based on ID
-      // - As a result, need to modify database design
+      $result = queryDB("SELECT ext FROM Image WHERE fid=".$fid);
 
       header("Location: ./resources/bulletins/".$fid.".png");
    }

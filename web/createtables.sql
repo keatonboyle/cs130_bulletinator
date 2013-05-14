@@ -1,17 +1,29 @@
 CREATE TABLE Bulletin (
-   bid integer PRIMARY KEY,
+   btnid int PRIMARY KEY,
    title varchar(30) NOT NULL,
    bodytext varchar(500),
-   description varchar(75) NOT NULL,
+   shortdesc varchar(75) NOT NULL,
    contact varchar(50),
-   imageid integer,
    category varchar(20),
    expiration date
 );
 
+CREATE TABLE File (
+   fid int PRIMARY KEY,
+   ext varchar(5) NOT NULL
+);
+
+CREATE TABLE FileToBulletin (
+   fid int PRIMARY KEY,
+   btnid int,
+   UNIQUE (btnid),
+   FOREIGN KEY (fid) references File(fid),
+   FOREIGN KEY (btnid) references Bulletin(btnid)
+);
+
 CREATE TABLE MaxID (
-   bulletinid int,
-   imageid int
+   btnid int,
+   fid int
 );
 
 INSERT INTO MaxID VALUES(1,1);
@@ -23,38 +35,38 @@ CREATE TABLE Creator (
 );
    
 CREATE TABLE Building (
-   name varchar(50) PRIMARY KEY,
-   location varchar(200) NOT NULL
+   bldid int PRIMARY KEY,
+   name varchar(50)
 );
    
 CREATE TABLE Rectangle (
-   rid integer PRIMARY KEY,
+   rid int PRIMARY KEY,
    north float NOT NULL,
    south float NOT NULL,
    east float NOT NULL,
    west float NOT NULL
 );
    
-CREATE TABLE RectangleBuilding (
-   rid integer PRIMARY KEY,
-   buildingname varchar(50),
-   UNIQUE (buildingname),
+CREATE TABLE RectangleToBuilding (
+   rid int PRIMARY KEY,
+   bldid int,
+   UNIQUE (bldid),
    FOREIGN KEY (rid) references Rectangle(rid),
-   FOREIGN KEY (buildingname) references Building(name)
+   FOREIGN KEY (bldid) references Building(bldid)
 );
    
-CREATE TABLE ExistsIn (
-   bid integer,
-   buildingname varchar(50),
-   PRIMARY KEY (bid, buildingname),
-   FOREIGN KEY (bid) references Bulletin(bid),
-   FOREIGN KEY (buildingname) references Building(name)
+CREATE TABLE BulletinToBuilding (
+   btnid int,
+   bldid int,
+   PRIMARY KEY (btnid, bldid),
+   FOREIGN KEY (btnid) references Bulletin(btnid),
+   FOREIGN KEY (bldid) references Building(bldid)
 );
    
    
-CREATE TABLE Creates (
-   bid integer PRIMARY KEY,
+CREATE TABLE BulletinToCreator (
+   btnid int PRIMARY KEY,
    username varchar(30) NOT NULL,
-   FOREIGN KEY (bid) references Bulletin(bid),
+   FOREIGN KEY (btnid) references Bulletin(btnid),
    FOREIGN KEY (username) references Creator(username)
 );
