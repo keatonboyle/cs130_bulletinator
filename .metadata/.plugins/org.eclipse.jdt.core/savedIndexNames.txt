@@ -1,0 +1,4 @@
+INDEX VERSION 1.126+/Users/rawrtan/Documents/Projects & Practice/Android/cs130_bulletinator/.metadata/.plugins/org.eclipse.jdt.core
+255127234.index
+3154273049.index
+1417826442.index

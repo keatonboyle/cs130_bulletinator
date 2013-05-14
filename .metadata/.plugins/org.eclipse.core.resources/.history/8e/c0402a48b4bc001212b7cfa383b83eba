@@ -153,6 +153,7 @@ public class MainActivity extends Activity {
 				String description = bullDescriptions[j];
 				String bodyText = j==2? "Volunteers needed for decision making study. " +
 						"Please contact if interested.": null;
+				int layoutType = ids[j]==R.drawable.tutoring_icon?0:1;
 				Bulletin b = new Bulletin(title, description, bodyText,
 						"555-555-5555", fIds[j], ids[j], 0);
 				barr.add(b);

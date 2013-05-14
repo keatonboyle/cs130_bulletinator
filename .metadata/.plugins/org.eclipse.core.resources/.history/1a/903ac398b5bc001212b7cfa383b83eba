@@ -25,7 +25,7 @@ public class BulletinActivity extends Activity {
 		bulletin = (Bulletin) getIntent().getSerializableExtra("BULLETIN");
 		ImageView image;
 
-		if (bulletin.getBodyText() == null) {
+		if (bulletin.getBodyText() != null) {
 			// If only a flyer just set up the image
 			setContentView(R.layout.bulletin_flyer);
 			image = (ImageView) findViewById(R.id.flyer);

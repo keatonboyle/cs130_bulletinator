@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class BulletinActivity extends Activity {
@@ -25,14 +26,15 @@ public class BulletinActivity extends Activity {
 		bulletin = (Bulletin) getIntent().getSerializableExtra("BULLETIN");
 		ImageView image;
 
-		if (bulletin.getBodyText() == null) {
+		if (bulletin.getBodyText() != null) {
 			// If only a flyer just set up the image
-			setContentView(R.layout.bulletin_flyer);
-			image = (ImageView) findViewById(R.id.flyer);
+			LinearLayout layout = new LinearLayout(this);
+			image = new ImageView(this);
 			image.setImageResource(bulletin.getImageId());
-			image.setScaleType(ScaleType.CENTER_INSIDE);
-			// Fix white space
-			image.setAdjustViewBounds(true);
+			image.setScaleType(ScaleType.CENTER_CROP);
+			layout.setOrientation(LinearLayout.VERTICAL);
+			layout.addView(image);
+			setContentView(layout);
 		}
 		else {
 			// Has text

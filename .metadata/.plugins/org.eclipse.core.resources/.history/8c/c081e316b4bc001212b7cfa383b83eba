@@ -43,6 +43,10 @@ public class Bulletin implements Serializable {
 		return iconId;
 	}
 	
+	public int getLayoutType() {
+		return layoutType;
+	}
+	
 	public int getBulletinId() {
 		return bltId;
 	}
