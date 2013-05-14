@@ -4,8 +4,6 @@
    $ERR_INVALID_BLDG_ID       = array(code => 102, msg => 'INVALID_BLDG_ID');
    $ERR_LAT_OUT_OF_BOUNDS     = array(code => 103, msg => 'LAT_OUT_OF_BOUNDS');
    $ERR_LONG_OUT_OF_BOUNDS    = array(code => 104, msg => 'LONG_OUT_OF_BOUNDS');
-   $ERR_INVALID_FILE_ID       = array(code => 105, msg => 'INVALID_FILE_ID');
-   $ERR_MISSING_PARAM         = array(code => 106, msg => 'MISSING_PARAM');
    $ERR_UNABLE_CONNECT_DB     = array(code => 201, msg => 'UNABLE_CONNECT_DB');
    $ERR_UNABLE_OPEN_DB        = array(code => 202, msg => 'UNABLE_OPEN_DB');
    $ERR_UNABLE_CLOSE_DB       = array(code => 203, msg => 'UNABLE_CLOSE_DB');
@@ -28,12 +26,6 @@
             break;
          case 104:
             die("An invalid longitude value was given.");
-            break;
-         case 105:
-            die("An invalid file ID was given.");
-            break;
-         case 106:
-            die("A paramter is missing.");
             break;
          case 201:
             die("Failed to connect to the database server.");

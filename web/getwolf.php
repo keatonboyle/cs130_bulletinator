@@ -1,6 +1,6 @@
 <?php
 
-   include("errors.php");
+   include("errorswolf.php");
 
    // Open the DB
    $dbHandle = openDB();
@@ -39,8 +39,6 @@
    // 
    function gpsUpdate($lat, $long)
    {
-      if(!isset($lat) || !isset($long))
-         handleError($GLOBALS['ERR_MISSING_PARAM']);
       if($lat < -90 || $lat > 90)
          handleError($GLOBALS['ERR_LAT_OUT_OF_BOUNDS']);
       if($long < -180 || $long > 180)
@@ -62,16 +60,10 @@
 
    function getBuildingData($bldid)
    {
-      if(!isset($bldid))
-         handleError($GLOBALS['ERR_MISSING_PARAM']);
       if($bldid <= 0 || !(intval($bldid)))
          handleError($GLOBALS['ERR_INVALID_BLDG_ID']);
 
       $responseType = 'BUILDING_RESPONSE';
-
-      $result = queryDB("SELECT * FROM Building WHERE bid = " . $bldid)
-
-      // generate array according to spec
    }
 
    function getAllBuildings()
@@ -81,21 +73,12 @@
 
    function getFile($fid)
    {
-      if(!isset($fid))
-         handleError($GLOBALS['ERR_MISSING_PARAM']);
-      if($fid < 0 || !(intval($fid)))
-         handleError($GLOBALS['ERR_INVALID_FILE_ID']);
-
-      // Need to query database to figure out file extension based on ID
-      // - As a result, need to modify database design
-
-      header("Location: ./resources/bulletins/".$fid.".png");
+      ;
    }
 
    function dummyGet()
    {
       $responseType = 'DUMMY_RESPONSE';
-
       $result = queryDB("SELECT * FROM Bulletin LIMIT 1");
       $payload = mysql_fetch_assoc($result);
       $dummyResponse = array(type => $responseType,
