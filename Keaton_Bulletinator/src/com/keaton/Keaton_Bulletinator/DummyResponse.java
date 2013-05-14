@@ -10,17 +10,17 @@ public class DummyResponse
       {
          json = new JSONObject((String) raw);
 
-         mType = (String) json.get("type");
-//         mPayload = (String) json.get("payload");
+         mType = json.getString("type");
+         mTitle = json.getJSONObject("payload").getString("title");
       }
       catch (JSONException e)
       {
          mType = "problem";
-         mPayload = "problem";
+         mTitle = "problem";
       }
    } 
 
    public String mType;
-   public String mPayload;
+   public String mTitle;
 
 }

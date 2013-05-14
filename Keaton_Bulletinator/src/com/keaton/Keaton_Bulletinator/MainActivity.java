@@ -18,7 +18,7 @@ public class MainActivity extends Activity implements CallbackListener
    public void callback(Object obj)
    {
       DummyResponse dr = (DummyResponse) obj;
-      printJson(dr.mType);
+      printJson(dr.mTitle);
    }
 
    @Override
