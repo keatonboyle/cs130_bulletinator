@@ -47,6 +47,7 @@ public class TabListener<T extends Fragment> implements ActionBar.TabListener {
 			// If it exists, simply attach it in order to show it
 			ft.attach(mFragment);
 		}
+		((MainActivity) mActivity).setCurTab(tab.getPosition());
 	}
 
 	public void onTabUnselected(Tab tab, FragmentTransaction ft) {

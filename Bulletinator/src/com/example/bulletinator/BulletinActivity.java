@@ -16,9 +16,6 @@ public class BulletinActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		// TODO: Choose which layout to view based on how many fields are
-		// entered for the specific bulletin. (Diff layout weights).
-				
 		// Show the Up button in the action bar.
 		setupActionBar();
 
@@ -26,8 +23,9 @@ public class BulletinActivity extends Activity {
 		ImageView image;
 
 		if (bulletin.getBodyText() == null) {
-			// If only a flyer just set up the image
+			// Flyer, only set up image
 			setContentView(R.layout.bulletin_flyer);
+
 			image = (ImageView) findViewById(R.id.flyer);
 			image.setImageResource(bulletin.getImageId());
 			image.setScaleType(ScaleType.CENTER_INSIDE);
@@ -35,7 +33,7 @@ public class BulletinActivity extends Activity {
 			image.setAdjustViewBounds(true);
 		}
 		else {
-			// Has text
+			// No flyer, set up image, text, contact
 			setContentView(R.layout.activity_bulletin);
 			
 			image = (ImageView) findViewById(R.id.flyer);
@@ -47,7 +45,6 @@ public class BulletinActivity extends Activity {
 			TextView contact = (TextView) findViewById(R.id.contactText);
 			contact.setText(bulletin.getContactInfo());
 		}
-		
 		this.setTitle(bulletin.getTitle());
 	}
 

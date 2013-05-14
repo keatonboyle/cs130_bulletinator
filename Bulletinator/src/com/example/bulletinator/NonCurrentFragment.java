@@ -17,7 +17,7 @@ public class NonCurrentFragment extends Fragment {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
+			Bundle savedInstanceState) {		
 		// Inflate current buildings layout
 		View view = inflater.inflate(R.layout.current, container, false);
 
@@ -28,7 +28,7 @@ public class NonCurrentFragment extends Fragment {
 		expandableListView = (ExpandableListView) view
 				.findViewById(R.id.expandableListView);
 		ExpandableListAdapter adapter = new ExpandableListAdapter(
-				(MainActivity) getActivity(), buildings, false);
+				(MainActivity) getActivity(), buildings, MainActivity.NEARBY);
 
 		// Set on click listener for viewing bulletins
 		expandableListView.setOnChildClickListener(new OnChildClickListener() {
@@ -44,13 +44,18 @@ public class NonCurrentFragment extends Fragment {
 		});
 		expandableListView.setAdapter(adapter);
 
-		// expand the last building?
-		// String bldg = ((MainActivity) getActivity()).getCurBldg();
-		// for (int i = 0; i < buildings.size(); i++) {
-		// if (buildings.get(i).getName().equals(bldg)) {
-		// expandableListView.expandGroup(i);
-		// }
-		// }
+		// TODO: When/How often should this happen?
+		List<String> bldgs = ((MainActivity) getActivity()).getCurBldgs(MainActivity.NEARBY);
+		for (int i = 0; i < adapter.getGroupCount(); i++) {
+			String name = ((Building) adapter.getGroup(i)).getName();
+			if (bldgs.contains(name))
+				expandableListView.expandGroup(i);
+		}
 		return view;
+	}
+
+	@Override
+	public void onPause() {
+		super.onPause();
 	}
 }

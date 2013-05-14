@@ -1,0 +1,7 @@
+package com.example.bulletinator;
+
+import android.app.Fragment;
+
+public class AllFragment extends Fragment {
+
+}

@@ -18,7 +18,7 @@ public class CurrentFragment extends Fragment {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
+			Bundle savedInstanceState) {				
 		// Inflate current buildings layout
 		View view = inflater.inflate(R.layout.current, container, false);
 
@@ -29,7 +29,7 @@ public class CurrentFragment extends Fragment {
 		expandableListView = (ExpandableListView) view
 				.findViewById(R.id.expandableListView);
 		ExpandableListAdapter adapter = new ExpandableListAdapter(
-				(MainActivity) getActivity(), buildings, true);
+				(MainActivity) getActivity(), buildings, MainActivity.CURRENT);
 
 		// Set on click listener for viewing bulletins
 		expandableListView.setOnChildClickListener(new OnChildClickListener() {
