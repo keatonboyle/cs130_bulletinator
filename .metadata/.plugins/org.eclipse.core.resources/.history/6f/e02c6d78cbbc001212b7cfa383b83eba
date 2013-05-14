@@ -65,8 +65,8 @@ public class MainActivity extends Activity {
 				.newTab()
 				.setText(tab2)
 				.setTabListener(
-						new TabListener<NearbyFragment>(this, tab2,
-								NearbyFragment.class));
+						new TabListener<NonCurrentFragment>(this, tab2,
+								NonCurrentFragment.class));
 		actionBar.addTab(tab);
 
 		tab = actionBar
