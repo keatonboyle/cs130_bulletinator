@@ -56,8 +56,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		textView.setText(bulletin.getDescription());
 
 		Drawable image = activity.getResources().getDrawable(
-				bulletin.getImageId());
-		image.setBounds(0, 0, 100, 100);
+				bulletin.getIconId());
+		image.setBounds(0, 0, 120, 120);
 		textView.setCompoundDrawables(image, null, null, null);
 
 		return convertView;

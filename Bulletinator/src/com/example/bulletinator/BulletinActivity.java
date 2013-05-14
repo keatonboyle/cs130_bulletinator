@@ -6,6 +6,8 @@ import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class BulletinActivity extends Activity {
@@ -17,22 +19,37 @@ public class BulletinActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		// TODO: Choose which layout to view based on how many fields are
 		// entered for the specific bulletin. (Diff layout weights).
-		setContentView(R.layout.activity_bulletin);
+				
 		// Show the Up button in the action bar.
 		setupActionBar();
 
 		bulletin = (Bulletin) getIntent().getSerializableExtra("BULLETIN");
+		ImageView image;
 
-		// Fill in bulletin information with provided bulletin
-		ImageView image = (ImageView) findViewById(R.id.flyer);
-		image.setImageResource(bulletin.getImageId());
+		if (bulletin.getLayoutType() == 0) {
+			// If only a flyer just set up the image
+			LinearLayout layout = new LinearLayout(this);
+			image = new ImageView(this);
+			image.setImageResource(bulletin.getImageId());
+			image.setScaleType(ScaleType.CENTER_CROP);
+			layout.setOrientation(LinearLayout.VERTICAL);
+			layout.addView(image);
+			setContentView(layout);
+		}
+		else {
+			// Has text
+			setContentView(R.layout.activity_bulletin);
+			
+			image = (ImageView) findViewById(R.id.flyer);
+			image.setImageResource(bulletin.getImageId());
+			
+			TextView body = (TextView) findViewById(R.id.bodyText);
+			body.setText(bulletin.getBodyText());
 
-		TextView body = (TextView) findViewById(R.id.bodyText);
-		body.setText(bulletin.getBodyText());
-
-		TextView contact = (TextView) findViewById(R.id.contactText);
-		contact.setText(bulletin.getContactInfo());
-
+			TextView contact = (TextView) findViewById(R.id.contactText);
+			contact.setText(bulletin.getContactInfo());
+		}
+		
 		this.setTitle(bulletin.getTitle());
 	}
 
