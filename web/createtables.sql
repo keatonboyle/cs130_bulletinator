@@ -8,10 +8,16 @@ CREATE TABLE Bulletin (
    expiration date
 );
 
+#Test Data
+INSERT INTO Bulletin VALUES(1, 'Spring Sing', 'Join us for a show unlike any other!', "UCLA's Greatest Musical Tradition", 'springsing@alumni.ucla.edu', 'Events', '2013-05-18');
+
 CREATE TABLE File (
    fid int PRIMARY KEY,
    ext varchar(5) NOT NULL
 );
+
+#Test Data
+INSERT INTO File VALUES(1, 'jpg');
 
 CREATE TABLE FileToBulletin (
    fid int PRIMARY KEY,
@@ -21,12 +27,18 @@ CREATE TABLE FileToBulletin (
    FOREIGN KEY (btnid) references Bulletin(btnid)
 );
 
+#Test Data
+INSERT INTO FileToBulletin VALUES(1,1);
+
 CREATE TABLE MaxID (
    btnid int,
    fid int
 );
 
 INSERT INTO MaxID VALUES(1,1);
+
+#UPDATE due to Test Bulletin;
+UPDATE MaxID SET btnid=2, fid=2;
 
 CREATE TABLE Creator (
    username varchar(30) PRIMARY KEY,

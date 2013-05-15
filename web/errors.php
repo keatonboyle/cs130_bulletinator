@@ -10,6 +10,7 @@
    $ERR_UNABLE_OPEN_DB        = array(code => 202, msg => 'UNABLE_OPEN_DB');
    $ERR_UNABLE_CLOSE_DB       = array(code => 203, msg => 'UNABLE_CLOSE_DB');
    $ERR_DB_QUERY_FAILURE      = array(code => 204, msg => 'DB_QUERY_FAILURE');
+   $ERR_EMPTY_DB_RESPONSE     = array(code => 205, msg => 'ERR_EMPTY_DB_RESPONSE');
    $ERR_JSON_ENCODE_FAILURE   = array(code => 301, msg => 'JSON_ENCODE_FAILURE');
 
    function handleError($error)
@@ -45,8 +46,10 @@
             die("Failed to close database.");
             break;
          case 204:
-            die("Database query failed or returned the empty set.");
+            die("Database query failed.");
             break;
+         case 205:
+            die("Database query returned the empty set.");
          case 301:
             die("Error encoding JSON.");
             break;

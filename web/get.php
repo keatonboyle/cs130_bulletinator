@@ -69,7 +69,7 @@
 
       $responseType = 'BUILDING_RESPONSE';
 
-      $result = queryDB("SELECT * FROM Building WHERE bid = " . $bldid)
+      $result = queryDB("SELECT * FROM Building WHERE bid = " . $bldid);
 
       // generate array according to spec
    }
@@ -86,9 +86,11 @@
       if($fid < 0 || !(intval($fid)))
          handleError($GLOBALS['ERR_INVALID_FILE_ID']);
 
-      $result = queryDB("SELECT ext FROM Image WHERE fid=".$fid);
+      $result = queryDB("SELECT ext FROM File WHERE fid=".$fid);
+      $row = fetchRowAssoc($result);
+      $ext = $row['ext'];
 
-      header("Location: ./resources/bulletins/".$fid.".png");
+      header("Location: ./resources/bulletins/".$fid.".".$ext);
    }
 
    function dummyGet()
@@ -96,7 +98,7 @@
       $responseType = 'DUMMY_RESPONSE';
 
       $result = queryDB("SELECT * FROM Bulletin LIMIT 1");
-      $payload = mysql_fetch_assoc($result);
+      $payload = fetchRowAssoc($result);
       $dummyResponse = array(type => $responseType,
                              payload => $payload);
 
@@ -130,5 +132,12 @@
       if(!($result = mysql_query($query)))
          handleError($GLOBALS['ERR_DB_QUERY_FAILURE']);
       return $result;
+   }
+
+   function fetchRowAssoc($resource)
+   {
+      if(!($row = mysql_fetch_assoc($resource)))
+         handleError($GLOBALS['ERR_EMPTY_DB_RESPONSE']);
+      return $row;
    }
 ?>
