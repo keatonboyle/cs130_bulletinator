@@ -1,8 +1,0 @@
-package com.example.bulletinator;
-
-public class NonCurrentFragment extends ParentFragment {
-
-	public int getTab() {
-		return MainActivity.ALL;
-	}
-}
