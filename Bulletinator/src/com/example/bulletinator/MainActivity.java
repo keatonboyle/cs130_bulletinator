@@ -13,12 +13,19 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Toast;
+import com.example.bulletinator.data.Building;
+import com.example.bulletinator.data.Bulletin;
+import com.example.bulletinator.fragments.AllFragment;
+import com.example.bulletinator.fragments.CurrentFragment;
+import com.example.bulletinator.fragments.NearbyFragment;
+import com.example.bulletinator.helpers.ScrollManager;
+import com.example.bulletinator.helpers.TabListener;
 
 public class MainActivity extends Activity {
     public static final String BULLETIN = "BULLETIN";
     public static final int CURRENT = 0, NEARBY = 1, ALL = 2;
     private List<Building> buildings;
-    private List<String> nearbyExpandedBldgs, allExpandedBldgs;
+    private Set<String> nearbyExpandedBldgs, allExpandedBldgs;
     private int curTab;
     private ScrollManager sm;
 
@@ -29,7 +36,7 @@ public class MainActivity extends Activity {
     private int[] ids = {R.drawable.food_icon, R.drawable.tutoring_icon,
             R.drawable.volunteering_icon};
     private int[] fIds = {R.drawable.flyer, R.drawable.tutor_flyer,
-            R.drawable.volunteers_needed};// ////////
+            R.drawable.volunteers_needed};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -111,10 +118,8 @@ public class MainActivity extends Activity {
         editor.putInt("lastTab", curTab);
 
         // Save current expanded buildings to be retrieved later
-        Set<String> bldgSet = new HashSet<String>(nearbyExpandedBldgs);
-        editor.putStringSet("lastNearbyExpandedBuildings", bldgSet);
-        bldgSet = new HashSet<String>(allExpandedBldgs);
-        editor.putStringSet("lastAllExpandedBuildings", bldgSet);
+        editor.putStringSet("lastNearbyExpandedBuildings", nearbyExpandedBldgs);
+        editor.putStringSet("lastAllExpandedBuildings", allExpandedBldgs);
 
         // Save list position (index & top) in each tab
         int curPos[] = sm.getCurPos();
@@ -136,7 +141,7 @@ public class MainActivity extends Activity {
         editor.commit();
     }
 
-    public void setCurBldgs(int tab, List<String> bldgs) {
+    public void setCurBldgs(int tab, Set<String> bldgs) {
         switch (tab) {
             case NEARBY: {
                 nearbyExpandedBldgs = bldgs;
@@ -151,14 +156,14 @@ public class MainActivity extends Activity {
         }
     }
 
-    public List<String> getCurBldgs(int tab) {
+    public Set<String> getCurBldgs(int tab) {
         switch (tab) {
             case NEARBY:
                 return nearbyExpandedBldgs;
             case ALL:
                 return allExpandedBldgs;
             default:
-                return null;
+                return new HashSet<String>();
         }
     }
 
@@ -172,14 +177,10 @@ public class MainActivity extends Activity {
         curTab = settings.getInt("lastTab", 0);
 
         // Restore last expanded buildings (by tab)
-        Set<String> bldgSet = settings.getStringSet(
+        nearbyExpandedBldgs = settings.getStringSet(
                 "lastNearbyExpandedBuildings", new HashSet<String>());
-        List<String> bldgs = new ArrayList<String>(bldgSet);
-        nearbyExpandedBldgs = bldgs;
-        bldgSet = settings.getStringSet("lastAllExpandedBuildings",
+        allExpandedBldgs = settings.getStringSet("lastAllExpandedBuildings",
                 new HashSet<String>());
-        bldgs = new ArrayList<String>(bldgSet);
-        allExpandedBldgs = bldgs;
 
         // Restore position in each tab
         sm.setCurPos(settings.getInt("curPosIndex", 0), settings.getInt("curPosTop", 0));

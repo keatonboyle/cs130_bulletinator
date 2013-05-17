@@ -1,4 +1,4 @@
-package com.example.bulletinator;
+package com.example.bulletinator.helpers;
 
 /**
  * Manages the scroll positions of each tab in the action bar
@@ -8,9 +8,9 @@ public class ScrollManager {
     private int curPos[], nearPos[], allPos[];
 
     public ScrollManager() {
-        curPos = new int[3];
-        nearPos = new int[3];
-        allPos = new int[3];
+        curPos = new int[2];
+        nearPos = new int[2];
+        allPos = new int[2];
     }
 
     public void setCurPos(int index, int top) {

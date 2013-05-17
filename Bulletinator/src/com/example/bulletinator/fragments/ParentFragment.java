@@ -1,6 +1,7 @@
-package com.example.bulletinator;
+package com.example.bulletinator.fragments;
 
 import java.util.List;
+import java.util.Set;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -10,6 +11,10 @@ import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupClickListener;
+import com.example.bulletinator.*;
+import com.example.bulletinator.data.Building;
+import com.example.bulletinator.data.Bulletin;
+import com.example.bulletinator.helpers.ExpandableListAdapter;
 
 public abstract class ParentFragment extends Fragment {
     private List<Building> buildings;
@@ -68,7 +73,7 @@ public abstract class ParentFragment extends Fragment {
         // TODO: When/How often should this happen?
         // Re-expand previously expanded groups
         else {
-            List<String> bldgs = mainActivity.getCurBldgs(getTab());
+            Set<String> bldgs = mainActivity.getCurBldgs(getTab());
             for (int i = 0; i < adapter.getGroupCount(); i++) {
                 String name = ((Building) adapter.getGroup(i)).getName();
                 if (bldgs.contains(name))

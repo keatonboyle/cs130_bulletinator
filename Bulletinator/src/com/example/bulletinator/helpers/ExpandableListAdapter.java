@@ -1,27 +1,33 @@
-package com.example.bulletinator;
+package com.example.bulletinator.helpers;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
+import com.example.bulletinator.MainActivity;
+import com.example.bulletinator.R;
+import com.example.bulletinator.data.Building;
+import com.example.bulletinator.data.Bulletin;
 
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
     private List<Building> buildings;
     private Context context;
-    private List<String> curBldgs;
+    private Set<String> curBldgs;
     private MainActivity activity;
     private int tab;
 
     public ExpandableListAdapter(Context c, List<Building> bldgs, int t) {
         context = c;
         buildings = bldgs;
-        curBldgs = new ArrayList<String>();
+        curBldgs = new HashSet<String>();
         activity = (MainActivity) context;
         tab = t;
     }
@@ -56,7 +62,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
         Drawable image = activity.getResources().getDrawable(
                 bulletin.getIconId());
-        image.setBounds(0, 0, 120, 120);
+        image.setBounds(0, 0, 72, 72);
         textView.setCompoundDrawables(image, null, null, null);
 
         return convertView;
@@ -98,7 +104,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         TextView textView = (TextView) convertView
                 .findViewById(R.id.buildingName);
         textView.setText(bldg.getName());
-        textView.setTextSize(30);
+        textView.setTextSize(25);
         if (tab > 0)
             ((ViewGroup.MarginLayoutParams) textView.getLayoutParams())
                     .setMargins(60, 0, 0, 0);

@@ -1,4 +1,4 @@
-package com.example.bulletinator;
+package com.example.bulletinator.data;
 
 import java.io.Serializable;
 

@@ -1,4 +1,7 @@
-package com.example.bulletinator;
+package com.example.bulletinator.fragments;
+
+import com.example.bulletinator.MainActivity;
+import com.example.bulletinator.helpers.ScrollManager;
 
 public class NearbyFragment extends ParentFragment {
 
