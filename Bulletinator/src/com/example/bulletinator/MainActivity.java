@@ -19,8 +19,8 @@ public class MainActivity extends Activity {
     public static final int CURRENT = 0, NEARBY = 1, ALL = 2;
     private List<Building> buildings;
     private List<String> nearbyExpandedBldgs, allExpandedBldgs;
-    private int curPos[], nearPos[], allPos[];
     private int curTab;
+    private ScrollManager sm;
 
     // For testing
     private String[] bNames = {"Boelter Hall", "Engineering V", "Humanities"};
@@ -35,6 +35,7 @@ public class MainActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        sm = new ScrollManager();
         restorePreferences();
 
         ActionBar actionBar = getActionBar();
@@ -116,6 +117,10 @@ public class MainActivity extends Activity {
         editor.putStringSet("lastAllExpandedBuildings", bldgSet);
 
         // Save list position (index & top) in each tab
+        int curPos[] = sm.getCurPos();
+        int nearPos[] = sm.getNearPos();
+        int allPos[] = sm.getAllPos();
+
         editor.putInt("curPosIndex", curPos[0]);
         editor.putInt("nearPosIndex", nearPos[0]);
         editor.putInt("allPosIndex", allPos[0]);
@@ -129,29 +134,6 @@ public class MainActivity extends Activity {
         // re-expanded!
 
         editor.commit();
-    }
-
-    private void createDummyBulletins() {
-        // Will be replaced with something that returns actual bulletins
-        buildings = new ArrayList<Building>();
-        for (int i = 0; i < bNames.length; i++) {
-            String name = bNames[i];
-            ArrayList<Bulletin> barr = new ArrayList<Bulletin>();
-            for (int j = 0; j < 3; j++) {
-                String title = "Bulletin #" + j;
-                String description = bullDescriptions[j];
-                String bodyText = j == 2 ? "Volunteers needed for decision making study. "
-                        + "Please contact if interested."
-                        : null;
-                Bulletin b = new Bulletin(title, description, bodyText,
-                        "555-555-5555", fIds[j], ids[j], 0);
-                barr.add(b);
-                if (bNames[i].equals("Engineering V"))
-                    break;
-            }
-            Building bldg = new Building(name, barr);
-            buildings.add(bldg);
-        }
     }
 
     public void setCurBldgs(int tab, List<String> bldgs) {
@@ -185,12 +167,6 @@ public class MainActivity extends Activity {
     }
 
     public void restorePreferences() {
-        if (curPos == null || nearPos == null || allPos == null) {
-            curPos = new int[2];
-            nearPos = new int[2];
-            allPos = new int[2];
-        }
-
         // Restore last tab
         SharedPreferences settings = getPreferences(MODE_PRIVATE);
         curTab = settings.getInt("lastTab", 0);
@@ -206,45 +182,13 @@ public class MainActivity extends Activity {
         allExpandedBldgs = bldgs;
 
         // Restore position in each tab
-        curPos[0] = settings.getInt("curPosIndex", 0);
-        nearPos[0] = settings.getInt("nearPosIndex", 0);
-        allPos[0] = settings.getInt("allPosIndex", 0);
-        curPos[1] = settings.getInt("curPosTop", 0);
-        nearPos[1] = settings.getInt("nearPosTop", 0);
-        allPos[1] = settings.getInt("allPosTop", 0);
+        sm.setCurPos(settings.getInt("curPosIndex", 0), settings.getInt("curPosTop", 0));
+        sm.setNearbyPos(settings.getInt("nearPosIndex", 0), settings.getInt("nearPosTop", 0));
+        sm.setAllPos(settings.getInt("allPosIndex", 0), settings.getInt("allPosTop", 0));
     }
 
-    public void setPos(int tab, int index, int top) {
-        switch (tab) {
-            case MainActivity.CURRENT: {
-                curPos[0] = index;
-                curPos[1] = top;
-                return;
-            }
-            case MainActivity.NEARBY: {
-                nearPos[0] = index;
-                nearPos[1] = top;
-                return;
-            }
-            case MainActivity.ALL: {
-                allPos[0] = index;
-                allPos[1] = top;
-                return;
-            }
-        }
-    }
-
-    public int[] getPos(int tab) {
-        switch (tab) {
-            case MainActivity.CURRENT:
-                return curPos;
-            case MainActivity.NEARBY:
-                return nearPos;
-            case MainActivity.ALL:
-                return allPos;
-            default:
-                return null;
-        }
+    public ScrollManager getSM() {
+        return sm;
     }
 
     public void toast(String t) {
@@ -255,4 +199,28 @@ public class MainActivity extends Activity {
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();
     }
+
+    private void createDummyBulletins() {
+        // Will be replaced with something that returns actual bulletins
+        buildings = new ArrayList<Building>();
+        for (int i = 0; i < bNames.length; i++) {
+            String name = bNames[i];
+            ArrayList<Bulletin> barr = new ArrayList<Bulletin>();
+            for (int j = 0; j < 3; j++) {
+                String title = "Bulletin #" + j;
+                String description = bullDescriptions[j];
+                String bodyText = j == 2 ? "Volunteers needed for decision making study. "
+                        + "Please contact if interested."
+                        : null;
+                Bulletin b = new Bulletin(title, description, bodyText,
+                        "555-555-5555", fIds[j], ids[j], 0);
+                barr.add(b);
+                if (bNames[i].equals("Engineering V"))
+                    break;
+            }
+            Building bldg = new Building(name, barr);
+            buildings.add(bldg);
+        }
+    }
+
 }

@@ -2,7 +2,9 @@
 <project version="4">
   <component name="AndroidLayoutPreviewToolWindow">
     <option name="state">
-      <GlobalState />
+      <GlobalState>
+        <option name="visible" value="false" />
+      </GlobalState>
     </option>
   </component>
   <component name="AndroidLayouts">
@@ -22,35 +24,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="53cff988-bf08-4d1b-ae93-a8affccd646a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/bulletinator/AllFragment.java" afterPath="$PROJECT_DIR$/src/com/example/bulletinator/AllFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/bulletinator/Building.java" afterPath="$PROJECT_DIR$/src/com/example/bulletinator/Building.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/bulletinator/Bulletin.java" afterPath="$PROJECT_DIR$/src/com/example/bulletinator/Bulletin.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/bulletinator/BulletinActivity.java" afterPath="$PROJECT_DIR$/src/com/example/bulletinator/BulletinActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/bulletinator/CurrentFragment.java" afterPath="$PROJECT_DIR$/src/com/example/bulletinator/CurrentFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/bulletinator/ExpandableListAdapter.java" afterPath="$PROJECT_DIR$/src/com/example/bulletinator/ExpandableListAdapter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/bulletinator/MainActivity.java" afterPath="$PROJECT_DIR$/src/com/example/bulletinator/MainActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/bulletinator/NearbyFragment.java" afterPath="$PROJECT_DIR$/src/com/example/bulletinator/NearbyFragment.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/bulletinator/ParentFragment.java" afterPath="$PROJECT_DIR$/src/com/example/bulletinator/ParentFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/bulletinator/TabListener.java" afterPath="$PROJECT_DIR$/src/com/example/bulletinator/TabListener.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/activity_bulletin.xml" afterPath="$PROJECT_DIR$/res/layout/activity_bulletin.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/building_header.xml" afterPath="$PROJECT_DIR$/res/layout/building_header.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/bulletin_flyer.xml" afterPath="$PROJECT_DIR$/res/layout/bulletin_flyer.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/bulletin_preview.xml" afterPath="$PROJECT_DIR$/res/layout/bulletin_preview.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/list_view.xml" afterPath="$PROJECT_DIR$/res/layout/list_view.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Bulletinator.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="53cff988-bf08-4d1b-ae93-a8affccd646a" time="1368762772349" ignored="false" />
+    <file path="/Dummy.txt" changelist="53cff988-bf08-4d1b-ae93-a8affccd646a" time="1368817937479" ignored="false" />
     <file path="/BulletinActivity.java" changelist="53cff988-bf08-4d1b-ae93-a8affccd646a" time="1368763472579" ignored="false" />
     <file path="/fragment.java" changelist="53cff988-bf08-4d1b-ae93-a8affccd646a" time="1368763566141" ignored="false" />
     <file path="/Bulletinator.iml" changelist="53cff988-bf08-4d1b-ae93-a8affccd646a" time="1368763667091" ignored="false" />
     <file path="/activity_bulletin.xml" changelist="53cff988-bf08-4d1b-ae93-a8affccd646a" time="1368764411650" ignored="false" />
     <file path="/a.xml" changelist="53cff988-bf08-4d1b-ae93-a8affccd646a" time="1368764813955" ignored="false" />
-    <file path="/a.java" changelist="53cff988-bf08-4d1b-ae93-a8affccd646a" time="1368764815672" ignored="false" />
+    <file path="/a.java" changelist="53cff988-bf08-4d1b-ae93-a8affccd646a" time="1368817736783" ignored="false" />
     <file path="/a.html" changelist="53cff988-bf08-4d1b-ae93-a8affccd646a" time="1368764457631" ignored="false" />
+    <file path="/IdManager.java" changelist="53cff988-bf08-4d1b-ae93-a8affccd646a" time="1368817681835" ignored="false" />
+    <file path="/AllFragment.java" changelist="53cff988-bf08-4d1b-ae93-a8affccd646a" time="1368819299753" ignored="false" />
+    <file path="/CurrentFragment.java" changelist="53cff988-bf08-4d1b-ae93-a8affccd646a" time="1368819292679" ignored="false" />
+    <file path="/NearbyFragment.java" changelist="53cff988-bf08-4d1b-ae93-a8affccd646a" time="1368819523537" ignored="false" />
+    <file path="/MainActivity.java" changelist="53cff988-bf08-4d1b-ae93-a8affccd646a" time="1368819358167" ignored="false" />
+    <file path="/ParentFragment.java" changelist="53cff988-bf08-4d1b-ae93-a8affccd646a" time="1368819904322" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,6 +63,7 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -101,7 +100,6 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -111,40 +109,59 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="BulletinActivity.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="BulletinActivity.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/BulletinActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="13" selection-start="390" selection-end="390" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="17" column="4" selection-start="452" selection-end="452" vertical-scroll-proportion="0.41095892">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="activity_bulletin.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/layout/activity_bulletin.xml">
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
+      <file leaf-file-name="MainActivity.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="25" selection-start="545" selection-end="545" vertical-scroll-proportion="-6.6666665">
-              <folding />
+            <state line="138" column="37" selection-start="4849" selection-end="4849" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1484#1525#0" expanded="true" />
+                <element signature="e#1549#1590#0" expanded="true" />
+                <element signature="e#1614#1655#0" expanded="true" />
+                <element signature="method#getBuildings#0;class#MainActivity#0" expanded="false" />
+                <element signature="method#onPause#0;class#MainActivity#0" expanded="false" />
+                <element signature="e#3838#3846#0" expanded="true" />
+                <element signature="method#setCurTab#0;class#MainActivity#0" expanded="false" />
+                <element signature="method#restorePreferences#0;class#MainActivity#0" expanded="false" />
+                <element signature="e#5906#5914#0" expanded="true" />
+                <element signature="method#getSM#0;class#MainActivity#0" expanded="false" />
+                <element signature="method#toast#0;class#MainActivity#0" expanded="false" />
+                <element signature="method#createDummyBulletins#0;class#MainActivity#0" expanded="false" />
+                <element signature="e#7089#7099#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AllFragment.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/AllFragment.java">
+      <file leaf-file-name="ParentFragment.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/ParentFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="13" selection-start="48" selection-end="48" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="69" column="17" selection-start="2782" selection-end="2782" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1493#1973#0" expanded="true" />
+                <element signature="e#1962#1963#0" expanded="true" />
+                <element signature="method#onPause#0;class#ParentFragment#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+      <file leaf-file-name="NearbyFragment.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/NearbyFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="68" selection-start="916" selection-end="916" vertical-scroll-proportion="0.8561644">
+            <state line="8" column="27" selection-start="185" selection-end="185" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -173,12 +190,20 @@
         <option value="$PROJECT_DIR$/Bulletinator.iml" />
         <option value="$PROJECT_DIR$/res/layout/activity_bulletin.xml" />
         <option value="$PROJECT_DIR$/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/src/com/example/bulletinator/Bulletin.java" />
+        <option value="$PROJECT_DIR$/src/com/example/bulletinator/IdManager.java" />
+        <option value="$PROJECT_DIR$/src/com/example/bulletinator/CurrentFragment.java" />
+        <option value="$PROJECT_DIR$/src/com/example/bulletinator/AllFragment.java" />
+        <option value="$PROJECT_DIR$/src/com/example/bulletinator/ScrollManager.java" />
+        <option value="$PROJECT_DIR$/src/com/example/bulletinator/NearbyFragment.java" />
+        <option value="$PROJECT_DIR$/src/com/example/bulletinator/ParentFragment.java" />
+        <option value="$PROJECT_DIR$/src/com/example/bulletinator/MainActivity.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="55" />
-    <option name="y" value="31" />
+    <option name="y" value="23" />
     <option name="width" value="1385" />
     <option name="height" value="815" />
   </component>
@@ -208,7 +233,7 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -249,55 +274,23 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Bulletinator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Bulletinator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Bulletinator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Bulletinator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="layout" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="114" />
-    <property name="project.structure.proportion" value="0.15" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="131" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="recentsLimit" value="5" />
-    <property name="MemberChooser.sorted" value="false" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="126" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="MemberChooser.sorted" value="false" />
+    <property name="recentsLimit" value="5" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/libs/android-support-v4.jar!/" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="135" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="925" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="929" />
@@ -306,6 +299,7 @@
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
+    <property name="FullScreen" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="options.splitter.details.proportions" value="0.2" />
@@ -314,7 +308,7 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
-    <property name="options.lastSelected" value="preferences.sourceCode.Java" />
+    <property name="options.lastSelected" value="editor.preferences.completion" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="options.searchVisible" value="true" />
@@ -480,42 +474,74 @@
       <workItem from="1368759213170" duration="298000" />
       <workItem from="1368762702481" duration="44000" />
       <workItem from="1368762771792" duration="2069000" />
+      <workItem from="1368764864113" duration="72000" />
+      <workItem from="1368764942690" duration="141000" />
+      <workItem from="1368766336109" duration="697000" />
+      <workItem from="1368817559183" duration="367000" />
+      <workItem from="1368817935407" duration="2588000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2411000" />
+    <option name="totallyTimeSpent" value="6276000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="55" y="31" width="1385" height="815" extended-state="0" />
-    <editor active="false" />
+    <frame x="55" y="23" width="1385" height="815" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32935026" sideWeight="0.6705036" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32935026" sideWeight="0.6705036" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294964" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32909498" sideWeight="0.6705036" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294964" sideWeight="0.3704257" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3294964" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32855093" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294964" sideWeight="0.49962658" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294964" sideWeight="0.6295743" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24869305" sideWeight="0.6705036" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294964" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3294964" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32935026" sideWeight="0.6705036" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32935026" sideWeight="0.6705036" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32834706" sideWeight="0.6705036" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294964" sideWeight="0.6295743" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32935026" sideWeight="0.6705036" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294964" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294964" sideWeight="0.3704257" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32855093" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24869305" sideWeight="0.67144907" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294964" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32935026" sideWeight="0.6705036" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32834706" sideWeight="0.6705036" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294964" sideWeight="0.49962658" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294964" sideWeight="0.6295743" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -578,71 +604,140 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/BulletinActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="29" selection-start="119" selection-end="119" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/activity_main.xml">
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="43" selection-start="762" selection-end="762" vertical-scroll-proportion="0.2023988">
-          <folding />
-        </state>
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/list_view.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state line="12" column="0" selection-start="485" selection-end="485" vertical-scroll-proportion="0.4379562" />
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Bulletinator.iml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="0" selection-start="79" selection-end="79" vertical-scroll-proportion="0.044977512">
+        <state line="2" column="0" selection-start="79" selection-end="79" vertical-scroll-proportion="0.044977512" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="12" selection-start="120" selection-end="120" vertical-scroll-proportion="0.044843048">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/BulletinActivity.java">
+    <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/TabListener.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="13" selection-start="390" selection-end="390" vertical-scroll-proportion="0.0">
+        <state line="2" column="0" selection-start="35" selection-end="325" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/Building.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="13" selection-start="72" selection-end="72" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/ExpandableListAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="20" selection-start="139" selection-end="139" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/Bulletin.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="22" selection-start="87" selection-end="110" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/activity_bulletin.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="25" selection-start="545" selection-end="545" vertical-scroll-proportion="-6.6666665">
+        <state line="34" column="23" selection-start="1346" selection-end="1346" vertical-scroll-proportion="0.7196262">
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/AllFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="13" selection-start="48" selection-end="48" vertical-scroll-proportion="0.0">
+        <state line="12" column="0" selection-start="284" selection-end="284" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+    <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/CurrentFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="68" selection-start="916" selection-end="916" vertical-scroll-proportion="0.8561644">
+        <state line="15" column="17" selection-start="422" selection-end="422" vertical-scroll-proportion="0.51369864">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/ScrollManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="24" selection-start="762" selection-end="762" vertical-scroll-proportion="1.1643835">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="138" column="37" selection-start="4849" selection-end="4849" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1484#1525#0" expanded="true" />
+            <element signature="e#1549#1590#0" expanded="true" />
+            <element signature="e#1614#1655#0" expanded="true" />
+            <element signature="method#getBuildings#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#onPause#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#3838#3846#0" expanded="true" />
+            <element signature="method#setCurTab#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#restorePreferences#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#5906#5914#0" expanded="true" />
+            <element signature="method#getSM#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#toast#0;class#MainActivity#0" expanded="false" />
+            <element signature="method#createDummyBulletins#0;class#MainActivity#0" expanded="false" />
+            <element signature="e#7089#7099#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/ParentFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="69" column="17" selection-start="2782" selection-end="2782" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1493#1973#0" expanded="true" />
+            <element signature="e#1962#1963#0" expanded="true" />
+            <element signature="method#onPause#0;class#ParentFragment#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/NearbyFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="27" selection-start="185" selection-end="185" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/BulletinActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="4" selection-start="452" selection-end="452" vertical-scroll-proportion="0.41095892">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

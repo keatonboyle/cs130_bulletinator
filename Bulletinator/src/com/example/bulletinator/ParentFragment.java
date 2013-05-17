@@ -14,23 +14,29 @@ import android.widget.ExpandableListView.OnGroupClickListener;
 public abstract class ParentFragment extends Fragment {
     private List<Building> buildings;
     private ExpandableListView expandableListView;
+    private MainActivity mainActivity;
 
     public abstract int getTab();
+
+    public abstract int[] getPos();
+
+    public abstract void setPos(int index, int top);
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        mainActivity = (MainActivity) getActivity();
         // Inflate current buildings layout
         View view = inflater.inflate(R.layout.list_view, container, false);
 
         // Populate bulletins that MainActivity retrieved
-        buildings = ((MainActivity) getActivity()).getBuildings();
+        buildings = mainActivity.getBuildings();
 
         // Populate list with bulletins
         expandableListView = (ExpandableListView) view
                 .findViewById(R.id.expandableListView);
         ExpandableListAdapter adapter = new ExpandableListAdapter(
-                (MainActivity) getActivity(), buildings, getTab());
+                mainActivity, buildings, getTab());
 
         // Set on click listener for viewing bulletins
         expandableListView.setOnChildClickListener(new OnChildClickListener() {
@@ -40,7 +46,7 @@ public abstract class ParentFragment extends Fragment {
                 // Start new bulletin activity
                 Bulletin b = buildings.get(groupPosition).getBulletins()
                         .get(childPosition);
-                ((MainActivity) getActivity()).selectBulletin(b);
+                mainActivity.selectBulletin(b);
                 return true;
             }
         });
@@ -72,7 +78,7 @@ public abstract class ParentFragment extends Fragment {
             }
         }
         // Re-instantiate scroll position
-        int position[] = ((MainActivity) getActivity()).getPos(getTab());
+        int position[] = getPos();
         expandableListView.setSelectionFromTop(position[0], position[1]);
 
         return view;
@@ -82,11 +88,8 @@ public abstract class ParentFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-        int tab = getTab();
         View v = expandableListView.getChildAt(0);
         int top = (v == null) ? 0 : v.getTop();
-        ((MainActivity) getActivity()).setPos(tab,
-                expandableListView.getFirstVisiblePosition(), top);
-
+        setPos(expandableListView.getFirstVisiblePosition(), top);
     }
 }
