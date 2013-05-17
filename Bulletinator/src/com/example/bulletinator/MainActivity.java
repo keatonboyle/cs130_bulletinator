@@ -51,7 +51,7 @@ public class MainActivity extends Activity {
                 .setTabListener(
                         new TabListener<CurrentFragment>(this, tab1,
                                 CurrentFragment.class));
-        actionBar.addTab(tab, 0, curTab == 0 ? true : false);
+        actionBar.addTab(tab, 0, curTab == 0);
 
         tab = actionBar
                 .newTab()
@@ -59,7 +59,7 @@ public class MainActivity extends Activity {
                 .setTabListener(
                         new TabListener<NearbyFragment>(this, tab2,
                                 NearbyFragment.class));
-        actionBar.addTab(tab, 1, curTab == 1 ? true : false);
+        actionBar.addTab(tab, 1, curTab == 1);
 
         tab = actionBar
                 .newTab()
@@ -67,7 +67,7 @@ public class MainActivity extends Activity {
                 .setTabListener(
                         new TabListener<AllFragment>(this, tab3,
                                 AllFragment.class));
-        actionBar.addTab(tab, 2, curTab == 2 ? true : false);
+        actionBar.addTab(tab, 2, curTab == 2);
 
         createDummyBulletins();
     }

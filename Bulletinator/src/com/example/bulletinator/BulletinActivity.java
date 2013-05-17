@@ -19,7 +19,7 @@ public class BulletinActivity extends Activity {
         // Show the Up button in the action bar.
         setupActionBar();
 
-        bulletin = (Bulletin) getIntent().getSerializableExtra("BULLETIN");
+        bulletin = (Bulletin) getIntent().getSerializableExtra(MainActivity.BULLETIN);
         ImageView image;
 
         if (bulletin.getBodyText() == null) {

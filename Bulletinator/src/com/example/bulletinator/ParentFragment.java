@@ -14,7 +14,7 @@ import android.widget.ExpandableListView.OnGroupClickListener;
 public abstract class ParentFragment extends Fragment {
     private List<Building> buildings;
     private ExpandableListView expandableListView;
-    private MainActivity mainActivity;
+    protected MainActivity mainActivity;
 
     public abstract int getTab();
 
@@ -33,8 +33,7 @@ public abstract class ParentFragment extends Fragment {
         buildings = mainActivity.getBuildings();
 
         // Populate list with bulletins
-        expandableListView = (ExpandableListView) view
-                .findViewById(R.id.expandableListView);
+        expandableListView = (ExpandableListView) view.findViewById(R.id.expandableListView);
         ExpandableListAdapter adapter = new ExpandableListAdapter(
                 mainActivity, buildings, getTab());
 
@@ -69,8 +68,7 @@ public abstract class ParentFragment extends Fragment {
         // TODO: When/How often should this happen?
         // Re-expand previously expanded groups
         else {
-            List<String> bldgs = ((MainActivity) getActivity())
-                    .getCurBldgs(getTab());
+            List<String> bldgs = mainActivity.getCurBldgs(getTab());
             for (int i = 0; i < adapter.getGroupCount(); i++) {
                 String name = ((Building) adapter.getGroup(i)).getName();
                 if (bldgs.contains(name))
