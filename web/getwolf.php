@@ -60,10 +60,49 @@
 
    function getBuildingData($bldid)
    {
+      if(!isset($bldid))
+         handleError($GLOBALS['ERR_MISSING_PARAM']);
       if($bldid <= 0 || !(intval($bldid)))
          handleError($GLOBALS['ERR_INVALID_BLDG_ID']);
 
       $responseType = 'BUILDING_RESPONSE';
+      
+      //select building name
+      $result = queryDB("SELECT name FROM Building WHERE bldid = " . $bldid)
+      
+      while($row = mysql_fetch_row($result))
+      {
+         $name = $row[0];
+      }
+      
+      $result = queryDB("SELECT Bulletin.btnid, title, bodytext, shortdesc
+                                contact, category
+                         FROM Bulletin, BulletinToBuilding
+                         WHERE bldid = " . $bldid . " AND Bulletin.btnid = BulletinToBuilding.btnid");
+      
+      $bulletinArr = array();
+      while($row = mysql_fetch_row($result))
+      {
+         //query
+         $result2 = queryDB("SELECT fid FROM FileToBulletin WHERE btnid = " . $row[0]);
+         
+         //only fills in one bulletin
+         $bulletin = array(btnid => $row[0],
+                           title => $row[1],
+                           bodytext => $row[2],
+                           shortdesc => $row[3],
+                           contact => $row[4],
+                           category => $row[5],
+                           fid => $fid);
+         array_push($bulletinArr, $bulletin);
+      }
+      // generate array according to spec
+      $buildingDataResponse = array(type => $responseType,
+                                    hash => $hash,
+                                    bldid => $bldid,
+                                    name => $name,
+                                    bulletins => $bulletinArr);
+      sendResponse($buildingDataResponse);
    }
 
    function getAllBuildings()
