@@ -1,9 +1,7 @@
 package com.example.bulletinator;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.io.*;
+import java.util.*;
 
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
@@ -12,12 +10,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.ExpandableListView;
 import android.widget.Toast;
 import com.example.bulletinator.data.Building;
 import com.example.bulletinator.data.Bulletin;
 import com.example.bulletinator.fragments.AllFragment;
+import com.example.bulletinator.fragments.ArchivedFragment;
 import com.example.bulletinator.fragments.CurrentFragment;
 import com.example.bulletinator.fragments.NearbyFragment;
+import com.example.bulletinator.helpers.ExpandableListAdapter;
 import com.example.bulletinator.helpers.ScrollManager;
 import com.example.bulletinator.helpers.TabListener;
 
@@ -28,6 +29,7 @@ public class MainActivity extends Activity {
     private Set<String> nearbyExpandedBldgs, allExpandedBldgs;
     private int curTab;
     private ScrollManager sm;
+    public List<Integer> deleted;
 
     // For testing
     private String[] bNames = {"Boelter Hall", "Engineering V", "Humanities"};
@@ -76,6 +78,14 @@ public class MainActivity extends Activity {
                                 AllFragment.class));
         actionBar.addTab(tab, 2, curTab == 2);
 
+        tab = actionBar
+                .newTab()
+                .setText("Archived")
+                .setTabListener(
+                        new TabListener<ArchivedFragment>(this, "Archived",
+                                ArchivedFragment.class));
+        actionBar.addTab(tab, 3, curTab == 3);
+
         createDummyBulletins();
     }
 
@@ -87,7 +97,18 @@ public class MainActivity extends Activity {
 
     // Decides which buildings a fragment will receive
     public List<Building> getBuildings() {
+        // Make sure "deleted" bulletins are not downloaded again
         List<Building> bldgs;
+
+        // Delete preivously deleted bulletins?
+        /*for (int i = 0; i < buildings.size(); i++) {
+            List<Bulletin> bulletins = buildings.get(i).getBulletins();
+            for (int j = 0 ; j < bulletins.size(); j++) {
+                if (deleted.contains(bulletins.get(j).getBulletinId())) {
+                    bulletins.remove(j);
+                }
+            }
+        }*/
 
         switch (curTab) {
             case CURRENT: {
@@ -104,6 +125,7 @@ public class MainActivity extends Activity {
             default:
                 return buildings;
         }
+
     }
 
     // Save preferences: scroll position, selected tab, expanded buildings
@@ -137,6 +159,8 @@ public class MainActivity extends Activity {
         // Since the fragments all call getBuildings before re-populating.
         // So only those still in the getBuildings list will be able to be
         // re-expanded!
+
+        writeDeletedBulletins();
 
         editor.commit();
     }
@@ -186,17 +210,17 @@ public class MainActivity extends Activity {
         sm.setCurPos(settings.getInt("curPosIndex", 0), settings.getInt("curPosTop", 0));
         sm.setNearbyPos(settings.getInt("nearPosIndex", 0), settings.getInt("nearPosTop", 0));
         sm.setAllPos(settings.getInt("allPosIndex", 0), settings.getInt("allPosTop", 0));
+
+        restoreDeletedBulletins();
     }
 
     public ScrollManager getSM() {
         return sm;
     }
 
-    public void toast(String t) {
+    public void toast(String text) {
         Context context = getApplicationContext();
-        CharSequence text = t;
         int duration = Toast.LENGTH_SHORT;
-
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();
     }
@@ -214,7 +238,7 @@ public class MainActivity extends Activity {
                         + "Please contact if interested."
                         : null;
                 Bulletin b = new Bulletin(title, description, bodyText,
-                        "555-555-5555", fIds[j], ids[j], 0);
+                        "555-555-5555", fIds[j], ids[j], j);
                 barr.add(b);
                 if (bNames[i].equals("Engineering V"))
                     break;
@@ -222,6 +246,91 @@ public class MainActivity extends Activity {
             Building bldg = new Building(name, barr);
             buildings.add(bldg);
         }
+    }
+
+    public void delete(int id) {
+        deleted.add(id);
+    }
+
+    public void writeDeletedBulletins() {
+        File myfile = getFileStreamPath("deleted_bulletins");
+        try {
+            if(myfile.exists() || myfile.createNewFile()){
+                FileOutputStream fos = openFileOutput("deleted_bulletins", MODE_PRIVATE);
+                ObjectOutputStream oos = new ObjectOutputStream(fos);
+                oos.writeObject(deleted);
+                fos.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void restoreDeletedBulletins() {
+        File myfile = getFileStreamPath("deleted_bulletins");
+        try {
+            if(myfile.exists()){
+                FileInputStream fis = openFileInput("deleted_bulletins");
+                ObjectInputStream ois = new ObjectInputStream(fis);
+                deleted = (ArrayList<Integer>) ois.readObject();
+                fis.close();
+            } else {
+                deleted = new ArrayList<Integer>();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void archiveBulletin(Bulletin b) {
+        File myfile = getFileStreamPath("archived_bulletins");
+        List<Bulletin> archivedBulletins = new ArrayList<Bulletin>();
+        try {
+            if(myfile.exists()){
+                FileInputStream fis = openFileInput("archived_bulletins");
+                ObjectInputStream ois = new ObjectInputStream(fis);
+                archivedBulletins = (ArrayList<Bulletin>) ois.readObject();
+                fis.close();
+            } else {
+                archivedBulletins = new ArrayList<Bulletin>();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (archivedBulletins.contains(b)) {
+            return;
+        }
+        archivedBulletins.add(b);
+        try {
+            if(myfile.exists() || myfile.createNewFile()){
+                FileOutputStream fos = openFileOutput("archived_bulletins", MODE_PRIVATE);
+                ObjectOutputStream oos = new ObjectOutputStream(fos);
+                oos.writeObject(archivedBulletins);
+                fos.close();
+                toast("You just archived a bulletin!");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public List<Bulletin> getArchivedBulletins() {
+        File myfile = getFileStreamPath("archived_bulletins");
+        List<Bulletin> archivedBulletins = new ArrayList<Bulletin>();
+        try {
+            if(myfile.exists()){
+                FileInputStream fis = openFileInput("archived_bulletins");
+                ObjectInputStream ois = new ObjectInputStream(fis);
+                archivedBulletins = (ArrayList<Bulletin>) ois.readObject();
+                fis.close();
+                toast("Bulletins retrieved!");
+            } else {
+                archivedBulletins = new ArrayList<Bulletin>();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return archivedBulletins;
     }
 
 }

@@ -56,14 +56,13 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         }
 
         // Create views for bulletin preview with image and description
-        TextView textView = (TextView) convertView
-                .findViewById(R.id.bulletinPreview);
+        TextView textView = (TextView) convertView.findViewById(R.id.bulletinPreview);
         textView.setText(bulletin.getDescription());
 
-        Drawable image = activity.getResources().getDrawable(
-                bulletin.getIconId());
+        Drawable image = activity.getResources().getDrawable(bulletin.getIconId());
         image.setBounds(0, 0, 72, 72);
         textView.setCompoundDrawables(image, null, null, null);
+
 
         return convertView;
     }
@@ -101,16 +100,13 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         }
 
         // Create building row views
-        TextView textView = (TextView) convertView
-                .findViewById(R.id.buildingName);
+        TextView textView = (TextView) convertView.findViewById(R.id.buildingName);
         textView.setText(bldg.getName());
         textView.setTextSize(25);
         if (tab > 0)
-            ((ViewGroup.MarginLayoutParams) textView.getLayoutParams())
-                    .setMargins(60, 0, 0, 0);
+            ((ViewGroup.MarginLayoutParams) textView.getLayoutParams()).setMargins(50, 0, 0, 0);
         else
-            ((ViewGroup.MarginLayoutParams) textView.getLayoutParams())
-                    .setMargins(10, 0, 0, 0);
+            ((ViewGroup.MarginLayoutParams) textView.getLayoutParams()).setMargins(10, 0, 0, 0);
 
         return convertView;
     }
@@ -136,5 +132,9 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     public void onGroupExpanded(int groupPosition) {
         curBldgs.add(buildings.get(groupPosition).getName());
         activity.setCurBldgs(tab, curBldgs);
+    }
+
+    public void removeChild(int groupPosition, int childPosition) {
+        buildings.get(groupPosition).getBulletins().remove(childPosition);
     }
 }

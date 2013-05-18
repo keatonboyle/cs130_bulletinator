@@ -1,5 +1,6 @@
 package com.example.bulletinator.fragments;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -20,6 +21,7 @@ public abstract class ParentFragment extends Fragment {
     private List<Building> buildings;
     private ExpandableListView expandableListView;
     protected MainActivity mainActivity;
+    private ExpandableListAdapter adapter;
 
     public abstract int getTab();
 
@@ -35,11 +37,18 @@ public abstract class ParentFragment extends Fragment {
         View view = inflater.inflate(R.layout.list_view, container, false);
 
         // Populate bulletins that MainActivity retrieved
-        buildings = mainActivity.getBuildings();
+        if (getTab() != 3)
+            buildings = mainActivity.getBuildings();
+        else {
+            List<Bulletin> bulletins = mainActivity.getArchivedBulletins();
+            Building bldg = new Building("Archived", bulletins);
+            buildings = new ArrayList<Building>();
+            buildings.add(bldg);
+        }
 
         // Populate list with bulletins
         expandableListView = (ExpandableListView) view.findViewById(R.id.expandableListView);
-        ExpandableListAdapter adapter = new ExpandableListAdapter(
+        adapter = new ExpandableListAdapter(
                 mainActivity, buildings, getTab());
 
         // Set on click listener for viewing bulletins
@@ -51,12 +60,18 @@ public abstract class ParentFragment extends Fragment {
                 Bulletin b = buildings.get(groupPosition).getBulletins()
                         .get(childPosition);
                 mainActivity.selectBulletin(b);
+                // TODO: delete on click of an image that appears when you swipe?
+                /*adapter.removeChild(groupPosition, childPosition);
+                adapter.notifyDataSetChanged();
+                mainActivity.delete(b.getBulletinId());*/
+
+                mainActivity.archiveBulletin(b);
                 return true;
             }
         });
         expandableListView.setAdapter(adapter);
 
-        if (getTab() == MainActivity.CURRENT) {
+        if (getTab() == MainActivity.CURRENT|| getTab() == 3) {
             // Do nothing on current fragment when you click the only group
             expandableListView
                     .setOnGroupClickListener(new OnGroupClickListener() {
@@ -70,7 +85,6 @@ public abstract class ParentFragment extends Fragment {
             expandableListView.expandGroup(0);
             expandableListView.setGroupIndicator(null);
         }
-        // TODO: When/How often should this happen?
         // Re-expand previously expanded groups
         else {
             Set<String> bldgs = mainActivity.getCurBldgs(getTab());
@@ -79,6 +93,7 @@ public abstract class ParentFragment extends Fragment {
                 if (bldgs.contains(name))
                     expandableListView.expandGroup(i);
             }
+            expandableListView.setIndicatorBounds(0, 50);
         }
         // Re-instantiate scroll position
         int position[] = getPos();
