@@ -96,6 +96,8 @@
                            fid => $fid);
          array_push($bulletinArr, $bulletin);
       }
+      
+      $hash = "dummy"; //dummy hash
       // generate array according to spec
       $buildingDataResponse = array(type => $responseType,
                                     hash => $hash,
@@ -108,6 +110,20 @@
    function getAllBuildings()
    {
       $responseType = 'ALL_BUILDINGS_RESPONSE';
+      $result = queryDB =("SELECT * FROM Building");
+      $buildingArr = array();
+      
+      $hash = "dummy"; //dummy hash
+      while($row = mysql_fetch_row($result))
+      {
+         $building = array(bldid => $row[0],
+                           name => $row[1]);
+         array_push($buildingArr, $building);
+      }
+      $allBuildingResponse(type => $responseType,
+                           hash => $hash,
+                           buildings => $buildingArr);
+      sendResponse($allBuildingResponse);
    }
 
    function getFile($fid)
