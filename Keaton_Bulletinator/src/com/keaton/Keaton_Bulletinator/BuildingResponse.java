@@ -1,9 +1,10 @@
 package com.keaton.Keaton_Bulletinator;
+
 import org.json.*;
 
-public class DummyResponse extends ServerResponse
+public class BuildingResponse extends ServerResponse
 {
-   public DummyResponse(String raw)
+   public BuildingResponse(String raw)
    {
       super(raw);
       JSONObject json = null;
@@ -12,15 +13,17 @@ public class DummyResponse extends ServerResponse
          json = new JSONObject(raw);
 
          type = json.getString("type");
-         title = json.getJSONObject("payload").getString("title");
+
+         bld = new Building(json);
       }
       catch (JSONException e)
       {
-         type = "problem";
-         title = "problem";
+         type = "error";
+         bld = null;
       }
-   } 
+   }
 
-   public String title;
+   public Building bld;
 
 }
+

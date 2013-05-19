@@ -11,18 +11,21 @@ import android.widget.Toast;
 import org.json.*;
 import android.location.*;
 
-public class MainActivity extends Activity implements CallbackListener
+public class MainActivity extends Activity implements CallbackListener<ServerResponse> 
 {
    public static final String baseurl = "http://linux.ucla.edu/~cs130s/get.php";
-
-   public void callback(Object obj)
+   public void callback(ServerResponse sr)
    {
-      DummyResponse dr = (DummyResponse) obj;
-      printJson(dr.mTitle);
+      Context context = getApplicationContext();
+      CharSequence text = "Response recieved, notifying you";
+      
+      Toast toast = Toast.makeText(context, text, Toast.LENGTH_SHORT);
+      toast.show();
    }
 
    @Override
    protected void onCreate(Bundle savedInstanceState) {
+      AppData.getInstance();
       super.onCreate(savedInstanceState);
       setContentView(R.layout.activity_main);
    }
@@ -37,7 +40,7 @@ public class MainActivity extends Activity implements CallbackListener
    public void getJson (View view)
    {
       DummyRequest dum = new DummyRequest(this, baseurl);
-      dum.execute();
+      dum.send();
    }
 
    public void printJson(String result)

@@ -1,17 +1,16 @@
 package com.keaton.Keaton_Bulletinator;
 
-public class DummyRequest extends AJson
+public class DummyRequest extends ServerRequest 
 {
-   public static final String dummyQuery = "?type=dummy";
-   public DummyRequest(CallbackListener mainThread, String baseurl)
+   public DummyRequest(CallbackListener<ServerResponse> mainThread, String baseurl)
    {
-      super(mainThread, baseurl + dummyQuery);
+      super(mainThread, baseurl + "?type=dummy");
    } 
 
-   @Override
-   protected void onPostExecute(Object result)
+   public void callback(String result)
    {
       DummyResponse dr = new DummyResponse(result);
-      super.onPostExecute(dr);
+      AppData.update(dr);
+      mainThread.callback(dr);
    }
 }

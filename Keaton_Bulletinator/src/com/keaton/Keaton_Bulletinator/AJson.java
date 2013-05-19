@@ -11,12 +11,12 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 import java.io.*;
 
-public class AJson extends AsyncTask<Void, Void, Object> 
+public class AJson extends AsyncTask<Void, Void, String> 
 {
-   public AJson(CallbackListener mainThread, String url)
+   public AJson(CallbackListener requestObj, String url)
    {
-      mUrl = url;
-      mMainThread = mainThread;
+      this.url = url;
+      this.cbl = requestObj;
    }
 
    @Override
@@ -29,7 +29,7 @@ public class AJson extends AsyncTask<Void, Void, Object>
       HttpGet hget = null;
       try 
       {
-         hget = new HttpGet(mUrl);
+         hget = new HttpGet(url);
          response = httpclient.execute(hget);
             
          StatusLine statusLine = response.getStatusLine();
@@ -62,13 +62,13 @@ public class AJson extends AsyncTask<Void, Void, Object>
    }
 
    @Override
-   protected void onPostExecute(Object result)
+   protected void onPostExecute(String result)
    {
-       mMainThread.callback(result);
+       cbl.callback(result);
    }
 
-   private CallbackListener mMainThread;
-   protected String mUrl;
+   private CallbackListener<String> cbl;
+   protected String url;
 
 
 }

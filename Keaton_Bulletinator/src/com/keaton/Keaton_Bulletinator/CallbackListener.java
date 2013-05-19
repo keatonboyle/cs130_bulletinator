@@ -1,6 +1,6 @@
 package com.keaton.Keaton_Bulletinator;
 
-public interface CallbackListener 
+public interface CallbackListener<T>
 {
-   public void callback(Object obj);
+   public void callback(T obj);
 } 
