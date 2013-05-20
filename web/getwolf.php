@@ -97,7 +97,12 @@
          array_push($bulletinArr, $bulletin);
       }
       
-      $hash = "dummy"; //dummy hash
+      $arrayToHash = array(type => $responseType,
+                           bldid => $bldid,
+                           name => $name,
+                           bulletins => $bulletinArr);
+      
+      $hash = md5(serialize($arrayToHash));
       // generate array according to spec
       $buildingDataResponse = array(type => $responseType,
                                     hash => $hash,
@@ -113,13 +118,15 @@
       $result = queryDB =("SELECT * FROM Building");
       $buildingArr = array();
       
-      $hash = "dummy"; //dummy hash
       while($row = mysql_fetch_row($result))
       {
          $building = array(bldid => $row[0],
                            name => $row[1]);
          array_push($buildingArr, $building);
       }
+      
+      $hash = md5(serialize($buildingArr));
+      
       $allBuildingResponse(type => $responseType,
                            hash => $hash,
                            buildings => $buildingArr);
