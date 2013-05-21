@@ -54,11 +54,11 @@
       $nearbuilds = array();
       $rect = array();
 
-      $gpsResponse = array(type => $responseType,
-                           hash => $hash,
-                           curbuild => $curbuilds,
-                           nearbuild => $nearbuilds,
-                           rect => $rect);
+      $gpsResponse = array('type' => $responseType,
+                           'hash' => $hash,
+                           'curbuild' => $curbuilds,
+                           'nearbuild' => $nearbuilds,
+                           'rect' => $rect);
       sendResponse($gpsResponse);
    }
 
@@ -79,9 +79,9 @@
          $name = $row[0];
       }
       
-      $result = queryDB("SELECT Bulletin.btnid, title, bodytext, shortdesc,".
-                                "contact, category".
-                         "FROM Bulletin, BulletinToBuilding".
+      $result = queryDB("SELECT Bulletin.btnid, title, bodytext, shortdesc, ".
+                                "contact, category ".
+                         "FROM Bulletin, BulletinToBuilding ".
                          "WHERE bldid = " . $bldid . " AND Bulletin.btnid = BulletinToBuilding.btnid");
       
       $bulletinArr = array();
@@ -89,6 +89,11 @@
       {
          //query
          $result2 = queryDB("SELECT fid FROM FileToBulletin WHERE btnid = " . $row[0]);
+         $row2 = mysql_fetch_assoc($result2);
+         if (isset($row2['fid']))
+            $fid = $row2['fid'];
+         else
+            $fid = null;
          
          //only fills in one bulletin
          $bulletin = array('btnid' => $row[0],
