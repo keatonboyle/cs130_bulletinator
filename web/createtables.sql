@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 CREATE TABLE Bulletin (
    btnid int PRIMARY KEY,
    title varchar(30) NOT NULL,
