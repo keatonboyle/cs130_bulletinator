@@ -20,6 +20,7 @@ public abstract class ParentFragment extends Fragment {
     private List<Building> buildings;
     private ExpandableListView expandableListView;
     protected MainActivity mainActivity;
+    private ExpandableListAdapter adapter;
 
     public abstract int getTab();
 
@@ -39,7 +40,7 @@ public abstract class ParentFragment extends Fragment {
 
         // Populate list with bulletins
         expandableListView = (ExpandableListView) view.findViewById(R.id.expandableListView);
-        ExpandableListAdapter adapter = new ExpandableListAdapter(
+        adapter = new ExpandableListAdapter(
                 mainActivity, buildings, getTab());
 
         // Set on click listener for viewing bulletins
@@ -56,30 +57,8 @@ public abstract class ParentFragment extends Fragment {
         });
         expandableListView.setAdapter(adapter);
 
-        if (getTab() == MainActivity.CURRENT) {
-            // Do nothing on current fragment when you click the only group
-            expandableListView
-                    .setOnGroupClickListener(new OnGroupClickListener() {
-                        @Override
-                        public boolean onGroupClick(ExpandableListView parent,
-                                                    View v, int groupPosition, long id) {
-                            return true;
-                        }
-                    });
-            expandableListView.setAdapter(adapter);
-            expandableListView.expandGroup(0);
-            expandableListView.setGroupIndicator(null);
-        }
-        // TODO: When/How often should this happen?
-        // Re-expand previously expanded groups
-        else {
-            Set<String> bldgs = mainActivity.getCurBldgs(getTab());
-            for (int i = 0; i < adapter.getGroupCount(); i++) {
-                String name = ((Building) adapter.getGroup(i)).getName();
-                if (bldgs.contains(name))
-                    expandableListView.expandGroup(i);
-            }
-        }
+        expandBuildings();
+
         // Re-instantiate scroll position
         int position[] = getPos();
         expandableListView.setSelectionFromTop(position[0], position[1]);
@@ -94,5 +73,32 @@ public abstract class ParentFragment extends Fragment {
         View v = expandableListView.getChildAt(0);
         int top = (v == null) ? 0 : v.getTop();
         setPos(expandableListView.getFirstVisiblePosition(), top);
+    }
+
+    private void expandBuildings() {
+        if (getTab() == MainActivity.CURRENT) {
+            // Do nothing on current or archived fragment when you click the only group
+            expandableListView
+                    .setOnGroupClickListener(new OnGroupClickListener() {
+                        @Override
+                        public boolean onGroupClick(ExpandableListView parent,
+                                                    View v, int groupPosition, long id) {
+                            return true;
+                        }
+                    });
+            expandableListView.setAdapter(adapter);
+            expandableListView.expandGroup(0);
+            expandableListView.setGroupIndicator(null);
+        }
+        // Re-expand previously expanded groups
+        else {
+            Set<String> bldgs = mainActivity.getCurExpandedBldgs(getTab());
+            for (int i = 0; i < adapter.getGroupCount(); i++) {
+                String name = ((Building) adapter.getGroup(i)).getName();
+                if (bldgs.contains(name))
+                    expandableListView.expandGroup(i);
+            }
+            expandableListView.setIndicatorBounds(0, 50);
+        }
     }
 }

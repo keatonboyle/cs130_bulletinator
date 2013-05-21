@@ -141,7 +141,7 @@ public class MainActivity extends Activity {
         editor.commit();
     }
 
-    public void setCurBldgs(int tab, Set<String> bldgs) {
+    public void setCurExpandedBldgs(int tab, Set<String> bldgs) {
         switch (tab) {
             case NEARBY: {
                 nearbyExpandedBldgs = bldgs;
@@ -156,7 +156,7 @@ public class MainActivity extends Activity {
         }
     }
 
-    public Set<String> getCurBldgs(int tab) {
+    public Set<String> getCurExpandedBldgs(int tab) {
         switch (tab) {
             case NEARBY:
                 return nearbyExpandedBldgs;
