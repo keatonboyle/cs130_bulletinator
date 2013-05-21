@@ -55,10 +55,6 @@ public abstract class ParentFragment extends Fragment {
                 Bulletin b = buildings.get(groupPosition).getBulletins()
                         .get(childPosition);
                 mainActivity.selectBulletin(b);
-                // TODO: Where to put deletion code?
-                /*adapter.removeChild(groupPosition, childPosition);
-                adapter.notifyDataSetChanged();
-                mainActivity.delete(b.getBulletinId());*/
                 return true;
             }
         });
@@ -67,13 +63,21 @@ public abstract class ParentFragment extends Fragment {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
                 TextView textView = (TextView) view.findViewById(R.id.bulletinPreview);
-                Drawable icon = textView.getCompoundDrawables()[0];
-                Drawable checkmark = getResources().getDrawable(R.drawable.checkmark);
-                checkmark.setBounds(0, 0, 40, 40);
-                textView.setCompoundDrawables(icon, null, checkmark, null);
-                // TODO: If tags are used we will have to update tags when deleting bulletins!?
                 int pos[] = (int[]) textView.getTag();
-                mainActivity.archiveBulletin(buildings.get(pos[0]).getBulletins().get(pos[1]));
+
+                if (getTab() != MainActivity.ARCHIVED) {
+                    Drawable icon = textView.getCompoundDrawables()[0];
+                    Drawable checkmark = getResources().getDrawable(R.drawable.checkmark);
+                    checkmark.setBounds(0, 0, 40, 40);
+                    textView.setCompoundDrawables(icon, null, checkmark, null);
+                    // TODO: If tags are used we will have to update tags when deleting bulletins!?
+                    mainActivity.archiveBulletin(buildings.get(pos[0]).getBulletins().get(pos[1]));
+                } else {
+                    // TODO: delete bulletin
+                    /*adapter.removeChild(pos[0], pos[1]);
+                    adapter.notifyDataSetChanged();
+                    mainActivity.delete(((Integer) textView.getTag()));*/
+                }
                 return true;
             }
         });
@@ -99,7 +103,7 @@ public abstract class ParentFragment extends Fragment {
 
     private void expandBuildings() {
         if (getTab() == MainActivity.CURRENT || getTab() == MainActivity.ARCHIVED) {
-            // Do nothing on current fragment when you click the only group
+            // Do nothing on current or archived fragment when you click the only group
             expandableListView
                     .setOnGroupClickListener(new OnGroupClickListener() {
                         @Override

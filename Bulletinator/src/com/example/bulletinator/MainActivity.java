@@ -123,7 +123,7 @@ public class MainActivity extends Activity {
             }
             case ARCHIVED: {
                 bldgs = new ArrayList<Building>();
-                bldgs.add( new Building("Archived Bulletins", getArchivedBulletins()));
+                bldgs.add(new Building("Archived Bulletins", getArchivedBulletins()));
                 break;
             }
             default:
@@ -262,7 +262,7 @@ public class MainActivity extends Activity {
     public void writeDeletedBulletins() {
         File myfile = getFileStreamPath("deleted_bulletins");
         try {
-            if(myfile.exists() || myfile.createNewFile()){
+            if (myfile.exists() || myfile.createNewFile()) {
                 FileOutputStream fos = openFileOutput("deleted_bulletins", MODE_PRIVATE);
                 ObjectOutputStream oos = new ObjectOutputStream(fos);
                 oos.writeObject(deleted);
@@ -276,7 +276,7 @@ public class MainActivity extends Activity {
     public void restoreDeletedBulletins() {
         File myfile = getFileStreamPath("deleted_bulletins");
         try {
-            if(myfile.exists()){
+            if (myfile.exists()) {
                 FileInputStream fis = openFileInput("deleted_bulletins");
                 ObjectInputStream ois = new ObjectInputStream(fis);
                 deleted = (ArrayList<Integer>) ois.readObject();
@@ -294,7 +294,7 @@ public class MainActivity extends Activity {
         File myfile = getFileStreamPath("archived_bulletins");
         List<Bulletin> archivedBulletins = new ArrayList<Bulletin>();
         try {
-            if(myfile.exists()){
+            if (myfile.exists()) {
                 FileInputStream fis = openFileInput("archived_bulletins");
                 ObjectInputStream ois = new ObjectInputStream(fis);
                 archivedBulletins = (ArrayList<Bulletin>) ois.readObject();
@@ -306,16 +306,16 @@ public class MainActivity extends Activity {
             e.printStackTrace();
         }
 
-       for (int i = 0; i < archivedBulletins.size(); i++) {
-           if (archivedBulletins.get(i).getBulletinId() == b.getBulletinId()) {
-               toast("You've already archived this bulletin!");
-               return;
-           }
-       }
+        for (int i = 0; i < archivedBulletins.size(); i++) {
+            if (archivedBulletins.get(i).getBulletinId() == b.getBulletinId()) {
+                toast("You've already archived this bulletin!");
+                return;
+            }
+        }
         archivedBulletins.add(b);
 
         try {
-            if(myfile.exists() || myfile.createNewFile()){
+            if (myfile.exists() || myfile.createNewFile()) {
                 FileOutputStream fos = openFileOutput("archived_bulletins", MODE_PRIVATE);
                 ObjectOutputStream oos = new ObjectOutputStream(fos);
                 oos.writeObject(archivedBulletins);
@@ -332,7 +332,7 @@ public class MainActivity extends Activity {
 
         List<Bulletin> archivedBulletins = new ArrayList<Bulletin>();
         try {
-            if(bulletins.exists()){
+            if (bulletins.exists()) {
                 FileInputStream fis = openFileInput("archived_bulletins");
                 ObjectInputStream ois = new ObjectInputStream(fis);
                 archivedBulletins = (ArrayList<Bulletin>) ois.readObject();

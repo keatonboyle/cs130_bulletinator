@@ -24,15 +24,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="53cff988-bf08-4d1b-ae93-a8affccd646a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/bulletinator/fragments/ArchivedFragment.java" afterPath="$PROJECT_DIR$/src/com/example/bulletinator/fragments/ArchivedFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/bulletinator/helpers/ExpandableListAdapter.java" afterPath="$PROJECT_DIR$/src/com/example/bulletinator/helpers/ExpandableListAdapter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/bulletinator/MainActivity.java" afterPath="$PROJECT_DIR$/src/com/example/bulletinator/MainActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/bulletinator/fragments/ParentFragment.java" afterPath="$PROJECT_DIR$/src/com/example/bulletinator/fragments/ParentFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/bulletinator/helpers/ScrollManager.java" afterPath="$PROJECT_DIR$/src/com/example/bulletinator/helpers/ScrollManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/building_header.xml" afterPath="$PROJECT_DIR$/res/layout/building_header.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/bulletin_preview.xml" afterPath="$PROJECT_DIR$/res/layout/bulletin_preview.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/values/strings.xml" afterPath="$PROJECT_DIR$/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Bulletinator.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -49,7 +42,7 @@
     <file path="/CurrentFragment.java" changelist="53cff988-bf08-4d1b-ae93-a8affccd646a" time="1368827815361" ignored="false" />
     <file path="/NearbyFragment.java" changelist="53cff988-bf08-4d1b-ae93-a8affccd646a" time="1368827795708" ignored="false" />
     <file path="/MainActivity.java" changelist="53cff988-bf08-4d1b-ae93-a8affccd646a" time="1369106775903" ignored="false" />
-    <file path="/ParentFragment.java" changelist="53cff988-bf08-4d1b-ae93-a8affccd646a" time="1369106250598" ignored="false" />
+    <file path="/ParentFragment.java" changelist="53cff988-bf08-4d1b-ae93-a8affccd646a" time="1369107440580" ignored="false" />
     <file path="/Bulletin.java" changelist="53cff988-bf08-4d1b-ae93-a8affccd646a" time="1368822662894" ignored="false" />
     <file path="/ExpandableListAdapter.java" changelist="53cff988-bf08-4d1b-ae93-a8affccd646a" time="1369106108568" ignored="false" />
     <file path="/Building.java" changelist="53cff988-bf08-4d1b-ae93-a8affccd646a" time="1368842512507" ignored="false" />
@@ -121,10 +114,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="MainActivity.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="MainActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="292" column="0" selection-start="10215" selection-end="10215" vertical-scroll-proportion="0.28429425">
+            <state line="232" column="0" selection-start="7983" selection-end="7983" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="method#onCreate#0;class#MainActivity#0" expanded="false" />
                 <element signature="e#1938#1979#0" expanded="true" />
@@ -140,9 +133,6 @@
                 <element signature="method#getSM#0;class#MainActivity#0" expanded="false" />
                 <element signature="method#toast#0;class#MainActivity#0" expanded="false" />
                 <element signature="method#createDummyBulletins#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#delete#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#writeDeletedBulletins#0;class#MainActivity#0" expanded="false" />
-                <element signature="method#restoreDeletedBulletins#0;class#MainActivity#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -151,18 +141,21 @@
       <file leaf-file-name="ParentFragment.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/fragments/ParentFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="57" column="52" selection-start="2294" selection-end="2294" vertical-scroll-proportion="0.0">
+            <state line="78" column="73" selection-start="3550" selection-end="3550" vertical-scroll-proportion="0.0">
               <folding>
-                <element signature="method#onPause#0;class#ParentFragment#0" expanded="false" />
+                <element signature="e#2432#3621#0" expanded="true" />
+                <element signature="e#3610#3611#0" expanded="true" />
+                <element signature="e#4420#4740#0" expanded="true" />
+                <element signature="e#4717#4718#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ExpandableListAdapter.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="ExpandableListAdapter.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/helpers/ExpandableListAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="65" column="52" selection-start="2634" selection-end="2634" vertical-scroll-proportion="0.0">
+            <state line="55" column="86" selection-start="2096" selection-end="2096" vertical-scroll-proportion="0.4473161">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -170,26 +163,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bulletin_preview.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/layout/bulletin_preview.xml">
+      <file leaf-file-name="activity_bulletin.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/layout/activity_bulletin.xml">
           <provider editor-type-id="android-designer">
             <state />
           </provider>
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="49" selection-start="122" selection-end="122" vertical-scroll-proportion="-0.5555556">
+            <state line="18" column="0" selection-start="745" selection-end="832" vertical-scroll-proportion="-10.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="building_header.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/layout/building_header.xml">
-          <provider editor-type-id="android-designer">
-            <state />
-          </provider>
+      <file leaf-file-name="BulletinActivity.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/BulletinActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="43" selection-start="374" selection-end="374" vertical-scroll-proportion="-5.0">
-              <folding />
+            <state line="21" column="0" selection-start="614" selection-end="614" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -225,9 +217,9 @@
         <option value="$PROJECT_DIR$/src/com/example/bulletinator/helpers/ScrollManager.java" />
         <option value="$PROJECT_DIR$/res/layout/bulletin_preview.xml" />
         <option value="$PROJECT_DIR$/res/layout/building_header.xml" />
+        <option value="$PROJECT_DIR$/src/com/example/bulletinator/MainActivity.java" />
         <option value="$PROJECT_DIR$/src/com/example/bulletinator/fragments/ParentFragment.java" />
         <option value="$PROJECT_DIR$/src/com/example/bulletinator/helpers/ExpandableListAdapter.java" />
-        <option value="$PROJECT_DIR$/src/com/example/bulletinator/MainActivity.java" />
       </list>
     </option>
   </component>
@@ -619,12 +611,12 @@
       <workItem from="1368840726305" duration="9553000" />
       <workItem from="1369064444054" duration="3921000" />
       <workItem from="1369078920518" duration="1987000" />
-      <workItem from="1369099414038" duration="7400000" />
+      <workItem from="1369099414038" duration="8461000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36936000" />
+    <option name="totallyTimeSpent" value="37997000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -765,36 +757,12 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/BulletinActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="0" selection-start="614" selection-end="614" vertical-scroll-proportion="-0.28742516">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/fragments/AllFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="0" selection-start="0" selection-end="556" vertical-scroll-proportion="0.2994012">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/list_view.xml">
       <provider editor-type-id="android-designer">
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state line="4" column="34" selection-start="225" selection-end="225" vertical-scroll-proportion="0.12658228" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/layout/activity_bulletin.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="0" selection-start="745" selection-end="832" vertical-scroll-proportion="0.56962025" />
       </provider>
     </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/sdk/platforms/android-17/android.jar!/android/view/MotionEvent.class">
@@ -862,27 +830,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/fragments/ParentFragment.java">
+    <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/fragments/NearbyFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="57" column="52" selection-start="2294" selection-end="2294" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="method#onPause#0;class#ParentFragment#0" expanded="false" />
-          </folding>
+        <state line="5" column="13" selection-start="160" selection-end="160" vertical-scroll-proportion="0.119284295">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/helpers/ExpandableListAdapter.java">
+    <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/fragments/ParentFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="65" column="52" selection-start="2634" selection-end="2634" vertical-scroll-proportion="0.0">
+        <state line="78" column="73" selection-start="3550" selection-end="3550" vertical-scroll-proportion="0.0">
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#2432#3621#0" expanded="true" />
+            <element signature="e#3610#3611#0" expanded="true" />
+            <element signature="e#4420#4740#0" expanded="true" />
+            <element signature="e#4717#4718#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="292" column="0" selection-start="10215" selection-end="10215" vertical-scroll-proportion="0.28429425">
+        <state line="232" column="0" selection-start="7983" selection-end="7983" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="method#onCreate#0;class#MainActivity#0" expanded="false" />
             <element signature="e#1938#1979#0" expanded="true" />
@@ -898,9 +867,34 @@
             <element signature="method#getSM#0;class#MainActivity#0" expanded="false" />
             <element signature="method#toast#0;class#MainActivity#0" expanded="false" />
             <element signature="method#createDummyBulletins#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#delete#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#writeDeletedBulletins#0;class#MainActivity#0" expanded="false" />
-            <element signature="method#restoreDeletedBulletins#0;class#MainActivity#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/layout/activity_bulletin.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="0" selection-start="745" selection-end="832" vertical-scroll-proportion="-10.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/BulletinActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="0" selection-start="614" selection-end="614" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/helpers/ExpandableListAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="55" column="86" selection-start="2096" selection-end="2096" vertical-scroll-proportion="0.4473161">
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
