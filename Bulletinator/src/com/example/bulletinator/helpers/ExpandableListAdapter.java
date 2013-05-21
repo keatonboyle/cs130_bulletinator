@@ -1,10 +1,7 @@
 package com.example.bulletinator.helpers;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import android.content.Context;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
@@ -12,11 +9,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.bulletinator.MainActivity;
 import com.example.bulletinator.R;
 import com.example.bulletinator.data.Building;
 import com.example.bulletinator.data.Bulletin;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
     private List<Building> buildings;
@@ -53,15 +55,20 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             LayoutInflater inflater = (LayoutInflater) mainActivity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.bulletin_preview, null);
         }
-        // TODO: Truncate body text if no description
+        // TODO: Truncate body text if no description (do in bulletin class constructor!!!)
 
         // Create views for bulletin preview with image and description
         TextView textView = (TextView) convertView.findViewById(R.id.bulletinPreview);
+        TextView title = (TextView) convertView.findViewById(R.id.bulletinTitle);
+        title.setText(bulletin.getTitle());
         textView.setText(bulletin.getDescription());
+        title.setTypeface(null, Typeface.BOLD);
 
         Drawable image = mainActivity.getResources().getDrawable(bulletin.getIconId());
-        image.setBounds(0, 0, childHeight, childHeight);
-        textView.setCompoundDrawables(image, null, null, null);
+        //image.setBounds(0, 0, childHeight, childHeight);
+        //textView.setCompoundDrawables(image, null, null, null);
+        ImageView imageView = (ImageView) convertView.findViewById(R.id.bulletinIcon);
+        imageView.setImageDrawable(image);
 
         return convertView;
     }

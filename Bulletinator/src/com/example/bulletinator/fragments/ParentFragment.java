@@ -1,8 +1,5 @@
 package com.example.bulletinator.fragments;
 
-import java.util.List;
-import java.util.Set;
-
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,10 +8,14 @@ import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupClickListener;
-import com.example.bulletinator.*;
+import com.example.bulletinator.MainActivity;
+import com.example.bulletinator.R;
 import com.example.bulletinator.data.Building;
 import com.example.bulletinator.data.Bulletin;
 import com.example.bulletinator.helpers.ExpandableListAdapter;
+
+import java.util.List;
+import java.util.Set;
 
 public abstract class ParentFragment extends Fragment {
     private List<Building> buildings;

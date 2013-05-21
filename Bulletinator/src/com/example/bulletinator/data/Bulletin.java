@@ -11,7 +11,11 @@ public class Bulletin implements Serializable {
     public Bulletin(String t, String d, String b, String c, int iId, int icId,
                     int bId) {
         bodyText = b;
-        description = d;
+        if (d.equals("") && !bodyText.equals("")) {
+            description = bodyText;
+        } else {
+            description = d;
+        }
         title = t;
         imageId = iId;
         contact = c;

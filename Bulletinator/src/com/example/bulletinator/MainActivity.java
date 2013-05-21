@@ -1,10 +1,5 @@
 package com.example.bulletinator;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.Activity;
@@ -21,6 +16,11 @@ import com.example.bulletinator.fragments.NearbyFragment;
 import com.example.bulletinator.helpers.ScrollManager;
 import com.example.bulletinator.helpers.TabListener;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 public class MainActivity extends Activity {
     public static final String BULLETIN = "BULLETIN";
     public static final int CURRENT = 0, NEARBY = 1, ALL = 2;
@@ -32,7 +32,8 @@ public class MainActivity extends Activity {
     // For testing
     private String[] bNames = {"Boelter Hall", "Engineering V", "Humanities"};
     private String[] bullDescriptions = {"Free food!",
-            "Tutoring positions available.", "Volunteers needed.",};
+            "Tutoring positions available. This is a super super super super super duper looper" +
+                    "long foopder long description.", "",};
     private int[] ids = {R.drawable.food_icon, R.drawable.tutoring_icon,
             R.drawable.volunteering_icon};
     private int[] fIds = {R.drawable.flyer, R.drawable.tutor_flyer,
@@ -211,7 +212,14 @@ public class MainActivity extends Activity {
                 String title = "Bulletin #" + j;
                 String description = bullDescriptions[j];
                 String bodyText = j == 2 ? "Volunteers needed for decision making study. "
-                        + "Please contact if interested."
+                        + "Please contact if interested. Volunteers needed for decision making study." +
+                        "Volunteers needed for decision making study." +
+                        "Volunteers needed for decision making study." +
+                        "Volunteers needed for decision making study." +
+                        "Volunteers needed for decision making study." +
+                        "Volunteers needed for decision making study." +
+                        "Volunteers needed for decision making study." +
+                        "Volunteers needed for decision making study."
                         : null;
                 Bulletin b = new Bulletin(title, description, bodyText,
                         "555-555-5555", fIds[j], ids[j], 0);
