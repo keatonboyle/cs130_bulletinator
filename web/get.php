@@ -74,9 +74,13 @@
       //select building name
       $result = queryDB("SELECT name FROM Building WHERE bldid = " . $bldid);
       
-      while($row = mysql_fetch_row($result))
+      if($row = mysql_fetch_row($result))
       {
          $name = $row[0];
+      }
+      else
+      {
+         handleError($GLOBALS['ERR_EMPTY_DB_RESPONSE']);
       }
       
       $result = queryDB("SELECT Bulletin.btnid, title, bodytext, shortdesc, ".
