@@ -68,17 +68,14 @@
       $responseType = 'BUILDING_RESPONSE';
       
       //select building name
-      $result = queryDB("SELECT name FROM Building WHERE bldid = " . $bldid)
+      $result = queryDB("SELECT name FROM Building WHERE bldid = " . $bldid);
       
       while($row = mysql_fetch_row($result))
       {
          $name = $row[0];
       }
       
-      $result = queryDB("SELECT Bulletin.btnid, title, bodytext, shortdesc
-                                contact, category
-                         FROM Bulletin, BulletinToBuilding
-                         WHERE bldid = " . $bldid . " AND Bulletin.btnid = BulletinToBuilding.btnid");
+      $result = queryDB("SELECT Bulletin.btnid, title, bodytext, shortdesc, contact, category FROM Bulletin, BulletinToBuilding WHERE bldid = " . $bldid . " AND Bulletin.btnid = BulletinToBuilding.btnid");
       
       $bulletinArr = array();
       while($row = mysql_fetch_row($result))
@@ -115,7 +112,7 @@
    function getAllBuildings()
    {
       $responseType = 'ALL_BUILDINGS_RESPONSE';
-      $result = queryDB =("SELECT * FROM Building");
+      $result = queryDB("SELECT * FROM Building");
       $buildingArr = array();
       
       while($row = mysql_fetch_row($result))
@@ -127,7 +124,7 @@
       
       $hash = md5(serialize($buildingArr));
       
-      $allBuildingResponse(type => $responseType,
+      $allBuildingResponse= array(type => $responseType,
                            hash => $hash,
                            buildings => $buildingArr);
       sendResponse($allBuildingResponse);
