@@ -7,19 +7,18 @@ public class ArchivedFragment extends ParentFragment {
 
     @Override
     public int getTab() {
-        return 3;
+        return MainActivity.ARCHIVED;
     }
 
     @Override
     public int[] getPos() {
         ScrollManager sm = mainActivity.getSM();
-        int[] blah = {0,0};
-        return blah;
+        return sm.getArchivedPos();
     }
 
     @Override
     public void setPos(int index, int top) {
         ScrollManager sm = mainActivity.getSM();
-        //sm.setAllPos(index, top);
+        sm.setArchivedPos(index, top);
     }
 }

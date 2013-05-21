@@ -10,7 +10,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.widget.ExpandableListView;
 import android.widget.Toast;
 import com.example.bulletinator.data.Building;
 import com.example.bulletinator.data.Bulletin;
@@ -18,13 +17,12 @@ import com.example.bulletinator.fragments.AllFragment;
 import com.example.bulletinator.fragments.ArchivedFragment;
 import com.example.bulletinator.fragments.CurrentFragment;
 import com.example.bulletinator.fragments.NearbyFragment;
-import com.example.bulletinator.helpers.ExpandableListAdapter;
 import com.example.bulletinator.helpers.ScrollManager;
 import com.example.bulletinator.helpers.TabListener;
 
 public class MainActivity extends Activity {
     public static final String BULLETIN = "BULLETIN";
-    public static final int CURRENT = 0, NEARBY = 1, ALL = 2;
+    public static final int CURRENT = 0, NEARBY = 1, ALL = 2, ARCHIVED = 3;
     private List<Building> buildings;
     private Set<String> nearbyExpandedBldgs, allExpandedBldgs;
     private int curTab;
@@ -35,10 +33,11 @@ public class MainActivity extends Activity {
     private String[] bNames = {"Boelter Hall", "Engineering V", "Humanities"};
     private String[] bullDescriptions = {"Free food!",
             "Tutoring positions available.", "Volunteers needed.",};
-    private int[] ids = {R.drawable.food_icon, R.drawable.tutoring_icon,
+    private int[] iconIds = {R.drawable.food_icon, R.drawable.tutoring_icon,
             R.drawable.volunteering_icon};
     private int[] fIds = {R.drawable.flyer, R.drawable.tutor_flyer,
             R.drawable.volunteers_needed};
+    private int[] ids = {111, 222, 333};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -114,18 +113,24 @@ public class MainActivity extends Activity {
             case CURRENT: {
                 bldgs = new ArrayList<Building>();
                 bldgs.add(buildings.get(0));
-                return bldgs;
+                break;
             }
             case NEARBY: {
                 bldgs = new ArrayList<Building>();
                 bldgs.add(buildings.get(0));
                 bldgs.add(buildings.get(1));
-                return bldgs;
+                break;
+            }
+            case ARCHIVED: {
+                bldgs = new ArrayList<Building>();
+                bldgs.add( new Building("Archived Bulletins", getArchivedBulletins()));
+                break;
             }
             default:
-                return buildings;
+                bldgs = buildings;
         }
 
+        return bldgs;
     }
 
     // Save preferences: scroll position, selected tab, expanded buildings
@@ -165,36 +170,6 @@ public class MainActivity extends Activity {
         editor.commit();
     }
 
-    public void setCurBldgs(int tab, Set<String> bldgs) {
-        switch (tab) {
-            case NEARBY: {
-                nearbyExpandedBldgs = bldgs;
-                return;
-            }
-            case ALL: {
-                allExpandedBldgs = bldgs;
-                return;
-            }
-            default:
-                return;
-        }
-    }
-
-    public Set<String> getCurBldgs(int tab) {
-        switch (tab) {
-            case NEARBY:
-                return nearbyExpandedBldgs;
-            case ALL:
-                return allExpandedBldgs;
-            default:
-                return new HashSet<String>();
-        }
-    }
-
-    public void setCurTab(int tab) {
-        curTab = tab;
-    }
-
     public void restorePreferences() {
         // Restore last tab
         SharedPreferences settings = getPreferences(MODE_PRIVATE);
@@ -214,10 +189,41 @@ public class MainActivity extends Activity {
         restoreDeletedBulletins();
     }
 
+    public void setCurExpandedBldgs(int tab, Set<String> bldgs) {
+        switch (tab) {
+            case NEARBY: {
+                nearbyExpandedBldgs = bldgs;
+                return;
+            }
+            case ALL: {
+                allExpandedBldgs = bldgs;
+                return;
+            }
+            default:
+                return;
+        }
+    }
+
+    public Set<String> getCurExpandedBldgs(int tab) {
+        switch (tab) {
+            case NEARBY:
+                return nearbyExpandedBldgs;
+            case ALL:
+                return allExpandedBldgs;
+            default:
+                return new HashSet<String>();
+        }
+    }
+
+    public void setCurTab(int tab) {
+        curTab = tab;
+    }
+
     public ScrollManager getSM() {
         return sm;
     }
 
+    // For testing
     public void toast(String text) {
         Context context = getApplicationContext();
         int duration = Toast.LENGTH_SHORT;
@@ -238,7 +244,7 @@ public class MainActivity extends Activity {
                         + "Please contact if interested."
                         : null;
                 Bulletin b = new Bulletin(title, description, bodyText,
-                        "555-555-5555", fIds[j], ids[j], j);
+                        "555-555-5555", fIds[j], iconIds[j], ids[j]);
                 barr.add(b);
                 if (bNames[i].equals("Engineering V"))
                     break;
@@ -248,6 +254,7 @@ public class MainActivity extends Activity {
         }
     }
 
+    // For deleting bulletins (per device)
     public void delete(int id) {
         deleted.add(id);
     }
@@ -282,6 +289,7 @@ public class MainActivity extends Activity {
         }
     }
 
+    // For archiving bulletins (per device)
     public void archiveBulletin(Bulletin b) {
         File myfile = getFileStreamPath("archived_bulletins");
         List<Bulletin> archivedBulletins = new ArrayList<Bulletin>();
@@ -297,17 +305,22 @@ public class MainActivity extends Activity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        if (archivedBulletins.contains(b)) {
-            return;
-        }
+
+       for (int i = 0; i < archivedBulletins.size(); i++) {
+           if (archivedBulletins.get(i).getBulletinId() == b.getBulletinId()) {
+               toast("You've already archived this bulletin!");
+               return;
+           }
+       }
         archivedBulletins.add(b);
+
         try {
             if(myfile.exists() || myfile.createNewFile()){
                 FileOutputStream fos = openFileOutput("archived_bulletins", MODE_PRIVATE);
                 ObjectOutputStream oos = new ObjectOutputStream(fos);
                 oos.writeObject(archivedBulletins);
                 fos.close();
-                toast("You just archived a bulletin!");
+                toast("Saved bulletin.");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -315,15 +328,15 @@ public class MainActivity extends Activity {
     }
 
     public List<Bulletin> getArchivedBulletins() {
-        File myfile = getFileStreamPath("archived_bulletins");
+        File bulletins = getFileStreamPath("archived_bulletins");
+
         List<Bulletin> archivedBulletins = new ArrayList<Bulletin>();
         try {
-            if(myfile.exists()){
+            if(bulletins.exists()){
                 FileInputStream fis = openFileInput("archived_bulletins");
                 ObjectInputStream ois = new ObjectInputStream(fis);
                 archivedBulletins = (ArrayList<Bulletin>) ois.readObject();
                 fis.close();
-                toast("Bulletins retrieved!");
             } else {
                 archivedBulletins = new ArrayList<Bulletin>();
             }

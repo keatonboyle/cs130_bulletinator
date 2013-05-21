@@ -11,7 +11,6 @@
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:textIsSelectable="false"
-        android:textSize="20sp"
         android:textStyle="bold" />
 
 </RelativeLayout>
