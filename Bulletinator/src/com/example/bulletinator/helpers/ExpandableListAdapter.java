@@ -24,14 +24,13 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     private List<Building> buildings;
     private Set<String> curBldgs;
     private MainActivity mainActivity;
-    private int tab, childHeight;
+    private int tab;
 
     public ExpandableListAdapter(Context c, List<Building> bldgs, int t) {
         buildings = bldgs;
         curBldgs = new HashSet<String>();
         mainActivity = (MainActivity) c;
         tab = t;
-        resolveListHeight();
     }
 
     @Override
@@ -63,9 +62,25 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         textView.setText(bulletin.getDescription());
         title.setTypeface(null, Typeface.BOLD);
 
+        // Has the bulletin been archived?
+        Drawable checkmark = null;
+        List<Bulletin> archived = mainActivity.getArchiver().getArchivedBulletins();
+        for (int i = 0; i < archived.size(); i++) {
+            if (archived.get(i).getBulletinId() == bulletin.getBulletinId()) {
+                checkmark = mainActivity.getResources().getDrawable(R.drawable.ic_launcher);
+                checkmark.setBounds(0, 0, 40, 40);
+            }
+        }
+
+        // Set bulletin icons
+        textView.setCompoundDrawables(null, null, checkmark, null);
         Drawable image = mainActivity.getResources().getDrawable(bulletin.getIconId());
         ImageView imageView = (ImageView) convertView.findViewById(R.id.bulletinIcon);
         imageView.setImageDrawable(image);
+
+        // Set bulletin position in adapter as tag for archiving
+        int pos[] = {groupPosition, childPosition};
+        textView.setTag(pos);
 
         return convertView;
     }
@@ -133,11 +148,4 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         mainActivity.setCurExpandedBldgs(tab, curBldgs);
     }
 
-    private void resolveListHeight() {
-        TypedValue value = new TypedValue();
-        DisplayMetrics metrics = new android.util.DisplayMetrics();
-        mainActivity.getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        mainActivity.getTheme().resolveAttribute(android.R.attr.listPreferredItemHeight, value, true);
-        childHeight = TypedValue.complexToDimensionPixelSize(value.data, metrics);
-    }
 }

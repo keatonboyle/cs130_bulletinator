@@ -13,6 +13,7 @@ import com.example.bulletinator.data.Bulletin;
 import com.example.bulletinator.fragments.AllFragment;
 import com.example.bulletinator.fragments.CurrentFragment;
 import com.example.bulletinator.fragments.NearbyFragment;
+import com.example.bulletinator.helpers.Archiver;
 import com.example.bulletinator.helpers.ScrollManager;
 import com.example.bulletinator.helpers.TabListener;
 
@@ -28,22 +29,26 @@ public class MainActivity extends Activity {
     private Set<String> nearbyExpandedBldgs, allExpandedBldgs;
     private int curTab;
     private ScrollManager sm;
+    private Archiver archiver;
+    private int[] alertPos;
 
     // For testing
     private String[] bNames = {"Boelter Hall", "Engineering V", "Humanities"};
     private String[] bullDescriptions = {"Free food!",
             "Tutoring positions available. This is a super super super super super duper looper" +
                     "long foopder long description.", "",};
-    private int[] ids = {R.drawable.food_icon, R.drawable.tutoring_icon,
+    private int[] iconIds = {R.drawable.food_icon, R.drawable.tutoring_icon,
             R.drawable.volunteering_icon};
     private int[] fIds = {R.drawable.flyer, R.drawable.tutor_flyer,
             R.drawable.volunteers_needed};
+    private int[] ids = {111, 222, 333};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         sm = new ScrollManager();
+        archiver = new Archiver(this);
         restorePreferences();
 
         ActionBar actionBar = getActionBar();
@@ -193,6 +198,10 @@ public class MainActivity extends Activity {
         return sm;
     }
 
+    public Archiver getArchiver() {
+        return archiver;
+    }
+
     public void toast(String t) {
         Context context = getApplicationContext();
         CharSequence text = t;
@@ -222,7 +231,7 @@ public class MainActivity extends Activity {
                         "Volunteers needed for decision making study."
                         : null;
                 Bulletin b = new Bulletin(title, description, bodyText,
-                        "555-555-5555", fIds[j], ids[j], 0);
+                        "555-555-5555", fIds[j], iconIds[j], ids[j]);
                 barr.add(b);
                 if (bNames[i].equals("Engineering V"))
                     break;
@@ -230,6 +239,14 @@ public class MainActivity extends Activity {
             Building bldg = new Building(name, barr, i);
             buildings.add(bldg);
         }
+    }
+
+    public void setAlertPos(int[] pos) {
+        alertPos = pos;
+    }
+
+    public int[] getAlertPos() {
+        return alertPos;
     }
 
 }

@@ -1,13 +1,18 @@
 package com.example.bulletinator.fragments;
 
+import android.app.AlertDialog;
 import android.app.Fragment;
+import android.content.DialogInterface;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupClickListener;
+import android.widget.TextView;
 import com.example.bulletinator.MainActivity;
 import com.example.bulletinator.R;
 import com.example.bulletinator.data.Building;
@@ -53,6 +58,48 @@ public abstract class ParentFragment extends Fragment {
                 Bulletin b = buildings.get(groupPosition).getBulletins()
                         .get(childPosition);
                 mainActivity.selectBulletin(b);
+                return true;
+            }
+        });
+        // Set long click for archiving bulletins, adds checkmark and saves data
+        expandableListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+                TextView textView = (TextView) view.findViewById(R.id.bulletinPreview);
+                int pos[] = (int[]) textView.getTag();
+
+                if (mainActivity.getArchiver().archiveBulletin(buildings.get(pos[0]).getBulletins().get(pos[1]))) {
+                    Drawable icon = textView.getCompoundDrawables()[0];
+                    Drawable checkmark = getResources().getDrawable(R.drawable.ic_launcher);
+                    checkmark.setBounds(0, 0, 40, 40);
+                    textView.setCompoundDrawables(icon, null, checkmark, null);
+                    // TODO: If tags are used we will have to update tags when deleting bulletins!?
+                } else {
+                    // Create alert dialog to delete bulletin
+                    AlertDialog.Builder alert = new AlertDialog.Builder(mainActivity);
+                    alert.setTitle("Delete bulletin?");
+                    alert.setMessage("You have already archived this bulletin, " +
+                            "would you like to delete it from memory?");
+                    mainActivity.setAlertPos(pos);
+                    alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            // TODO: delete bulletin
+                            int pos[] = mainActivity.getAlertPos();
+                            mainActivity.getArchiver().deleteBulletin(((Bulletin) adapter.getChild(pos[0], pos[1])).getBulletinId());
+                            adapter.notifyDataSetChanged();
+                            //adapter.removeChild(pos[0], pos[1]);
+                            dialog.cancel();
+                        }
+                    });
+                    alert.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            // Canceled.
+                            dialog.cancel();
+                        }
+                    });
+                    AlertDialog alertDialog = alert.create();
+                    alertDialog.show();
+                }
                 return true;
             }
         });
