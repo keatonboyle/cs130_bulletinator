@@ -24,14 +24,13 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     private List<Building> buildings;
     private Set<String> curBldgs;
     private MainActivity mainActivity;
-    private int tab, childHeight;
+    private int tab;
 
     public ExpandableListAdapter(Context c, List<Building> bldgs, int t) {
         buildings = bldgs;
         curBldgs = new HashSet<String>();
         mainActivity = (MainActivity) c;
         tab = t;
-        resolveListHeight();
     }
 
     @Override
@@ -131,13 +130,5 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     public void onGroupExpanded(int groupPosition) {
         curBldgs.add(buildings.get(groupPosition).getName());
         mainActivity.setCurExpandedBldgs(tab, curBldgs);
-    }
-
-    private void resolveListHeight() {
-        TypedValue value = new TypedValue();
-        DisplayMetrics metrics = new android.util.DisplayMetrics();
-        mainActivity.getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        mainActivity.getTheme().resolveAttribute(android.R.attr.listPreferredItemHeight, value, true);
-        childHeight = TypedValue.complexToDimensionPixelSize(value.data, metrics);
     }
 }

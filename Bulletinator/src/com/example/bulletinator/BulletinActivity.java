@@ -78,5 +78,4 @@ public class BulletinActivity extends Activity {
         }
         return super.onOptionsItemSelected(item);
     }
-
 }
