@@ -55,9 +55,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             LayoutInflater inflater = (LayoutInflater) mainActivity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.bulletin_preview, null);
         }
-        // TODO: Truncate body text if no description (do in bulletin class constructor!!!)
 
-        // Create views for bulletin preview with image and description
+        // Create views for bulletin preview with image, title, and description
         TextView textView = (TextView) convertView.findViewById(R.id.bulletinPreview);
         TextView title = (TextView) convertView.findViewById(R.id.bulletinTitle);
         title.setText(bulletin.getTitle());
@@ -65,8 +64,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         title.setTypeface(null, Typeface.BOLD);
 
         Drawable image = mainActivity.getResources().getDrawable(bulletin.getIconId());
-        //image.setBounds(0, 0, childHeight, childHeight);
-        //textView.setCompoundDrawables(image, null, null, null);
         ImageView imageView = (ImageView) convertView.findViewById(R.id.bulletinIcon);
         imageView.setImageDrawable(image);
 
@@ -90,8 +87,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public long getGroupId(int groupPosition) {
-        // TODO Auto-generated method stub
-        return 0;
+        return buildings.get(0).getId();
     }
 
     @Override
@@ -117,8 +113,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public boolean hasStableIds() {
-        // TODO Auto-generated method stub
-        return false;
+        return true;
     }
 
     @Override

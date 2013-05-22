@@ -227,7 +227,7 @@ public class MainActivity extends Activity {
                 if (bNames[i].equals("Engineering V"))
                     break;
             }
-            Building bldg = new Building(name, barr);
+            Building bldg = new Building(name, barr, i);
             buildings.add(bldg);
         }
     }
