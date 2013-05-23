@@ -1,23 +1,28 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Home</title>
+		<title>Form</title>
 	</head>
 	<body>
-		<form action="insertBulletin.php" method="POST" enctype="multipart/form-data">
+		<form action="">
 			Title: <input type="text" name="title"><br>
 			Description: <input type="text" name="description"><br>
 			Image: <input type="file" name="image"><br>
 			Category: 
 				<select name="category">
-				<option value="job">Job</option>
-				<option value="event">Event</option>
-				<option value="scholarship">Scholarship</option>
-				<option value="propaganda">Propaganda</option>
+					<option value="job">Job</option>
+					<option value="event">Event</option>
+					<option value="scholarship">Scholarship</option>
+					<option value="propaganda">Propaganda</option>
 				</select><br>
 			Body text:<br> <textarea name="text" rows="20" cols="50"></textarea><br>
 			Expiration date: <input type="date" name="expiration"><br>
 			Contact information:<br> <textarea name="contact" rows="5" cols="50"></textarea><br>
+			Buildings:<br>
+				<select size="8" multiple="multiple" name="buildings">
+					<option value="boelter">Boelter</option>
+					<option value="anderson">Anderson</option>
+				</select><br>
 
 			<input type="Submit" value="Submit">
 		</form>
