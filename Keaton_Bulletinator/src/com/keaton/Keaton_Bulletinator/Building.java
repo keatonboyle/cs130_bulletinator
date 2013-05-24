@@ -21,17 +21,25 @@ public class Building {
 
    public Building(JSONObject json)
    {
-      bulletins = new ArrayList<Bulletin>();
       try
       {
          bldid = json.getInt("bldid");
          name  = json.getString("name");
 
-         JSONArray btnArray = json.getJSONArray("bulletins");
+         JSONArray btnArray = json.optJSONArray("bulletins");
 
-         for (int ii = 0; ii < btnArray.length(); ii++)
+         if (btnArray != null)
          {
-            bulletins.add(new Bulletin(btnArray.getJSONObject(ii)));
+            bulletins = new ArrayList<Bulletin>();
+
+            for (int ii = 0; ii < btnArray.length(); ii++)
+            {
+               bulletins.add(new Bulletin(btnArray.getJSONObject(ii)));
+            }
+         }
+         else
+         {
+            bulletins = null;
          }
       }
       catch (JSONException e)

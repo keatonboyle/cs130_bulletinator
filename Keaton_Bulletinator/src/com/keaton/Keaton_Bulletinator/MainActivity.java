@@ -6,6 +6,7 @@ import android.content.Context;
 import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import org.json.*;
@@ -17,10 +18,14 @@ public class MainActivity extends Activity implements CallbackListener<ServerRes
    public void callback(ServerResponse sr)
    {
       Context context = getApplicationContext();
-      CharSequence text = "Response recieved, notifying you";
+      CharSequence toasttext = "Response recieved, notifying you";
       
-      Toast toast = Toast.makeText(context, text, Toast.LENGTH_SHORT);
+      Toast toast = Toast.makeText(context, toasttext, Toast.LENGTH_SHORT);
       toast.show();
+
+      TextView textview = (TextView) findViewById(R.id.result);
+      textview.setText(sr.getRaw());
+
    }
 
    @Override
@@ -37,11 +42,21 @@ public class MainActivity extends Activity implements CallbackListener<ServerRes
       return true;
    }
 
-   public void getJson (View view)
+   public void getAllBuildings(View view)
    {
-      DummyRequest dum = new DummyRequest(this, baseurl);
-      dum.send();
+      AllBuildingsRequest abr = new AllBuildingsRequest(this, baseurl);
+      abr.send();
    }
+   public void getBuilding(View view)
+   {
+      String id = ((EditText) findViewById(R.id.bldid_field)).getText().toString();
+      BuildingRequest br = 
+         new BuildingRequest(this, baseurl, Integer.parseInt(id));
+      br.send();
+   }
+   
+
+   /*
 
    public void printJson(String result)
    {
@@ -105,5 +120,6 @@ public class MainActivity extends Activity implements CallbackListener<ServerRes
       ((TextView) findViewById(R.id.gps_result)).setText(
            Double.toString(location.getLatitude()));
    }
+   */
    
 }

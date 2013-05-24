@@ -1,7 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="fill_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -10,6 +10,41 @@
     tools:context=".MainActivity" >
 
     <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="All Buildings"
+        android:onClick="getAllBuildings" />
+
+     <LinearLayout 
+          android:layout_width="match_parent"
+          android:layout_height="50dp"
+          android:orientation="horizontal"
+          tools:context=".MainActivity" >
+
+          <Button
+              android:id="@+id/button2"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Building"
+              android:onClick="getBuilding" />
+
+          <EditText
+              android:id="@+id/bldid_field"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:hint="bldid" />
+     </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="...waiting..." />
+
+  <!--
+    <Button
         android:id="@+id/ajson_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,11 +52,6 @@
         android:onClick="getJson" />
         
     
-    <TextView
-        android:id="@+id/raw_ajson_result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/ellipsis" />
     
     <Button
         android:id="@+id/json_parse_button"
@@ -48,6 +78,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/ellipsis" />
+  -->
     
     
     

@@ -30,6 +30,16 @@ public class AppData
    {
       return instance;
    }
+   
+   public static AppData update(AllBuildingsResponse bldr)
+   {
+      return instance;
+   }
+
+   public static AppData update(BinResponse br)
+   {
+      return instance;
+   }
 
    /* Accessor functions */
    public static Bulletin getBulletin(int btnid)
@@ -54,6 +64,9 @@ public class AppData
    }
 
    private String dummy;
+   private double lat;
+   private double lon;
+   private Rectangle<Double> bound;
    private HashMap<Integer,Bulletin> bulletins;
    private HashMap<Integer,Building> buildings;
 }

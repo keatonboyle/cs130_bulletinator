@@ -1,4 +1,3 @@
-/*
 package com.keaton.Keaton_Bulletinator;
 
 public class BinRequest extends ServerRequest 
@@ -11,8 +10,9 @@ public class BinRequest extends ServerRequest
 
    public void callback(String result)
    {
-      uiThread.callback(new DummyResponse(result));
+      BinResponse br = new BinResponse(result);
+      AppData.update(br);
+      mainThread.callback(br);
    }
    private int fid;
 }
-*/
