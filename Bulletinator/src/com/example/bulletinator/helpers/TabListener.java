@@ -1,11 +1,7 @@
 package com.example.bulletinator.helpers;
 
-import android.app.ActionBar;
+import android.app.*;
 import android.app.ActionBar.Tab;
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import com.example.bulletinator.MainActivity;
 
 //Class from http://developer.android.com/guide/topics/ui/actionbar.html#Tabs

@@ -1,34 +1,35 @@
 package com.example.bulletinator.helpers;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import android.content.Context;
-import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.bulletinator.MainActivity;
 import com.example.bulletinator.R;
 import com.example.bulletinator.data.Building;
 import com.example.bulletinator.data.Bulletin;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
     private List<Building> buildings;
-    private Context context;
     private Set<String> curBldgs;
-    private MainActivity activity;
+    private MainActivity mainActivity;
     private int tab;
 
     public ExpandableListAdapter(Context c, List<Building> bldgs, int t) {
-        context = c;
         buildings = bldgs;
         curBldgs = new HashSet<String>();
-        activity = (MainActivity) context;
+        mainActivity = (MainActivity) c;
         tab = t;
     }
 
@@ -50,20 +51,20 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         Bulletin bulletin = buildings.get(groupPosition).getBulletins()
                 .get(childPosition);
         if (convertView == null) {
-            LayoutInflater inflater = (LayoutInflater) context
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater inflater = (LayoutInflater) mainActivity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.bulletin_preview, null);
         }
 
-        // Create views for bulletin preview with image and description
-        TextView textView = (TextView) convertView
-                .findViewById(R.id.bulletinPreview);
+        // Create views for bulletin preview with image, title, and description
+        TextView textView = (TextView) convertView.findViewById(R.id.bulletinPreview);
+        TextView title = (TextView) convertView.findViewById(R.id.bulletinTitle);
+        title.setText(bulletin.getTitle());
         textView.setText(bulletin.getDescription());
+        title.setTypeface(null, Typeface.BOLD);
 
-        Drawable image = activity.getResources().getDrawable(
-                bulletin.getIconId());
-        image.setBounds(0, 0, 72, 72);
-        textView.setCompoundDrawables(image, null, null, null);
+        Drawable image = mainActivity.getResources().getDrawable(bulletin.getIconId());
+        ImageView imageView = (ImageView) convertView.findViewById(R.id.bulletinIcon);
+        imageView.setImageDrawable(image);
 
         return convertView;
     }
@@ -85,8 +86,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public long getGroupId(int groupPosition) {
-        // TODO Auto-generated method stub
-        return 0;
+        return buildings.get(0).getId();
     }
 
     @Override
@@ -95,30 +95,24 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
         Building bldg = buildings.get(groupPosition);
         if (convertView == null) {
-            LayoutInflater inflater = (LayoutInflater) context
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            LayoutInflater inflater = (LayoutInflater) mainActivity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.building_header, null);
         }
 
         // Create building row views
-        TextView textView = (TextView) convertView
-                .findViewById(R.id.buildingName);
+        TextView textView = (TextView) convertView.findViewById(R.id.buildingName);
         textView.setText(bldg.getName());
-        textView.setTextSize(25);
         if (tab > 0)
-            ((ViewGroup.MarginLayoutParams) textView.getLayoutParams())
-                    .setMargins(60, 0, 0, 0);
+            ((ViewGroup.MarginLayoutParams) textView.getLayoutParams()).setMargins(60, 0, 0, 0);
         else
-            ((ViewGroup.MarginLayoutParams) textView.getLayoutParams())
-                    .setMargins(10, 0, 0, 0);
+            ((ViewGroup.MarginLayoutParams) textView.getLayoutParams()).setMargins(10, 0, 0, 0);
 
         return convertView;
     }
 
     @Override
     public boolean hasStableIds() {
-        // TODO Auto-generated method stub
-        return false;
+        return true;
     }
 
     @Override
@@ -129,12 +123,12 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     @Override
     public void onGroupCollapsed(int groupPosition) {
         curBldgs.remove(buildings.get(groupPosition).getName());
-        activity.setCurBldgs(tab, curBldgs);
+        mainActivity.setCurExpandedBldgs(tab, curBldgs);
     }
 
     @Override
     public void onGroupExpanded(int groupPosition) {
         curBldgs.add(buildings.get(groupPosition).getName());
-        activity.setCurBldgs(tab, curBldgs);
+        mainActivity.setCurExpandedBldgs(tab, curBldgs);
     }
 }
