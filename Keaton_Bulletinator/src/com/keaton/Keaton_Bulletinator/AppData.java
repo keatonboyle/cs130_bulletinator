@@ -75,6 +75,15 @@ public class AppData
    {
       return instance.buildings.get(bldid);
    }
+
+   public static List<Building> getAllBuildings()
+   {
+      List<Building> bldList = new ArrayList<Building>();
+
+      bldList.addAll(instance.buildings.values());
+
+      return bldList;
+   }
    
    public static List<Bulletin> getBulletinsIn(Building bld)
    {
