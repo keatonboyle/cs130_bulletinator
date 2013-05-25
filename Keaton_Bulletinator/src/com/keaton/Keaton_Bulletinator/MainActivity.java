@@ -15,6 +15,7 @@ import android.location.*;
 public class MainActivity extends Activity implements CallbackListener<ServerResponse> 
 {
    public static final String baseurl = "http://linux.ucla.edu/~cs130s/get.php";
+  
    public void callback(ServerResponse sr)
    {
       Context context = getApplicationContext();
@@ -50,9 +51,26 @@ public class MainActivity extends Activity implements CallbackListener<ServerRes
    public void getBuilding(View view)
    {
       String id = ((EditText) findViewById(R.id.bldid_field)).getText().toString();
-      BuildingRequest br = 
-         new BuildingRequest(this, baseurl, Integer.parseInt(id));
+      BuildingRequest br = null;
+      try
+      {
+         br = new BuildingRequest(this, baseurl, Integer.parseInt(id));
+      }
+      catch (NumberFormatException e)
+      {
+         Toast.makeText(getApplicationContext(), "Pleaese enter valid integer", Toast.LENGTH_SHORT)
+              .show();
+         return;
+      }
+
       br.send();
+   }
+   public void printAppData(View view)
+   {
+      String dump = AppData.getSummaryString();
+
+      TextView textview = (TextView) findViewById(R.id.result);
+      textview.setText(dump);
    }
    
 

@@ -3,6 +3,10 @@ package com.keaton.Keaton_Bulletinator;
 import org.json.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.Set;
+import java.util.HashSet;
 
 public class AllBuildingsResponse extends ServerResponse
 {
@@ -10,7 +14,7 @@ public class AllBuildingsResponse extends ServerResponse
    {
       super(raw);
 
-      buildings = new ArrayList<Building>();
+      buildings = new HashMap<Integer,Building>();
 
       JSONObject json = null;
       try
@@ -23,7 +27,12 @@ public class AllBuildingsResponse extends ServerResponse
 
          for (int ii = 0; ii < bldArray.length(); ii++)
          {
-            buildings.add(new Building(bldArray.getJSONObject(ii)));
+            Building bld = 
+               new Building(bldArray.getJSONObject(ii).getInt("bldid"),
+                            bldArray.getJSONObject(ii).getString("name"),
+                            new HashSet<Integer>());
+                              
+            buildings.put(bld.getID(), bld);
          }
       }
       catch (JSONException e)
@@ -33,6 +42,6 @@ public class AllBuildingsResponse extends ServerResponse
       }
    }
 
-   public List<Building> buildings;
+   public Map<Integer,Building> buildings;
 
 }

@@ -1,7 +1,8 @@
 package com.keaton.Keaton_Bulletinator;
 
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
+import android.widget.Toast;
+import android.content.Context;
 
 public class AppData
 {
@@ -9,7 +10,10 @@ public class AppData
 
    protected AppData() 
    {
+      bulletins = new HashMap<Integer,Bulletin>();
+      buildings = new HashMap<Integer,Building>();
    }
+
 
    public static AppData getInstance()
    {
@@ -28,15 +32,35 @@ public class AppData
 
    public static AppData update(BuildingResponse bldr)
    {
+      if (bldr.bld != null)
+      {
+         instance.buildings.put(bldr.bld.getID(), bldr.bld);
+
+         instance.bulletins.putAll(bldr.bulletins);
+      }
+
       return instance;
    }
    
    public static AppData update(AllBuildingsResponse bldr)
    {
+      for (Map.Entry<Integer,Building> bldEntry : bldr.buildings.entrySet())
+      {
+         if (!instance.buildings.containsKey(bldEntry.getKey()))
+         {
+            instance.buildings.put(bldEntry.getKey(), bldEntry.getValue());
+         }
+      }
+
       return instance;
    }
 
    public static AppData update(BinResponse br)
+   {
+      return instance;
+   }
+
+   public static AppData update(Building bld)
    {
       return instance;
    }
@@ -52,22 +76,54 @@ public class AppData
       return instance.buildings.get(bldid);
    }
    
-   public static List<Bulletin> getBulletinsIn(Bulletin b)
+   public static List<Bulletin> getBulletinsIn(Building bld)
    {
-      return getBulletinsIn(b.getBulletinId());
+      List<Bulletin> btnList = new ArrayList<Bulletin>();
+
+      for (Integer ii : bld.getBtnIds())
+      {
+         Bulletin btn = instance.bulletins.get(ii);
+         if (btn != null)
+         {
+            btnList.add(btn);
+         }
+      }
+         
+      return btnList;
    }
 
    public static List<Bulletin> getBulletinsIn(int bldid)
    {
       //TODO: Check if bulletins are missing
-      return instance.buildings.get(bldid).getBulletins();
+      Building bld = instance.buildings.get(bldid);
+
+      if (bld == null) return null;
+
+      return getBulletinsIn(bld);
    }
 
-   private String dummy;
-   private double lat;
-   private double lon;
-   private Rectangle<Double> bound;
-   private HashMap<Integer,Bulletin> bulletins;
-   private HashMap<Integer,Building> buildings;
+   public static String getSummaryString()
+   {
+      String running = "";
+
+      for (Building bld : buildings.values())
+      {
+         running += (bld.getName() + "\n");
+         for (Bulletin btn : instance.getBulletinsIn(bld))
+         {
+            running += ("   [" + btn.getBulletinId() + "] " +
+                        btn.getTitle() + "\n");
+         }
+      }
+
+      return running;
+   }
+
+   private static String dummy;
+   private static double lat;
+   private static double lon;
+   private static Rectangle<Double> bound;
+   private static Map<Integer,Bulletin> bulletins;
+   private static Map<Integer,Building> buildings;
 }
 

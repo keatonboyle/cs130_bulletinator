@@ -7,7 +7,7 @@ public class Bulletin implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private String title, bodyText, description, contact, category;
-    private int imageId, iconId, bltId;
+    private int imageId, iconId, btnId;
 
     public Bulletin(String t, String d, String b, String c, int iId, int icId,
                     int bId, String cat) {
@@ -17,7 +17,7 @@ public class Bulletin implements Serializable {
         imageId = iId;
         contact = c;
         iconId = icId;
-        bltId = bId;
+        btnId = bId;
         category = cat;
     }
 
@@ -25,15 +25,17 @@ public class Bulletin implements Serializable {
     {
        try
        {
+          btnId = json.getInt("btnid");
           bodyText = json.getString("bodytext");
           description = json.getString("shortdesc");
           title = json.getString("title");
-          imageId = json.getInt("fid");
+          imageId = json.optInt("fid");
           contact = json.getString("contact");
           category = json.getString("category");
        }
        catch (JSONException e)
        {
+          btnId = 0;
           bodyText = "error";
           description = "error";
           title = "error";
@@ -71,6 +73,6 @@ public class Bulletin implements Serializable {
     }
 
     public int getBulletinId() {
-        return bltId;
+        return btnId;
     }
 }
