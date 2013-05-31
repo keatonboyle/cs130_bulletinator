@@ -1,8 +1,8 @@
 package com.keaton.Keaton_Bulletinator;
 
-public class Rectangle<T>
+public class Rectangle
 {
-   public Rectangle(T n, T e, T s, T w)
+   public Rectangle(double n, double e, double s, double w)
    {
       this.north = n;
       this.east = e;
@@ -10,8 +10,13 @@ public class Rectangle<T>
       this.west = w;
    }
 
-   public T north;
-   public T east;
-   public T south;
-   public T west;
+   public boolean isOutside(double ns, double ew)
+   {
+      return ((ns > north) || (ns < south) || (ew > east) || (ew < west));
+   }
+
+   public double north;
+   public double east;
+   public double south;
+   public double west;
 }

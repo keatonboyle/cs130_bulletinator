@@ -29,12 +29,38 @@ public class MainActivity extends Activity implements CallbackListener<ServerRes
 
    }
 
+   public void locationCallback(Location l)
+   {
+      toaster(Double.toString(l.getLatitude()));
+   }
+
    @Override
    protected void onCreate(Bundle savedInstanceState) {
       AppData.getInstance();
       super.onCreate(savedInstanceState);
       setContentView(R.layout.activity_main);
+
+
+      LocationModule mlm = new LocationModule(
+            new FunctionObj<Location>() {
+               public void call(Location l)
+               {
+                  locationCallback(l);
+               }
+            },
+            this);
+
+      mlm.run();
    }
+
+   public void toaster(String str)
+   {
+      Context context = getApplicationContext();
+
+      Toast toast = Toast.makeText(context, str, Toast.LENGTH_SHORT);
+      toast.show();
+   }
+
 
    @Override
    public boolean onCreateOptionsMenu(Menu menu) {

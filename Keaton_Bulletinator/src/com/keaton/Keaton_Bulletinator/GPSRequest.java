@@ -1,4 +1,3 @@
-/*
 package com.keaton.Keaton_Bulletinator;
 
 public class GPSRequest extends ServerRequest 
@@ -12,10 +11,9 @@ public class GPSRequest extends ServerRequest
 
    public void callback(String result)
    {
-      uiThread.callback(new DummyResponse(result));
+      mainThread.callback(new DummyResponse(result));
    }
 
    private double lat;
    private double lon;
 }
-*/

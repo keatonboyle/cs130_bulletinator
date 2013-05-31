@@ -24,6 +24,17 @@ public class AppData
       return instance;
    }
 
+   public static void setLoc(double lat, double lon)
+   {
+      instance.lat = lat;
+      instance.lon = lon;
+   }
+
+   public static boolean isLocationRelevant(double lat, double lon)
+   {
+      return ((bounds == null) || (bounds.isOutside(lat, lon)));
+   }
+
    public static AppData update(DummyResponse dr)
    {
       instance.dummy = dr.title;
@@ -51,6 +62,34 @@ public class AppData
             instance.buildings.put(bldEntry.getKey(), bldEntry.getValue());
          }
       }
+
+      return instance;
+   }
+
+   public static AppData update(GPSResponse gpsr)
+   {
+      instance.curBld = gpsr.curBld;
+
+      /* insert the building if it isn't here yet */
+      if (!instance.buildings.containsKey(gpsr.curBld.getID()))
+      {
+         instance.buildings.put(gpsr.curBld.getID(), gpsr.curBld);
+      }
+
+      /* insert any new bulletins */
+      instance.bulletins.putAll(gpsr.bulletins);
+
+      /* insert any buildings that haven't been downloaded */
+      for (Map.Entry<Integer,Building> bldEntry : gpsr.nearBuildings.entrySet())
+      {
+         if (!instance.buildings.containsKey(bldEntry.getKey()))
+         {
+            instance.buildings.put(bldEntry.getKey(), bldEntry.getValue());
+         }
+      }
+
+      /* set the bounds rectangle */
+      instance.bounds = gpsr.bounds;
 
       return instance;
    }
@@ -131,8 +170,9 @@ public class AppData
    private static String dummy;
    private static double lat;
    private static double lon;
-   private static Rectangle<Double> bound;
+   private static Rectangle bounds;
    private static Map<Integer,Bulletin> bulletins;
    private static Map<Integer,Building> buildings;
+   private static Building curBld;
 }
 
