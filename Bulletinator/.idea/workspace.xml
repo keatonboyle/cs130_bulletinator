@@ -24,26 +24,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="53cff988-bf08-4d1b-ae93-a8affccd646a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/bulletinator/server/AJson.java" afterPath="$PROJECT_DIR$/src/com/example/bulletinator/server/AJson.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/bulletinator/server/AllBuildingsRequest.java" afterPath="$PROJECT_DIR$/src/com/example/bulletinator/server/AllBuildingsRequest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/bulletinator/server/AllBuildingsResponse.java" afterPath="$PROJECT_DIR$/src/com/example/bulletinator/server/AllBuildingsResponse.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/bulletinator/data/AppData.java" afterPath="$PROJECT_DIR$/src/com/example/bulletinator/data/AppData.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/bulletinator/server/BuildingResponse.java" afterPath="$PROJECT_DIR$/src/com/example/bulletinator/server/BuildingResponse.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/bulletinator/BulletinActivity.java" afterPath="$PROJECT_DIR$/src/com/example/bulletinator/BulletinActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/bulletinator/server/DummyResponse.java" afterPath="$PROJECT_DIR$/src/com/example/bulletinator/server/DummyResponse.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/bulletinator/data/Bulletin.java" afterPath="$PROJECT_DIR$/src/com/example/bulletinator/data/Bulletin.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/bulletinator/server/EverythingResponse.java" afterPath="$PROJECT_DIR$/src/com/example/bulletinator/server/EverythingResponse.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/bulletinator/helpers/ExpandableListAdapter.java" afterPath="$PROJECT_DIR$/src/com/example/bulletinator/helpers/ExpandableListAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/bulletinator/server/GPSResponse.java" afterPath="$PROJECT_DIR$/src/com/example/bulletinator/server/GPSResponse.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/bulletinator/gps/LocationModule.java" afterPath="$PROJECT_DIR$/src/com/example/bulletinator/gps/LocationModule.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/bulletinator/MainActivity.java" afterPath="$PROJECT_DIR$/src/com/example/bulletinator/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/bulletinator/fragments/ParentFragment.java" afterPath="$PROJECT_DIR$/src/com/example/bulletinator/fragments/ParentFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/bulletinator/server/ServerRequest.java" afterPath="$PROJECT_DIR$/src/com/example/bulletinator/server/ServerRequest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/example/bulletinator/helpers/TabListener.java" afterPath="$PROJECT_DIR$/src/com/example/bulletinator/helpers/TabListener.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Bulletinator.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="53cff988-bf08-4d1b-ae93-a8affccd646a" time="1370204917082" ignored="false" />
-    <file path="/BulletinActivity.java" changelist="53cff988-bf08-4d1b-ae93-a8affccd646a" time="1368827871304" ignored="false" />
+    <file path="/Dummy.txt" changelist="53cff988-bf08-4d1b-ae93-a8affccd646a" time="1370205451154" ignored="false" />
+    <file path="/BulletinActivity.java" changelist="53cff988-bf08-4d1b-ae93-a8affccd646a" time="1370207955479" ignored="false" />
     <file path="/fragment.java" changelist="53cff988-bf08-4d1b-ae93-a8affccd646a" time="1369187405581" ignored="false" />
     <file path="/Bulletinator.iml" changelist="53cff988-bf08-4d1b-ae93-a8affccd646a" time="1368763667091" ignored="false" />
     <file path="/activity_bulletin.xml" changelist="53cff988-bf08-4d1b-ae93-a8affccd646a" time="1368764411650" ignored="false" />
@@ -54,9 +44,9 @@
     <file path="/AllFragment.java" changelist="53cff988-bf08-4d1b-ae93-a8affccd646a" time="1368827778008" ignored="false" />
     <file path="/CurrentFragment.java" changelist="53cff988-bf08-4d1b-ae93-a8affccd646a" time="1368827815361" ignored="false" />
     <file path="/NearbyFragment.java" changelist="53cff988-bf08-4d1b-ae93-a8affccd646a" time="1368827795708" ignored="false" />
-    <file path="/MainActivity.java" changelist="53cff988-bf08-4d1b-ae93-a8affccd646a" time="1370204958172" ignored="false" />
-    <file path="/ParentFragment.java" changelist="53cff988-bf08-4d1b-ae93-a8affccd646a" time="1370203902225" ignored="false" />
-    <file path="/Bulletin.java" changelist="53cff988-bf08-4d1b-ae93-a8affccd646a" time="1370199992286" ignored="false" />
+    <file path="/MainActivity.java" changelist="53cff988-bf08-4d1b-ae93-a8affccd646a" time="1370206477343" ignored="false" />
+    <file path="/ParentFragment.java" changelist="53cff988-bf08-4d1b-ae93-a8affccd646a" time="1370208380134" ignored="false" />
+    <file path="/Bulletin.java" changelist="53cff988-bf08-4d1b-ae93-a8affccd646a" time="1370207470936" ignored="false" />
     <file path="/ExpandableListAdapter.java" changelist="53cff988-bf08-4d1b-ae93-a8affccd646a" time="1370203830149" ignored="false" />
     <file path="/Building.java" changelist="53cff988-bf08-4d1b-ae93-a8affccd646a" time="1370200058504" ignored="false" />
     <file path="/list_view.xml" changelist="53cff988-bf08-4d1b-ae93-a8affccd646a" time="1368829455765" ignored="false" />
@@ -78,8 +68,10 @@
     <file path="/LocationModule.java" changelist="53cff988-bf08-4d1b-ae93-a8affccd646a" time="1370201367143" ignored="false" />
     <file path="/EverythingRequest.java" changelist="53cff988-bf08-4d1b-ae93-a8affccd646a" time="1370202492783" ignored="false" />
     <file path="/DummyRequest.java" changelist="53cff988-bf08-4d1b-ae93-a8affccd646a" time="1370202349677" ignored="false" />
-    <file path="/EverythingResponse.java" changelist="53cff988-bf08-4d1b-ae93-a8affccd646a" time="1370202443786" ignored="false" />
+    <file path="/EverythingResponse.java" changelist="53cff988-bf08-4d1b-ae93-a8affccd646a" time="1370207373706" ignored="false" />
     <file path="/BuildingRequest.java" changelist="53cff988-bf08-4d1b-ae93-a8affccd646a" time="1370202555954" ignored="false" />
+    <file path="/AndroidManifest.xml" changelist="53cff988-bf08-4d1b-ae93-a8affccd646a" time="1370205719609" ignored="false" />
+    <file path="$APPLICATION_HOME_DIR$/plugins/android/lib/android.jar!/org/jetbrains/android/android.xsd" changelist="53cff988-bf08-4d1b-ae93-a8affccd646a" time="1370205780880" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,6 +123,23 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
+    <line_breakpoints>
+      <breakpoint url="file://$PROJECT_DIR$/src/com/example/bulletinator/data/AppData.java" line="70" class="com.example.bulletinator.data.AppData" package="com.example.bulletinator.data">
+        <option name="ENABLED" value="true" />
+        <option name="LOG_ENABLED" value="false" />
+        <option name="LOG_EXPRESSION_ENABLED" value="false" />
+        <option name="REMOVE_AFTER_HIT" value="false" />
+        <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
+        <option name="COUNT_FILTER_ENABLED" value="false" />
+        <option name="COUNT_FILTER" value="0" />
+        <option name="CONDITION_ENABLED" value="true" />
+        <option name="CLASS_FILTERS_ENABLED" value="false" />
+        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
+        <option name="CONDITION" value="" />
+        <option name="LOG_MESSAGE" value="" />
+      </breakpoint>
+    </line_breakpoints>
     <breakpoint_rules />
     <ui_properties />
   </component>
@@ -140,24 +149,16 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="MainActivity.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="MainActivity.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="117" column="23" selection-start="4287" selection-end="4287" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AppData.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/data/AppData.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="195" column="18" selection-start="5986" selection-end="5986" vertical-scroll-proportion="0.6057299">
+            <state line="67" column="0" selection-start="2557" selection-end="2557" vertical-scroll-proportion="0.2366864">
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#4138#4148#0" expanded="true" />
-                <element signature="e#4348#4358#0" expanded="true" />
-                <element signature="e#5817#5827#0" expanded="true" />
+                <element signature="e#6374#6415#0" expanded="true" />
+                <element signature="e#6443#6484#0" expanded="true" />
+                <element signature="e#6512#6553#0" expanded="true" />
+                <element signature="e#7668#7833#0" expanded="true" />
+                <element signature="e#7814#7815#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -166,30 +167,17 @@
       <file leaf-file-name="ParentFragment.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/fragments/ParentFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="53" column="46" selection-start="2077" selection-end="2077" vertical-scroll-proportion="0.0">
+            <state line="36" column="52" selection-start="1248" selection-end="1248" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EverythingRequest.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/server/EverythingRequest.java">
+      <file leaf-file-name="BulletinActivity.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/BulletinActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="27" selection-start="506" selection-end="506" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EverythingResponse.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/server/EverythingResponse.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="31" selection-start="425" selection-end="425" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
+            <state line="30" column="57" selection-start="881" selection-end="926" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -212,30 +200,30 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/com/example/bulletinator/server/DummyResponse.java" />
-        <option value="$PROJECT_DIR$/src/com/example/bulletinator/server/GPSRequest.java" />
-        <option value="$PROJECT_DIR$/src/com/example/bulletinator/server/BinResponse.java" />
         <option value="$PROJECT_DIR$/src/com/example/bulletinator/server/BuildingResponse.java" />
         <option value="$PROJECT_DIR$/src/com/example/bulletinator/server/AllBuildingsRequest.java" />
         <option value="$PROJECT_DIR$/src/com/example/bulletinator/server/BinRequest.java" />
         <option value="$PROJECT_DIR$/src/com/example/bulletinator/gps/LocationModule.java" />
         <option value="$PROJECT_DIR$/src/com/example/bulletinator/server/DummyRequest.java" />
-        <option value="$PROJECT_DIR$/src/com/example/bulletinator/server/EverythingResponse.java" />
         <option value="$PROJECT_DIR$/src/com/example/bulletinator/server/BuildingRequest.java" />
         <option value="$PROJECT_DIR$/src/com/example/bulletinator/helpers/ExpandableListAdapter.java" />
-        <option value="$PROJECT_DIR$/src/com/example/bulletinator/fragments/ParentFragment.java" />
         <option value="$PROJECT_DIR$/src/com/example/bulletinator/server/EverythingRequest.java" />
         <option value="$PROJECT_DIR$/src/com/example/bulletinator/data/Building.java" />
-        <option value="$PROJECT_DIR$/src/com/example/bulletinator/MainActivity.java" />
         <option value="$PROJECT_DIR$/src/com/example/bulletinator/data/AppData.java" />
+        <option value="$PROJECT_DIR$/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/src/com/example/bulletinator/MainActivity.java" />
+        <option value="$PROJECT_DIR$/src/com/example/bulletinator/server/EverythingResponse.java" />
+        <option value="$PROJECT_DIR$/src/com/example/bulletinator/data/Bulletin.java" />
+        <option value="$PROJECT_DIR$/src/com/example/bulletinator/BulletinActivity.java" />
+        <option value="$PROJECT_DIR$/src/com/example/bulletinator/fragments/ParentFragment.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1539" />
-    <option name="height" value="916" />
+    <option name="x" value="55" />
+    <option name="y" value="22" />
+    <option name="width" value="1385" />
+    <option name="height" value="878" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -447,20 +435,20 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="114" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="131" />
     <property name="project.structure.proportion" value="0.15" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="131" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="126" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
-    <property name="MemberChooser.sorted" value="false" />
     <property name="recentsLimit" value="5" />
+    <property name="MemberChooser.sorted" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="126" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="last_opened_file_path" value="C:/Archived Bulletinator" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="135" />
@@ -668,11 +656,12 @@
       <workItem from="1369186893141" duration="5297000" />
       <workItem from="1370199133277" duration="4984000" />
       <workItem from="1370204916781" duration="501000" />
+      <workItem from="1370205450749" duration="3105000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30661000" />
+    <option name="totallyTimeSpent" value="33766000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -695,23 +684,24 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1539" height="916" extended-state="6" />
+    <frame x="55" y="22" width="1385" height="878" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294964" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39973614" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29473683" sideWeight="0.4256908" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32855093" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3276316" sideWeight="0.49962658" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32849604" sideWeight="0.49962658" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298153" sideWeight="0.49962658" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24847664" sideWeight="0.70526314" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29473683" sideWeight="0.5743092" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24794623" sideWeight="0.70580477" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29419526" sideWeight="0.5743092" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32935026" sideWeight="0.6" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
@@ -720,7 +710,6 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32834706" sideWeight="0.6705036" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32849604" sideWeight="0.49962658" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294964" sideWeight="0.6295743" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -729,12 +718,12 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294964" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29473683" sideWeight="0.4256908" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32855093" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298153" sideWeight="0.49962658" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24869305" sideWeight="0.70526314" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29473683" sideWeight="0.5743092" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32935026" sideWeight="0.6" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -813,56 +802,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/server/GPSRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="4" selection-start="539" selection-end="539" vertical-scroll-proportion="0.34836066">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/server/BinRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="45" selection-start="87" selection-end="87" vertical-scroll-proportion="0.040983606">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/server/AllBuildingsResponse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="39" selection-start="830" selection-end="830" vertical-scroll-proportion="0.6557377">
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/server/AllBuildingsRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="31" selection-start="594" selection-end="594" vertical-scroll-proportion="0.32786885">
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/gps/LocationModule.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="45" selection-start="251" selection-end="251" vertical-scroll-proportion="0.14344262">
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/fragments/CurrentFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="13" selection-start="160" selection-end="160" vertical-scroll-proportion="0.08196721">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/server/DummyResponse.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="20" column="0" selection-start="0" selection-end="515" vertical-scroll-proportion="0.0">
@@ -897,13 +836,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/fragments/ParentFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="46" selection-start="2077" selection-end="2077" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/data/Building.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2" column="0" selection-start="40" selection-end="40" vertical-scroll-proportion="0.040983606">
@@ -914,36 +846,89 @@
     <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/server/EverythingRequest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="14" column="27" selection-start="506" selection-end="506" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="16" selection-start="478" selection-end="478" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/sdk/platforms/android-17/android.jar!/android/app/Instrumentation.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="123" column="0" selection-start="6462" selection-end="6462" vertical-scroll-proportion="0.73188406">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/sdk/platforms/android-17/android.jar!/android/app/Activity.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="53" column="19" selection-start="2223" selection-end="2223" vertical-scroll-proportion="0.33333334">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/server/GPSResponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="13" selection-start="337" selection-end="337" vertical-scroll-proportion="0.1183432">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/server/EverythingResponse.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="31" selection-start="425" selection-end="425" vertical-scroll-proportion="0.0">
+        <state line="43" column="38" selection-start="1418" selection-end="1418" vertical-scroll-proportion="0.0">
           <folding>
-            <element signature="imports" expanded="false" />
+            <element signature="e#1038#1047#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/MainActivity.java">
+    <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/data/Bulletin.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="117" column="23" selection-start="4287" selection-end="4287" vertical-scroll-proportion="0.0">
+        <state line="20" column="41" selection-start="663" selection-end="663" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/data/AppData.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="195" column="18" selection-start="5986" selection-end="5986" vertical-scroll-proportion="0.6057299">
+        <state line="70" column="0" selection-start="2184" selection-end="2184" vertical-scroll-proportion="-0.43775934">
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#4138#4148#0" expanded="true" />
             <element signature="e#4348#4358#0" expanded="true" />
             <element signature="e#5817#5827#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/BulletinActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="57" selection-start="881" selection-end="926" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/fragments/ParentFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="52" selection-start="1248" selection-end="1248" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/example/bulletinator/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="67" column="0" selection-start="2557" selection-end="2557" vertical-scroll-proportion="0.2366864">
+          <folding>
+            <element signature="e#6374#6415#0" expanded="true" />
+            <element signature="e#6443#6484#0" expanded="true" />
+            <element signature="e#6512#6553#0" expanded="true" />
+            <element signature="e#7668#7833#0" expanded="true" />
+            <element signature="e#7814#7815#0" expanded="true" />
           </folding>
         </state>
       </provider>

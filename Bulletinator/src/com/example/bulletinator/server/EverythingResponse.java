@@ -7,6 +7,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
@@ -16,6 +17,8 @@ public class EverythingResponse extends ServerResponse {
         JSONObject json = null;
         JSONArray bldArray = null;
         JSONArray btnArray = null;
+        buildings = new HashMap<Integer, Building>();
+        bulletins = new HashMap<Integer, Bulletin>();
         try {
             json = new JSONObject(raw);
 
@@ -24,10 +27,22 @@ public class EverythingResponse extends ServerResponse {
             bldArray = json.getJSONArray("buildings");
 
             for (int ii = 0; ii < bldArray.length(); ii++) {
+                JSONObject bldObj = bldArray.getJSONObject(ii);
+                JSONArray btnIdArray = bldObj.optJSONArray("bulletins");
+                HashSet<Integer> btnIdSet = new HashSet<Integer>();
+
+                if (btnIdArray != null) {
+                    for (int jj = 0; jj < btnIdArray.length(); jj++)
+                    {
+                        btnIdSet.add(btnIdArray.getInt(jj));
+                    }
+                }
+
+
                 Building bld =
-                        new Building(bldArray.getJSONObject(ii).getInt("bldid"),
-                                bldArray.getJSONObject(ii).getString("name"),
-                                new HashSet<Integer>());
+                        new Building(bldObj.getInt("bldid"),
+                                bldObj.getString("name"),
+                                btnIdSet);
 
                 buildings.put(bld.getId(), bld);
             }

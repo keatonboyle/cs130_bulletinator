@@ -22,6 +22,7 @@ import com.example.bulletinator.helpers.FunctionObj;
 import com.example.bulletinator.helpers.ScrollManager;
 import com.example.bulletinator.helpers.TabListener;
 import com.example.bulletinator.server.EverythingRequest;
+import com.example.bulletinator.server.EverythingResponse;
 import com.example.bulletinator.server.ServerResponse;
 
 import java.util.HashSet;
@@ -52,51 +53,7 @@ public class MainActivity extends Activity implements CallbackListener<com.examp
 
         sm = new ScrollManager();
         restorePreferences();
-
-        ActionBar actionBar = getActionBar();
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-
-        String tab1 = getResources().getString(R.string.label1);
-        String tab2 = getResources().getString(R.string.label2);
-        String tab3 = getResources().getString(R.string.label3);
-
-        Tab tab = actionBar
-                .newTab()
-                .setText(tab1)
-                .setTabListener(
-                        new TabListener<CurrentFragment>(this, tab1,
-                                CurrentFragment.class));
-        actionBar.addTab(tab, 0, curTab == 0);
-
-        tab = actionBar
-                .newTab()
-                .setText(tab2)
-                .setTabListener(
-                        new TabListener<NearbyFragment>(this, tab2,
-                                NearbyFragment.class));
-        actionBar.addTab(tab, 1, curTab == 1);
-
-        tab = actionBar
-                .newTab()
-                .setText(tab3)
-                .setTabListener(
-                        new TabListener<AllFragment>(this, tab3,
-                                AllFragment.class));
-        actionBar.addTab(tab, 2, curTab == 2);
-
-        // GPS requester
-        AppData.getInstance(this);
-        LocationModule mlm = new LocationModule(
-                new FunctionObj<Location>() {
-                    public void call(Location l) {
-                        locationCallback(l);
-                    }
-                },
-                this);
-        mlm.run();
-
-        EverythingRequest er = new EverythingRequest(this, AppData.baseurl);
-        er.send();
+        setUpGPS();
     }
 
     public void locationCallback(Location l) {
@@ -111,8 +68,6 @@ public class MainActivity extends Activity implements CallbackListener<com.examp
 
     // Decides which buildings a fragment will receive
     public List<Building> getBuildings() {
-        List<Building> bldgs;
-
         switch (curTab) {
             case CURRENT: {
                 return AppData.getCurrentBuilding();
@@ -222,6 +177,53 @@ public class MainActivity extends Activity implements CallbackListener<com.examp
 
     @Override
     public void callback(ServerResponse obj) {
-        toast("Moar toast");
+        if (obj.getClass() == EverythingResponse.class) {
+            ActionBar actionBar = getActionBar();
+            actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+
+            String tab1 = getResources().getString(R.string.label1);
+            String tab2 = getResources().getString(R.string.label2);
+            String tab3 = getResources().getString(R.string.label3);
+
+            Tab tab = actionBar
+                    .newTab()
+                    .setText(tab1)
+                    .setTabListener(
+                            new TabListener<CurrentFragment>(this, tab1,
+                                    CurrentFragment.class));
+            actionBar.addTab(tab, 0, curTab == 0);
+
+            tab = actionBar
+                    .newTab()
+                    .setText(tab2)
+                    .setTabListener(
+                            new TabListener<NearbyFragment>(this, tab2,
+                                    NearbyFragment.class));
+            actionBar.addTab(tab, 1, curTab == 1);
+
+            tab = actionBar
+                    .newTab()
+                    .setText(tab3)
+                    .setTabListener(
+                            new TabListener<AllFragment>(this, tab3,
+                                    AllFragment.class));
+            actionBar.addTab(tab, 2, curTab == 2);
+        }
+    }
+
+    public void setUpGPS() {
+        // GPS requester
+        AppData.getInstance(this);
+        LocationModule mlm = new LocationModule(
+                new FunctionObj<Location>() {
+                    public void call(Location l) {
+                        locationCallback(l);
+                    }
+                },
+                this);
+        mlm.run();
+
+        EverythingRequest er = new EverythingRequest(this, AppData.baseurl);
+        er.send();
     }
 }
