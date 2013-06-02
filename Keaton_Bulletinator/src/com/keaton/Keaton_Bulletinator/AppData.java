@@ -1,12 +1,17 @@
 package com.keaton.Keaton_Bulletinator;
 
 import java.util.*;
+import java.lang.Math;
 import android.widget.Toast;
 import android.content.Context;
+import android.location.*;
+import android.app.Activity;
 
-public class AppData
+public class AppData 
 {
    private static AppData instance = null;
+
+   public static final String baseurl = "http://linux.ucla.edu/~cs130s/get.php";
 
    protected AppData() 
    {
@@ -15,24 +20,41 @@ public class AppData
    }
 
 
-   public static AppData getInstance()
+   public static AppData getInstance(CallbackListener<ServerResponse> mainThread)
    {
       if (instance == null)
       {
          instance = new AppData();
       }
+      instance.mainThread = mainThread;
       return instance;
    }
 
-   public static void setLoc(double lat, double lon)
+   public static void setLoc(Location loc)
    {
-      instance.lat = lat;
-      instance.lon = lon;
+      if (instance.isLocationRelevant(loc))
+      {
+         instance.lat = loc.getLatitude();
+         instance.lon = loc.getLongitude();
+
+         instance.getFromGPS(loc);
+      }
    }
 
-   public static boolean isLocationRelevant(double lat, double lon)
+   public static void getFromGPS(Location l)
    {
-      return ((bounds == null) || (bounds.isOutside(lat, lon)));
+      GPSRequest gpsr = 
+         new GPSRequest(instance.mainThread, instance.baseurl,
+                        instance.lat, instance.lon);
+
+      gpsr.send();
+   }
+
+
+   public static boolean isLocationRelevant(Location loc)
+   {
+      return ((bounds == null) || 
+              (bounds.isOutside(loc.getLatitude(), loc.getLongitude())));
    }
 
    public static AppData update(DummyResponse dr)
@@ -167,7 +189,17 @@ public class AppData
       return running;
    }
 
+   public static String getNiceCoords()
+   {
+      return (
+         Location.convert(Math.abs(instance.lat), Location.FORMAT_MINUTES) + 
+         " " + (instance.lat >= 0 ? "N" : "S") + ", " +
+         Location.convert(Math.abs(instance.lon), Location.FORMAT_MINUTES) +
+         " " + (instance.lon >= 0 ? "E" : "W"));
+   }
+
    private static String dummy;
+   private static CallbackListener<ServerResponse> mainThread;
    private static double lat;
    private static double lon;
    private static Rectangle bounds;

@@ -31,30 +31,36 @@ public class GPSResponse extends ServerResponse
          if (curBldJson != null)
          {
             btnArray = curBldJson.optJSONArray("bulletins");
-            
-            for (int ii = 0; ii < btnArray.length(); ii++)
+
+            if (btnArray != null)
             {
-               Bulletin btn = new Bulletin(btnArray.getJSONObject(ii));
-               bulletins.put(btn.getBulletinId(), btn); 
+               for (int ii = 0; ii < btnArray.length(); ii++)
+               {
+                  Bulletin btn = new Bulletin(btnArray.getJSONObject(ii));
+                  bulletins.put(btn.getBulletinId(), btn); 
+               }
             }
 
-            curBld = new Building(json.getInt("bldid"),
-                                  json.getString("name"),
+            curBld = new Building(curBldJson.getInt("bldid"),
+                                  curBldJson.getString("name"),
                                   bulletins.keySet());
 
          }
 
          /* nearby buildings */
-         nearbyBldArray = json.getJSONArray("nearbuild");
+         nearbyBldArray = json.optJSONArray("nearbuild");
 
-         for (int ii = 0; ii < nearbyBldArray.length(); ii++)
+         if (nearbyBldArray != null)
          {
-            JSONObject bldJson = nearbyBldArray.getJSONObject(ii);
+            for (int ii = 0; ii < nearbyBldArray.length(); ii++)
+            {
+               JSONObject bldJson = nearbyBldArray.getJSONObject(ii);
 
-            nearBuildings.put(bldJson.getInt("bldid"),
-                              new Building(bldJson.getInt("bldid"),
-                                           bldJson.getString("name"),
-                                           null));
+               nearBuildings.put(bldJson.getInt("bldid"),
+                                 new Building(bldJson.getInt("bldid"),
+                                              bldJson.getString("name"),
+                                              null));
+            }
          }
 
          /* bounds rectangle */

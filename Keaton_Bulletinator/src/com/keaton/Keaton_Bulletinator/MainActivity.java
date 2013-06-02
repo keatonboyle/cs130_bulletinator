@@ -14,7 +14,6 @@ import android.location.*;
 
 public class MainActivity extends Activity implements CallbackListener<ServerResponse> 
 {
-   public static final String baseurl = "http://linux.ucla.edu/~cs130s/get.php";
   
    public void callback(ServerResponse sr)
    {
@@ -31,12 +30,12 @@ public class MainActivity extends Activity implements CallbackListener<ServerRes
 
    public void locationCallback(Location l)
    {
-      toaster(Double.toString(l.getLatitude()));
+      toaster(AppData.getNiceCoords());
    }
 
    @Override
    protected void onCreate(Bundle savedInstanceState) {
-      AppData.getInstance();
+      AppData.getInstance(this);
       super.onCreate(savedInstanceState);
       setContentView(R.layout.activity_main);
 
@@ -71,7 +70,7 @@ public class MainActivity extends Activity implements CallbackListener<ServerRes
 
    public void getAllBuildings(View view)
    {
-      AllBuildingsRequest abr = new AllBuildingsRequest(this, baseurl);
+      AllBuildingsRequest abr = new AllBuildingsRequest(this, AppData.baseurl);
       abr.send();
    }
    public void getBuilding(View view)
@@ -80,7 +79,7 @@ public class MainActivity extends Activity implements CallbackListener<ServerRes
       BuildingRequest br = null;
       try
       {
-         br = new BuildingRequest(this, baseurl, Integer.parseInt(id));
+         br = new BuildingRequest(this, AppData.baseurl, Integer.parseInt(id));
       }
       catch (NumberFormatException e)
       {

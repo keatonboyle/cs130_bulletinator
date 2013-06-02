@@ -20,6 +20,7 @@ public class LocationModule
       LocationListener ll = new LocationListener() {
          public void onLocationChanged(Location location)
          {
+            AppData.setLoc(location);
             callback.call(location);
          }
          public void onStatusChanged(String provider, int status, Bundle extras) {}
@@ -27,9 +28,9 @@ public class LocationModule
          public void onProviderDisabled(String provider) {}
       };
       
-      lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, ll);
+      lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, ll);
       
-      callback.call(lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER));
+      callback.call(lm.getLastKnownLocation(LocationManager.GPS_PROVIDER));
      
 
    }
