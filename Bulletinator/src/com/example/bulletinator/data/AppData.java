@@ -58,6 +58,12 @@ public class AppData {
         return instance;
     }
 
+    public static AppData update(EverythingResponse er) {
+        instance.buildings.putAll(er.buildings);
+        instance.bulletins.putAll(er.bulletins);
+        return instance;
+    }
+
     public static AppData update(BuildingResponse bldr) {
         if (bldr.bld != null) {
             instance.buildings.put(bldr.bld.getId(), bldr.bld);
