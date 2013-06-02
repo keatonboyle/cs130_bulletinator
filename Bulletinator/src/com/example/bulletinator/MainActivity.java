@@ -13,6 +13,8 @@ import com.example.bulletinator.data.*;
 import com.example.bulletinator.fragments.*;
 import com.example.bulletinator.gps.LocationModule;
 import com.example.bulletinator.helpers.*;
+import com.example.bulletinator.server.EverythingRequest;
+import com.example.bulletinator.server.EverythingResponse;
 import com.example.bulletinator.server.ServerResponse;
 
 import java.util.ArrayList;
@@ -86,6 +88,9 @@ public class MainActivity extends Activity implements CallbackListener<com.examp
                 },
                 this);
         mlm.run();
+
+        EverythingRequest er = new EverythingRequest(AppData.baseurl);
+        er.send();
     }
 
     public void locationCallback(Location l) {
@@ -104,18 +109,13 @@ public class MainActivity extends Activity implements CallbackListener<com.examp
 
         switch (curTab) {
             case CURRENT: {
-                bldgs = new ArrayList<Building>();
-                bldgs.add(buildings.get(0));
-                return bldgs;
+                return AppData.getCurrentBuilding();
             }
             case NEARBY: {
-                bldgs = new ArrayList<Building>();
-                bldgs.add(buildings.get(0));
-                bldgs.add(buildings.get(1));
-                return bldgs;
+                return AppData.getNearbyBuildings();
             }
             default:
-                return buildings;
+                return AppData.getAllBuildings();
         }
     }
 
@@ -216,6 +216,6 @@ public class MainActivity extends Activity implements CallbackListener<com.examp
 
     @Override
     public void callback(ServerResponse obj) {
-        toast("More toast");
+        toast("Moar toast");
     }
 }

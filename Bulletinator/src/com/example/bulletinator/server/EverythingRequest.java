@@ -6,7 +6,7 @@ import com.example.bulletinator.helpers.CallbackListener;
 public class EverythingRequest extends ServerRequest {
 
     public EverythingRequest(CallbackListener<ServerResponse> mainThread, String baseurl) {
-        super(mainThread, baseurl + "?type=dummy");
+        super(mainThread, baseurl + "?type=everything");
     }
 
     @Override

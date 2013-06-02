@@ -19,6 +19,7 @@ import com.example.bulletinator.data.Bulletin;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import com.example.bulletinator.data.AppData;
 
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
     private List<Building> buildings;
@@ -35,21 +36,19 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        return buildings.get(groupPosition).getBulletins().get(childPosition);
+        return AppData.getBulletinsIn(((int) getGroupId(groupPosition))).get(childPosition);
     }
 
     @Override
     public long getChildId(int groupPosition, int childPosition) {
-        return buildings.get(groupPosition).getBulletins().get(childPosition)
-                .getBulletinId();
+        return AppData.getBulletinsIn(((int) getGroupId(groupPosition))).get(childPosition).getBulletinId();
     }
 
     @Override
     public View getChildView(int groupPosition, int childPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
         // Create image and text combo for a bulletin
-        Bulletin bulletin = buildings.get(groupPosition).getBulletins()
-                .get(childPosition);
+        Bulletin bulletin = AppData.getBulletinsIn(((int) getGroupId(groupPosition))).get(childPosition);
         if (convertView == null) {
             LayoutInflater inflater = (LayoutInflater) mainActivity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.bulletin_preview, null);
@@ -71,7 +70,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        return buildings.get(groupPosition).getBulletins().size();
+        return AppData.getBulletinsIn(((int) getGroupId(groupPosition))).size();
     }
 
     @Override
@@ -86,7 +85,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public long getGroupId(int groupPosition) {
-        return buildings.get(0).getId();
+        return buildings.get(groupPosition).getId();
     }
 
     @Override

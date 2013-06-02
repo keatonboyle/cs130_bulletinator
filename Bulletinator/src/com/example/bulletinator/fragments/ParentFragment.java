@@ -10,6 +10,7 @@ import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupClickListener;
 import com.example.bulletinator.MainActivity;
 import com.example.bulletinator.R;
+import com.example.bulletinator.data.AppData;
 import com.example.bulletinator.data.Building;
 import com.example.bulletinator.data.Bulletin;
 import com.example.bulletinator.helpers.ExpandableListAdapter;
@@ -50,8 +51,7 @@ public abstract class ParentFragment extends Fragment {
             public boolean onChildClick(ExpandableListView parent, View v,
                                         int groupPosition, int childPosition, long id) {
                 // Start new bulletin activity
-                Bulletin b = buildings.get(groupPosition).getBulletins()
-                        .get(childPosition);
+                Bulletin b = AppData.getBulletinsIn(((int) adapter.getGroupId(groupPosition))).get(childPosition);
                 mainActivity.selectBulletin(b);
                 return true;
             }
