@@ -1,15 +1,22 @@
 package com.example.bulletinator.data;
 
-import java.util.*;
-import java.lang.Math;
+import android.location.Location;
 
-import android.widget.Toast;
-import android.content.Context;
-import android.location.*;
-import android.app.Activity;
 import com.example.bulletinator.helpers.CallbackListener;
-import com.example.bulletinator.server.*;
 import com.example.bulletinator.helpers.Rectangle;
+import com.example.bulletinator.server.AllBuildingsResponse;
+import com.example.bulletinator.server.BinResponse;
+import com.example.bulletinator.server.BuildingResponse;
+import com.example.bulletinator.server.DummyResponse;
+import com.example.bulletinator.server.EverythingResponse;
+import com.example.bulletinator.server.GPSRequest;
+import com.example.bulletinator.server.GPSResponse;
+import com.example.bulletinator.server.ServerResponse;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class AppData {
     private static AppData instance = null;
@@ -175,6 +182,18 @@ public class AppData {
                         " " + (instance.lat >= 0 ? "N" : "S") + ", " +
                         Location.convert(Math.abs(instance.lon), Location.FORMAT_MINUTES) +
                         " " + (instance.lon >= 0 ? "E" : "W"));
+    }
+
+    public static List<Building> getNearbyBuildings() {
+        return instance.getAllBuildings();
+    }
+
+    public static List<Building> getCurrentBuilding() {
+        List<Building> lb = new ArrayList<Building>();
+        lb.add(instance.curBld != null ? instance.curBld :
+                instance.buildings.entrySet().iterator().next().getValue());
+
+        return lb;
     }
 
     private static String dummy;

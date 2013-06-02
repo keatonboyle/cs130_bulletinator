@@ -2,7 +2,6 @@ package com.example.bulletinator.server;
 
 import com.example.bulletinator.data.AppData;
 import com.example.bulletinator.helpers.CallbackListener;
-import com.example.bulletinator.server.AJson;
 
 public abstract class ServerRequest implements CallbackListener<String> {
     public ServerRequest(CallbackListener<ServerResponse> mainThread, String url) {

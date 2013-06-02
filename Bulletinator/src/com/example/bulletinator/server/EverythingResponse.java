@@ -3,7 +3,9 @@ package com.example.bulletinator.server;
 import com.example.bulletinator.data.Building;
 import com.example.bulletinator.data.Bulletin;
 
-import org.json.*;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashSet;
 import java.util.Map;
@@ -40,7 +42,6 @@ public class EverythingResponse extends ServerResponse {
             }
 
 
-
         } catch (JSONException e) {
             type = "problem";
             title = "problem";
@@ -48,6 +49,6 @@ public class EverythingResponse extends ServerResponse {
     }
 
     public String title;
-    public Map<Integer,Building> buildings;
-    public Map<Integer,Bulletin> bulletins;
+    public Map<Integer, Building> buildings;
+    public Map<Integer, Bulletin> bulletins;
 }

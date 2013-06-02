@@ -1,6 +1,7 @@
 package com.example.bulletinator.server;
 
-import org.json.*;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class DummyResponse extends ServerResponse {
     public DummyResponse(String raw) {

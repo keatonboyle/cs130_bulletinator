@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
 import android.widget.TextView;
+
 import com.example.bulletinator.data.Bulletin;
 
 public class BulletinActivity extends Activity {

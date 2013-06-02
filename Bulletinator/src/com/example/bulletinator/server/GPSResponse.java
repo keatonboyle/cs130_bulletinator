@@ -3,10 +3,13 @@ package com.example.bulletinator.server;
 import com.example.bulletinator.data.Building;
 import com.example.bulletinator.data.Bulletin;
 import com.example.bulletinator.helpers.Rectangle;
-import org.json.*;
 
-import java.util.Map;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
+import java.util.Map;
 
 public class GPSResponse extends ServerResponse {
     public GPSResponse(String raw) {

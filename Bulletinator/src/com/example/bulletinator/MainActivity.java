@@ -6,18 +6,24 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.location.*;
+import android.location.Location;
 import android.os.Bundle;
 import android.widget.Toast;
-import com.example.bulletinator.data.*;
-import com.example.bulletinator.fragments.*;
+
+import com.example.bulletinator.data.AppData;
+import com.example.bulletinator.data.Building;
+import com.example.bulletinator.data.Bulletin;
+import com.example.bulletinator.fragments.AllFragment;
+import com.example.bulletinator.fragments.CurrentFragment;
+import com.example.bulletinator.fragments.NearbyFragment;
 import com.example.bulletinator.gps.LocationModule;
-import com.example.bulletinator.helpers.*;
+import com.example.bulletinator.helpers.CallbackListener;
+import com.example.bulletinator.helpers.FunctionObj;
+import com.example.bulletinator.helpers.ScrollManager;
+import com.example.bulletinator.helpers.TabListener;
 import com.example.bulletinator.server.EverythingRequest;
-import com.example.bulletinator.server.EverythingResponse;
 import com.example.bulletinator.server.ServerResponse;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -89,7 +95,7 @@ public class MainActivity extends Activity implements CallbackListener<com.examp
                 this);
         mlm.run();
 
-        EverythingRequest er = new EverythingRequest(AppData.baseurl);
+        EverythingRequest er = new EverythingRequest(this, AppData.baseurl);
         er.send();
     }
 

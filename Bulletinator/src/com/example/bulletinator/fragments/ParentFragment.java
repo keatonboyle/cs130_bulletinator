@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.ExpandableListView.OnGroupClickListener;
+
 import com.example.bulletinator.MainActivity;
 import com.example.bulletinator.R;
 import com.example.bulletinator.data.AppData;

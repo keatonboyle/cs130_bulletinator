@@ -1,11 +1,14 @@
 package com.example.bulletinator.gps;
 
-import android.location.*;
-import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
-import com.example.bulletinator.helpers.FunctionObj;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.os.Bundle;
+
 import com.example.bulletinator.data.AppData;
+import com.example.bulletinator.helpers.FunctionObj;
 
 public class LocationModule {
     public LocationModule(FunctionObj<Location> cb, Activity main) {

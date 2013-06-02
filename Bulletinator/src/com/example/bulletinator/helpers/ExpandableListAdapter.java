@@ -3,23 +3,22 @@ package com.example.bulletinator.helpers;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
-import android.util.DisplayMetrics;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.example.bulletinator.MainActivity;
 import com.example.bulletinator.R;
+import com.example.bulletinator.data.AppData;
 import com.example.bulletinator.data.Building;
 import com.example.bulletinator.data.Bulletin;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import com.example.bulletinator.data.AppData;
 
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
     private List<Building> buildings;

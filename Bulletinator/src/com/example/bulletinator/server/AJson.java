@@ -1,7 +1,9 @@
 package com.example.bulletinator.server;
 
 import android.os.AsyncTask;
+
 import com.example.bulletinator.helpers.CallbackListener;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.StatusLine;
@@ -10,7 +12,8 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
-import java.io.*;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 
 public class AJson extends AsyncTask<Void, Void, String> {
     public AJson(CallbackListener requestObj, String url) {
