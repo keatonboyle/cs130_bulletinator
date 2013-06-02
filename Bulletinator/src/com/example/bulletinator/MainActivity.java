@@ -6,22 +6,21 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.location.*;
 import android.os.Bundle;
 import android.widget.Toast;
-import com.example.bulletinator.data.Building;
-import com.example.bulletinator.data.Bulletin;
-import com.example.bulletinator.fragments.AllFragment;
-import com.example.bulletinator.fragments.CurrentFragment;
-import com.example.bulletinator.fragments.NearbyFragment;
-import com.example.bulletinator.helpers.ScrollManager;
-import com.example.bulletinator.helpers.TabListener;
+import com.example.bulletinator.data.*;
+import com.example.bulletinator.fragments.*;
+import com.example.bulletinator.gps.LocationModule;
+import com.example.bulletinator.helpers.*;
+import com.example.bulletinator.server.ServerResponse;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements CallbackListener<com.example.bulletinator.server.ServerResponse> {
     public static final String BULLETIN = "BULLETIN";
     public static final int CURRENT = 0, NEARBY = 1, ALL = 2;
     private List<Building> buildings;
@@ -77,7 +76,20 @@ public class MainActivity extends Activity {
                                 AllFragment.class));
         actionBar.addTab(tab, 2, curTab == 2);
 
-        createDummyBulletins();
+        // GPS requester
+        AppData.getInstance(this);
+        LocationModule mlm = new LocationModule(
+                new FunctionObj<Location>() {
+                    public void call(Location l) {
+                        locationCallback(l);
+                    }
+                },
+                this);
+        mlm.run();
+    }
+
+    public void locationCallback(Location l) {
+        toast("TOAST!!!!!");
     }
 
     public void selectBulletin(Bulletin b) {
@@ -202,33 +214,8 @@ public class MainActivity extends Activity {
         toast.show();
     }
 
-    private void createDummyBulletins() {
-        // Will be replaced with something that returns actual bulletins
-        buildings = new ArrayList<Building>();
-        for (int i = 0; i < bNames.length; i++) {
-            String name = bNames[i];
-            ArrayList<Bulletin> barr = new ArrayList<Bulletin>();
-            for (int j = 0; j < 3; j++) {
-                String title = "Bulletin #" + j;
-                String description = bullDescriptions[j];
-                String bodyText = j == 2 ? "Volunteers needed for decision making study. "
-                        + "Please contact if interested. Volunteers needed for decision making study." +
-                        "Volunteers needed for decision making study." +
-                        "Volunteers needed for decision making study." +
-                        "Volunteers needed for decision making study." +
-                        "Volunteers needed for decision making study." +
-                        "Volunteers needed for decision making study." +
-                        "Volunteers needed for decision making study." +
-                        "Volunteers needed for decision making study."
-                        : null;
-                Bulletin b = new Bulletin(title, description, bodyText,
-                        "555-555-5555", fIds[j], ids[j], 0);
-                barr.add(b);
-                if (bNames[i].equals("Engineering V"))
-                    break;
-            }
-            Building bldg = new Building(name, barr, i);
-            buildings.add(bldg);
-        }
+    @Override
+    public void callback(ServerResponse obj) {
+        toast("More toast");
     }
 }

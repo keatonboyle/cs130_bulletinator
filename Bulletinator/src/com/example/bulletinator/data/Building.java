@@ -1,14 +1,15 @@
 package com.example.bulletinator.data;
 
 import java.util.List;
+import java.util.Set;
 
 public class Building {
     private String name;
-    private List<Bulletin> bulletins;
+    private Set<Integer> btnids;
     private int id;
 
-    public Building(String n, List<Bulletin> b, int i) {
-        bulletins = b;
+    public Building(int i, String n, Set<Integer> b) {
+        btnids = b;
         name = n;
         id = i;
     }
@@ -17,8 +18,8 @@ public class Building {
         return name;
     }
 
-    public List<Bulletin> getBulletins() {
-        return bulletins;
+    public Set<Integer> getBtnIds() {
+        return btnids;
     }
 
     public int getId() {

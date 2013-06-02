@@ -1,0 +1,16 @@
+package com.example.bulletinator.server;
+
+import com.example.bulletinator.data.AppData;
+import com.example.bulletinator.helpers.CallbackListener;
+
+public class DummyRequest extends ServerRequest {
+    public DummyRequest(CallbackListener<ServerResponse> mainThread, String baseurl) {
+        super(mainThread, baseurl + "?type=dummy");
+    }
+
+    public void callback(String result) {
+        DummyResponse dr = new DummyResponse(result);
+        AppData.update(dr);
+        mainThread.callback(dr);
+    }
+}
