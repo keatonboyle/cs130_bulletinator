@@ -29,7 +29,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class MainActivity extends Activity implements CallbackListener<com.example.bulletinator.server.ServerResponse> {
+public class MainActivity extends Activity {
     public static final String BULLETIN = "BULLETIN";
     public static final int CURRENT = 0, NEARBY = 1, ALL = 2;
     private List<Building> buildings;
@@ -175,45 +175,53 @@ public class MainActivity extends Activity implements CallbackListener<com.examp
         toast.show();
     }
 
-    @Override
-    public void callback(ServerResponse obj) {
-        if (obj.getClass() == EverythingResponse.class) {
-            ActionBar actionBar = getActionBar();
-            actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+    public void gotDataFromServer(ServerResponse obj) {
+        ActionBar actionBar = getActionBar();
+        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
-            String tab1 = getResources().getString(R.string.label1);
-            String tab2 = getResources().getString(R.string.label2);
-            String tab3 = getResources().getString(R.string.label3);
+        String tab1 = getResources().getString(R.string.label1);
+        String tab2 = getResources().getString(R.string.label2);
+        String tab3 = getResources().getString(R.string.label3);
 
-            Tab tab = actionBar
-                    .newTab()
-                    .setText(tab1)
-                    .setTabListener(
-                            new TabListener<CurrentFragment>(this, tab1,
-                                    CurrentFragment.class));
-            actionBar.addTab(tab, 0, curTab == 0);
+        Tab tab = actionBar
+                .newTab()
+                .setText(tab1)
+                .setTabListener(
+                        new TabListener<CurrentFragment>(this, tab1,
+                                CurrentFragment.class));
+        actionBar.addTab(tab, 0, curTab == 0);
 
-            tab = actionBar
-                    .newTab()
-                    .setText(tab2)
-                    .setTabListener(
-                            new TabListener<NearbyFragment>(this, tab2,
-                                    NearbyFragment.class));
-            actionBar.addTab(tab, 1, curTab == 1);
+        tab = actionBar
+                .newTab()
+                .setText(tab2)
+                .setTabListener(
+                        new TabListener<NearbyFragment>(this, tab2,
+                                NearbyFragment.class));
+        actionBar.addTab(tab, 1, curTab == 1);
 
-            tab = actionBar
-                    .newTab()
-                    .setText(tab3)
-                    .setTabListener(
-                            new TabListener<AllFragment>(this, tab3,
-                                    AllFragment.class));
-            actionBar.addTab(tab, 2, curTab == 2);
-        }
+        tab = actionBar
+                .newTab()
+                .setText(tab3)
+                .setTabListener(
+                        new TabListener<AllFragment>(this, tab3,
+                                AllFragment.class));
+        actionBar.addTab(tab, 2, curTab == 2);
+    }
+
+    public void gotDataFromGPSResponse(ServerResponse sr) {
+        toast("Data received from GPS query of DB");
     }
 
     public void setUpGPS() {
+
+        AppData.getInstance(
+                new FunctionObj<ServerResponse>() {
+                    public void call(ServerResponse sr) {
+                        gotDataFromGPSResponse(sr);
+                    }
+                });
+
         // GPS requester
-        AppData.getInstance(this);
         LocationModule mlm = new LocationModule(
                 new FunctionObj<Location>() {
                     public void call(Location l) {
@@ -223,7 +231,13 @@ public class MainActivity extends Activity implements CallbackListener<com.examp
                 this);
         mlm.run();
 
-        EverythingRequest er = new EverythingRequest(this, AppData.baseurl);
+        EverythingRequest er = new EverythingRequest(
+                new FunctionObj<ServerResponse>() {
+                    public void call(ServerResponse sr) {
+                        gotDataFromServer(sr);
+                    }
+                },
+                AppData.baseurl);
         er.send();
     }
 }

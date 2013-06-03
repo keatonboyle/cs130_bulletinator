@@ -2,11 +2,12 @@ package com.example.bulletinator.server;
 
 import com.example.bulletinator.data.AppData;
 import com.example.bulletinator.helpers.CallbackListener;
+import com.example.bulletinator.helpers.FunctionObj;
 
 public abstract class ServerRequest implements CallbackListener<String> {
-    public ServerRequest(CallbackListener<ServerResponse> mainThread, String url) {
+    public ServerRequest(FunctionObj<ServerResponse> callback, String url) {
         this.url = url;
-        this.mainThread = mainThread;
+        this.callWhenDone = callback;
         ajsonTask = new AJson(this, this.url);
     }
 
@@ -17,7 +18,7 @@ public abstract class ServerRequest implements CallbackListener<String> {
     public abstract void callback(String result);
 
     private String url;
-    protected CallbackListener<ServerResponse> mainThread;
+    protected FunctionObj<ServerResponse> callWhenDone;
     private AJson ajsonTask;
     private AppData appData;
 }

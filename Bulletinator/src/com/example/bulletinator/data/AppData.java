@@ -3,6 +3,7 @@ package com.example.bulletinator.data;
 import android.location.Location;
 
 import com.example.bulletinator.helpers.CallbackListener;
+import com.example.bulletinator.helpers.FunctionObj;
 import com.example.bulletinator.helpers.Rectangle;
 import com.example.bulletinator.server.AllBuildingsResponse;
 import com.example.bulletinator.server.BinResponse;
@@ -29,11 +30,11 @@ public class AppData {
     }
 
 
-    public static AppData getInstance(CallbackListener<ServerResponse> mainThread) {
+    public static AppData getInstance(FunctionObj<ServerResponse> gpsCallback) {
         if (instance == null) {
             instance = new AppData();
         }
-        instance.mainThread = mainThread;
+        instance.gpsCallback = gpsCallback;
         return instance;
     }
 
@@ -48,7 +49,7 @@ public class AppData {
 
     public static void getFromGPS(Location l) {
         GPSRequest gpsr =
-                new GPSRequest(instance.mainThread, instance.baseurl,
+                new GPSRequest(instance.gpsCallback, instance.baseurl,
                         instance.lat, instance.lon);
 
         gpsr.send();
@@ -197,7 +198,7 @@ public class AppData {
     }
 
     private static String dummy;
-    private static CallbackListener<ServerResponse> mainThread;
+    private static FunctionObj<ServerResponse> gpsCallback;
     private static double lat;
     private static double lon;
     private static Rectangle bounds;

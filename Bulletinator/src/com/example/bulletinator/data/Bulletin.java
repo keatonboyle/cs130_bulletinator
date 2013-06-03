@@ -1,6 +1,7 @@
 package com.example.bulletinator.data;
 
 import com.example.bulletinator.R;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 

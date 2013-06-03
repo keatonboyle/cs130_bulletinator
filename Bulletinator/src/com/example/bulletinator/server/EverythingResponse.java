@@ -32,8 +32,7 @@ public class EverythingResponse extends ServerResponse {
                 HashSet<Integer> btnIdSet = new HashSet<Integer>();
 
                 if (btnIdArray != null) {
-                    for (int jj = 0; jj < btnIdArray.length(); jj++)
-                    {
+                    for (int jj = 0; jj < btnIdArray.length(); jj++) {
                         btnIdSet.add(btnIdArray.getInt(jj));
                     }
                 }
