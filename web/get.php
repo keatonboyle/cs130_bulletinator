@@ -1,6 +1,6 @@
 <?php
 
-   error_reporting(E_ALL);
+   error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
    include("errors.php");
 
@@ -12,6 +12,9 @@
 
    switch ($requestType)
    {
+      case "everything":
+         getEverything();
+         break;
       case "gps_update":
          gpsUpdate($_GET['lat'], $_GET['long']);
          break;
@@ -38,7 +41,62 @@
 
 // FUNCTION DEFINITIONS *******************************************************
 
-   // 
+   function getEverything()
+   {
+      $responseType = 'EVERYTHING_RESPONSE';
+      $result = queryDB("SELECT * FROM Building");
+      $buildingArr = array();
+      
+      while($row = mysql_fetch_row($result))
+      {
+         $result2 = queryDB("SELECT btnid FROM BulletinToBuilding WHERE bldid = " . $row[0]);
+
+         $bulletinIDs = array();
+         while($row2 = mysql_fetch_row($result2))
+         {
+            array_push($bulletinIDs, $row2[0]);
+         }
+
+         $building = array('bldid' => $row[0],
+                           'name' => $row[1],
+                           'bulletins' => $bulletinIDs);
+         array_push($buildingArr, $building);
+      }
+
+      $result = queryDB("SELECT * FROM Bulletin");
+      $bulletinArr = array();
+      while($row = mysql_fetch_row($result))
+      {
+         $result2 = queryDB("SELECT fid FROM FileToBulletin WHERE btnid = " . $row[0]);
+         $row2 = mysql_fetch_assoc($result2);
+         if (isset($row2['fid']))
+            $fid = $row2['fid'];
+         else
+            $fid = null;
+         
+         //only fills in one bulletin
+         $bulletin = array('btnid' => $row[0],
+                           'title' => $row[1],
+                           'bodytext' => $row[2],
+                           'shortdesc' => $row[3],
+                           'contact' => $row[4],
+                           'category' => $row[5],
+                           'fid' => $fid);
+         array_push($bulletinArr, $bulletin);
+      }
+
+      $arrayToHash = array('type' => $responseType,
+                           'buildings' => $buildingArr,
+                           'bulletins' => $bulletinArr);
+      $hash = md5(serialize($arrayToHash));
+
+      $everythingResponse = array('type' => $responseType,
+                                   'hash' => $hash,
+                                   'buildings' => $buildingArr,
+                                   'bulletins' => $bulletinArr);
+      sendResponse($everythingResponse);
+   }
+
    function gpsUpdate($lat, $long)
    {
       if(!isset($lat) || !isset($long))
@@ -50,9 +108,99 @@
 
       $responseType = 'GPS_RESPONSE';
 
-      $curbuilds = array();
+      // The current building
+      $result = queryDB("SELECT rid FROM Rectangle " . 
+                        "WHERE north >= " . $lat . " AND " .
+                              "south <= " . $lat . " AND " . 
+                              "west <= " . $long . " AND " .
+                              "east >= " . $long);
+      $row = mysql_fetch_assoc($result);
+      if (!isset($row['rid']))
+         $curbuilds = null;
+      else
+      {
+         $cur_bldid = $row['rid'];
+
+         $result = queryDB("SELECT name FROM Building WHERE bldid = " . $cur_bldid);
+         $row = fetchRowAssoc($result);
+         $name = $row['name'];
+
+         $result = queryDB("SELECT Bulletin.btnid, title, bodytext, shortdesc, ".
+                                   "contact, category ".
+                           "FROM Bulletin, BulletinToBuilding ".
+                           "WHERE bldid = " . $cur_bldid . " AND Bulletin.btnid = BulletinToBuilding.btnid");
+         
+         $bulletinArr = array();
+         while($row = mysql_fetch_row($result))
+         {
+            $result2 = queryDB("SELECT fid FROM FileToBulletin WHERE btnid = " . $row[0]);
+            $row2 = mysql_fetch_assoc($result2);
+            if (isset($row2['fid']))
+               $fid = $row2['fid'];
+            else
+               $fid = null;
+            
+            //only fills in one bulletin
+            $bulletin = array('btnid' => $row[0],
+                              'title' => $row[1],
+                              'bodytext' => $row[2],
+                              'shortdesc' => $row[3],
+                              'contact' => $row[4],
+                              'category' => $row[5],
+                              'fid' => $fid);
+            array_push($bulletinArr, $bulletin);
+         }
+
+         $curbuilds = array('bldid' => $cur_bldid,
+                         'name' => $name,
+                         'bulletins' => $bulletinArr);
+      }
+
+      // nearby buildings
       $nearbuilds = array();
-      $rect = array();
+      $newlats = array(($lat - 0.01), ($lat + 0.01));
+      $newlongs = array(($long - 0.01), ($long + 0.01));
+      $result = queryDB("SELECT rid FROM Rectangle " . 
+                        "WHERE (north >= " . $newlats[0] . " AND " .
+                              "south <= " . $newlats[0] . " AND " . 
+                              "west <= " . $newlongs[0] . " AND " .
+                              "east >= " . $newlongs[0] . ")" . 
+                              " OR " . 
+                              "(north >= " . $newlats[0] . " AND " .
+                              "south <= " . $newlats[0] . " AND " . 
+                              "west <= " . $newlongs[1] . " AND " .
+                              "east >= " . $newlongs[1] . ")" . 
+                              " OR " . 
+                              "(north >= " . $newlats[1] . " AND " .
+                              "south <= " . $newlats[1] . " AND " . 
+                              "west <= " . $newlongs[0] . " AND " .
+                              "east >= " . $newlongs[0] . ")" . 
+                              " OR " . 
+                              "(north >= " . $newlats[1] . " AND " .
+                              "south <= " . $newlats[1] . " AND " . 
+                              "west <= " . $newlongs[1] . " AND " .
+                              "east >= " . $newlongs[1] . ")");
+      while($row = mysql_fetch_row($result))
+      {
+         $result2 = queryDB("SELECT name FROM Building WHERE bldid = " . $row[0]);
+         $row2 = mysql_fetch_row($result2);
+         $building = array('bldid' => $row[0],
+                           'name' => $row2[0]);
+         array_push($nearbuilds, $building);
+      }
+
+      // rectangle
+      $rect = array('north' => $lat,
+                    'south' => $lat,
+                    'east' => $long,
+                    'west' => $long);
+
+      // hash & send
+      $arrayToHash = array('type' => $responseType,
+                           'curbuild' => $curbuilds,
+                           'nearbuild' => $nearbuilds,
+                           'rect' => $rect);
+      $hash = md5(serialize($arrayToHash));
 
       $gpsResponse = array('type' => $responseType,
                            'hash' => $hash,
@@ -85,8 +233,8 @@
       
       $result = queryDB("SELECT Bulletin.btnid, title, bodytext, shortdesc, ".
                                 "contact, category ".
-                         "FROM Bulletin, BulletinToBuilding ".
-                         "WHERE bldid = " . $bldid . " AND Bulletin.btnid = BulletinToBuilding.btnid");
+                        "FROM Bulletin, BulletinToBuilding ".
+                        "WHERE bldid = " . $bldid . " AND Bulletin.btnid = BulletinToBuilding.btnid");
       
       $bulletinArr = array();
       while($row = mysql_fetch_row($result))
