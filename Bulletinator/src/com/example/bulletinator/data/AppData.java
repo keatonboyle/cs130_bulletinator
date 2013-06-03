@@ -1,5 +1,7 @@
 package com.example.bulletinator.data;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Location;
 
 import com.example.bulletinator.helpers.CallbackListener;
@@ -27,6 +29,7 @@ public class AppData {
     protected AppData() {
         bulletins = new HashMap<Integer, Bulletin>();
         buildings = new HashMap<Integer, Building>();
+        files     = new HashMap<Integer, Bitmap>();
     }
 
 
@@ -117,6 +120,8 @@ public class AppData {
     }
 
     public static AppData update(BinResponse br) {
+        Bitmap bitmap = BitmapFactory.decodeByteArray(br.bytes, 0, br.bytes.length);
+        instance.files.put(br.fid, bitmap);
         return instance;
     }
 
@@ -197,6 +202,11 @@ public class AppData {
         return lb;
     }
 
+    public static Bitmap getFileForBulletin(int btnid)
+    {
+        return instance.files.get(btnid);
+    }
+
     private static String dummy;
     private static FunctionObj<ServerResponse> gpsCallback;
     private static double lat;
@@ -204,6 +214,7 @@ public class AppData {
     private static Rectangle bounds;
     private static Map<Integer, Bulletin> bulletins;
     private static Map<Integer, Building> buildings;
+    private static Map<Integer, Bitmap> files;
     private static Building curBld;
 }
 

@@ -10,8 +10,8 @@ public class BuildingRequest extends ServerRequest {
         this.bldid = bldid;
     }
 
-    public void callback(String result) {
-        BuildingResponse bldr = new BuildingResponse(result);
+    public void callback(byte[] result) {
+        BuildingResponse bldr = new BuildingResponse(result.toString());
         AppData.update(bldr);
         callWhenDone.call(bldr);
     }

@@ -10,8 +10,8 @@ public class BinRequest extends ServerRequest {
         this.fid = fid;
     }
 
-    public void callback(String result) {
-        BinResponse br = new BinResponse(result);
+    public void callback(byte[] result) {
+        BinResponse br = new BinResponse(this.fid, result);
         AppData.update(br);
         callWhenDone.call(br);
     }

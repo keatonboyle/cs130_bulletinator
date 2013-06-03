@@ -9,8 +9,8 @@ public class DummyRequest extends ServerRequest {
         super(callback, baseurl + "?type=dummy");
     }
 
-    public void callback(String result) {
-        DummyResponse dr = new DummyResponse(result);
+    public void callback(byte[] result) {
+        DummyResponse dr = new DummyResponse(result.toString());
         AppData.update(dr);
         callWhenDone.call(dr);
     }

@@ -13,8 +13,8 @@ public class GPSRequest extends ServerRequest {
         this.lon = lon;
     }
 
-    public void callback(String result) {
-        GPSResponse gpsr = new GPSResponse(result);
+    public void callback(byte[] result) {
+        GPSResponse gpsr = new GPSResponse(result.toString());
         AppData.update(gpsr);
         callWhenDone.call(gpsr);
     }

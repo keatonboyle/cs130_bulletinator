@@ -15,15 +15,15 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-public class AJson extends AsyncTask<Void, Void, String> {
+public class AJson extends AsyncTask<Void, Void, byte[]> {
     public AJson(CallbackListener requestObj, String url) {
         this.url = url;
         this.cbl = requestObj;
     }
 
     @Override
-    protected String doInBackground(Void... params) {
-        String result = null;
+    protected byte[] doInBackground(Void... params) {
+        byte[] result = null;
         HttpClient httpclient = new DefaultHttpClient();
         HttpResponse response = null;
 
@@ -38,7 +38,7 @@ public class AJson extends AsyncTask<Void, Void, String> {
                 ByteArrayOutputStream out = new ByteArrayOutputStream();
                 response.getEntity().writeTo(out);
                 out.close();
-                result = out.toString();
+                result = out.toByteArray();
             } else {
                 response.getEntity().getContent().close();
             }
@@ -55,11 +55,11 @@ public class AJson extends AsyncTask<Void, Void, String> {
     }
 
     @Override
-    protected void onPostExecute(String result) {
+    protected void onPostExecute(byte[] result) {
         cbl.callback(result);
     }
 
-    private CallbackListener<String> cbl;
+    private CallbackListener<byte[]> cbl;
     protected String url;
 
 

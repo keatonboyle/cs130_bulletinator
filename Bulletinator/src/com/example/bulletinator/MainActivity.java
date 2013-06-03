@@ -222,6 +222,7 @@ public class MainActivity extends Activity {
                 });
 
         // GPS requester
+        /*
         LocationModule mlm = new LocationModule(
                 new FunctionObj<Location>() {
                     public void call(Location l) {
@@ -230,6 +231,7 @@ public class MainActivity extends Activity {
                 },
                 this);
         mlm.run();
+        */
 
         EverythingRequest er = new EverythingRequest(
                 new FunctionObj<ServerResponse>() {

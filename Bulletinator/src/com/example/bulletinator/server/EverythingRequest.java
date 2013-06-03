@@ -11,8 +11,8 @@ public class EverythingRequest extends ServerRequest {
     }
 
     @Override
-    public void callback(String result) {
-        EverythingResponse dr = new EverythingResponse(result);
+    public void callback(byte[] result) {
+        EverythingResponse dr = new EverythingResponse(new String(result));
         AppData.update(dr);
         callWhenDone.call(dr);
     }

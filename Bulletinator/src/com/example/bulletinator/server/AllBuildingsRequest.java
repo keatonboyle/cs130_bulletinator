@@ -9,8 +9,8 @@ public class AllBuildingsRequest extends ServerRequest {
         super(callback, baseurl + "?type=all_buildings");
     }
 
-    public void callback(String result) {
-        AllBuildingsResponse abr = new AllBuildingsResponse(result);
+    public void callback(byte[] result) {
+        AllBuildingsResponse abr = new AllBuildingsResponse(result.toString());
         AppData.update(abr);
         callWhenDone.call(abr);
     }
