@@ -49,7 +49,7 @@
       
       while($row = mysql_fetch_row($result))
       {
-         $result2 = queryDB("SELECT btnid FROM BulletinToBuilding WHERE bldid = " . $row[0]);
+         $result2 = queryDB("SELECT bulletin_id FROM Bulletin_Building WHERE building_id = " . $row[0]);
 
          $bulletinIDs = array();
          while($row2 = mysql_fetch_row($result2))
@@ -67,10 +67,10 @@
       $bulletinArr = array();
       while($row = mysql_fetch_row($result))
       {
-         $result2 = queryDB("SELECT fid FROM FileToBulletin WHERE btnid = " . $row[0]);
+         $result2 = queryDB("SELECT file_id FROM File_Bulletin WHERE bulletin_id = " . $row[0]);
          $row2 = mysql_fetch_assoc($result2);
-         if (isset($row2['fid']))
-            $fid = $row2['fid'];
+         if (isset($row2['file_id']))
+            $fid = $row2['file_id'];
          else
             $fid = null;
          
@@ -109,34 +109,34 @@
       $responseType = 'GPS_RESPONSE';
 
       // The current building
-      $result = queryDB("SELECT rid FROM Rectangle " . 
+      $result = queryDB("SELECT rectangle_id FROM Rectangle " . 
                         "WHERE north >= " . $lat . " AND " .
                               "south <= " . $lat . " AND " . 
                               "west <= " . $long . " AND " .
                               "east >= " . $long);
       $row = mysql_fetch_assoc($result);
-      if (!isset($row['rid']))
+      if (!isset($row['rectangle_id']))
          $curbuilds = null;
       else
       {
-         $cur_bldid = $row['rid'];
+         $cur_bldid = $row['rectangle_id'];
 
-         $result = queryDB("SELECT name FROM Building WHERE bldid = " . $cur_bldid);
+         $result = queryDB("SELECT name FROM Building WHERE building_id = " . $cur_bldid);
          $row = fetchRowAssoc($result);
          $name = $row['name'];
 
-         $result = queryDB("SELECT Bulletin.btnid, title, bodytext, shortdesc, ".
+         $result = queryDB("SELECT Bulletin.bulletin_id, title, bodytext, shortdesc, ".
                                    "contact, category ".
-                           "FROM Bulletin, BulletinToBuilding ".
-                           "WHERE bldid = " . $cur_bldid . " AND Bulletin.btnid = BulletinToBuilding.btnid");
+                           "FROM Bulletin, Bulletin_Building ".
+                           "WHERE building_id = " . $cur_bldid . " AND Bulletin.bulletin_id = Bulletin_Building.bulletin_id");
          
          $bulletinArr = array();
          while($row = mysql_fetch_row($result))
          {
-            $result2 = queryDB("SELECT fid FROM FileToBulletin WHERE btnid = " . $row[0]);
+            $result2 = queryDB("SELECT file_id FROM File_Bulletin WHERE bulletin_id = " . $row[0]);
             $row2 = mysql_fetch_assoc($result2);
-            if (isset($row2['fid']))
-               $fid = $row2['fid'];
+            if (isset($row2['file_id']))
+               $fid = $row2['file_id'];
             else
                $fid = null;
             
@@ -160,7 +160,7 @@
       $nearbuilds = array();
       $newlats = array(($lat - 0.01), ($lat + 0.01));
       $newlongs = array(($long - 0.01), ($long + 0.01));
-      $result = queryDB("SELECT rid FROM Rectangle " . 
+      $result = queryDB("SELECT rectangle_id FROM Rectangle " . 
                         "WHERE (north >= " . $newlats[0] . " AND " .
                               "south <= " . $newlats[0] . " AND " . 
                               "west <= " . $newlongs[0] . " AND " .
@@ -182,7 +182,7 @@
                               "east >= " . $newlongs[1] . ")");
       while($row = mysql_fetch_row($result))
       {
-         $result2 = queryDB("SELECT name FROM Building WHERE bldid = " . $row[0]);
+         $result2 = queryDB("SELECT name FROM Building WHERE building_id = " . $row[0]);
          $row2 = mysql_fetch_row($result2);
          $building = array('bldid' => $row[0],
                            'name' => $row2[0]);
@@ -220,7 +220,7 @@
       $responseType = 'BUILDING_RESPONSE';
       
       //select building name
-      $result = queryDB("SELECT name FROM Building WHERE bldid = " . $bldid);
+      $result = queryDB("SELECT name FROM Building WHERE building_id = " . $bldid);
       
       if($row = mysql_fetch_row($result))
       {
@@ -231,19 +231,19 @@
          handleError($GLOBALS['ERR_EMPTY_DB_RESPONSE']);
       }
       
-      $result = queryDB("SELECT Bulletin.btnid, title, bodytext, shortdesc, ".
+      $result = queryDB("SELECT Bulletin.bulletin_id, title, bodytext, shortdesc, ".
                                 "contact, category ".
-                        "FROM Bulletin, BulletinToBuilding ".
-                        "WHERE bldid = " . $bldid . " AND Bulletin.btnid = BulletinToBuilding.btnid");
+                        "FROM Bulletin, Bulletin_Building ".
+                        "WHERE building_id = " . $bldid . " AND Bulletin.bulletin_id = Bulletin_Building.bulletin_id");
       
       $bulletinArr = array();
       while($row = mysql_fetch_row($result))
       {
          //query
-         $result2 = queryDB("SELECT fid FROM FileToBulletin WHERE btnid = " . $row[0]);
+         $result2 = queryDB("SELECT file_id FROM File_Bulletin WHERE bulletin_id = " . $row[0]);
          $row2 = mysql_fetch_assoc($result2);
-         if (isset($row2['fid']))
-            $fid = $row2['fid'];
+         if (isset($row2['file_id']))
+            $fid = $row2['file_id'];
          else
             $fid = null;
          
@@ -299,9 +299,9 @@
       if($fid < 0 || !(intval($fid)))
          handleError($GLOBALS['ERR_INVALID_FILE_ID']);
 
-      $result = queryDB("SELECT ext FROM File WHERE fid=".$fid);
+      $result = queryDB("SELECT extension FROM File WHERE file_id=".$fid);
       $row = fetchRowAssoc($result);
-      $ext = $row['ext'];
+      $ext = $row['extension'];
 
       header("Location: ./resources/bulletins/".$fid.".".$ext);
    }

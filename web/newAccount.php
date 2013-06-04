@@ -5,7 +5,7 @@
 		<h1><center>Create user</center></h1>
 	</head>
 	<body>
-		<form action="">
+		<form action="new_account_success.php" method="post">
 			<table border="0">
 				<tr>
 					<!--We need to make sure the username is unique.-->

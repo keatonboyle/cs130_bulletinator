@@ -1,6 +1,6 @@
 DROP TABLE Bulletin;
-DROP TABLE Image;
-DROP TABLE ImageToBulletin;
+DROP TABLE File;
+DROP TABLE FileToBulletin;
 DROP TABLE MaxID;
 DROP TABLE Creator;
 DROP TABLE Building;

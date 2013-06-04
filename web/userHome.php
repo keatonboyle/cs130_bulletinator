@@ -8,9 +8,9 @@
 		<form action="">
 			<input type="button" value="Logout">
 		</form> <!--Do whatever-->
-		<a href="form.html">Add bulletin</a><br>
+		<a href="form.php">Add bulletin</a><br>
 		<!--Bulletin editing will be an option displayed for each bulletin.-->
-		<a href="accountInfo.html">Account info</a><br>
+		<a href="accountInfo.php">Account info</a><br>
 
 		<!--Put all the bulletins here-->
 		<!--We somehow need to be able to split the bulletins into multiple pages if there are too many.-->

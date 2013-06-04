@@ -11,7 +11,7 @@
          $pwd = $_POST["password"];
          
          $db_handle = openDB();
-         $result = mysql_query("select * from Creator where username= '" . $usr . "' AND password= '" . $pwd ."'");
+         $result = mysql_query("SELECT * FROM Creator WHERE username= '" . $usr . "' AND password= '" . $pwd ."'");
          
          if($row = mysql_fetch_row($result))
          {
@@ -23,7 +23,7 @@
          }
          else
          {
-            echo 'Username and Password not found, please <a href="home.html">try again.</a>';            
+            echo 'Username and Password not found, please <a href="/">try again.</a>'; 
          }
          
          closeDB($db_handle);

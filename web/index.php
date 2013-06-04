@@ -2,6 +2,10 @@
 <html>
 	<head>
 		<title>Home</title>
+		<link rel="stylesheet" type="text/css" href="styles.css">
+	</head>
+	<body>
+		<?php header("Location: http://linux.ucla.edu/~cs130s/maintenance.html"); ?>
 		<h1><center>Bulletinator</center></h1>
 		<form action="verify.php" method="post">
 			<table border="0">
@@ -12,9 +16,6 @@
 				</tr>
 			</table>
 		</form>
-		<a href="newAccount.html">Create account</a>
-	</head>
-	<body>
-
+		<a href="newAccount.php">Create account</a>
 	</body>
 </html>

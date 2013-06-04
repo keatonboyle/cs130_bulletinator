@@ -6,8 +6,6 @@
    <body>
       <?php
          
-         
-         
          $usr = $_POST["username"]; 
          $pwd = $_POST["password"];
          $pwdVer = $_POST["passwordVerify"];
@@ -15,19 +13,17 @@
          
          if($pwd == $pwdVer)
          {
-            
-            
             // Open the DB
             $dbHandle = openDB();
             
             //search database for existing username
             if(mysql_query("INSERT INTO Creator VALUES('" . $usr . "', '" . $email . "', '" . $pwd . "')"))
             {
-               echo 'Success. Click <a href="home.html">here</a> to login to your account.';
+               echo 'Success. Click <a href="/">here</a> to login to your account.';
             }
             else
             {
-               echo 'Username already exists. Click <a href="newAccount.html">here</a> to try again.';
+               echo 'Username already exists. Click <a href="newAccount.php">here</a> to try again.';
             }
             
             // Close the DB

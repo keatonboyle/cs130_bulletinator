@@ -1,7 +1,7 @@
 CREATE TABLE Bulletin (
-   btnid int PRIMARY KEY,
+   bulletin_id bigint PRIMARY KEY AUTO_INCREMENT,
    title varchar(30) NOT NULL,
-   bodytext varchar(500),
+   bodytext text,
    shortdesc varchar(75) NOT NULL,
    contact varchar(50),
    category varchar(20),
@@ -9,26 +9,17 @@ CREATE TABLE Bulletin (
 );
 
 CREATE TABLE File (
-   fid int PRIMARY KEY,
-   ext varchar(5) NOT NULL
+   file_id bigint PRIMARY KEY AUTO_INCREMENT,
+   extension varchar(5) NOT NULL
 );
 
-CREATE TABLE FileToBulletin (
-   fid int PRIMARY KEY,
-   btnid int,
-   UNIQUE (btnid),
-   FOREIGN KEY (fid) references File(fid),
-   FOREIGN KEY (btnid) references Bulletin(btnid)
+CREATE TABLE File_Bulletin (
+   file_id bigint PRIMARY KEY,
+   bulletin_id bigint,
+   UNIQUE (bulletin_id),
+   FOREIGN KEY (file_id) references File(file_id),
+   FOREIGN KEY (bulletin_id) references Bulletin(bulletin_id)
 );
-
-CREATE TABLE MaxID (
-   btnid int NOT NULL,
-   fid int NOT NULL,
-   bldid int NOT NULL,
-   rid int NOT NULL
-);
-
-INSERT INTO MaxID VALUES(1,1,1,1);
 
 CREATE TABLE Creator (
    username varchar(30) PRIMARY KEY,
@@ -37,38 +28,38 @@ CREATE TABLE Creator (
 );
    
 CREATE TABLE Building (
-   bldid int PRIMARY KEY,
+   building_id bigint PRIMARY KEY AUTO_INCREMENT,
    name varchar(50)
 );
    
 CREATE TABLE Rectangle (
-   rid int PRIMARY KEY,
+   rectangle_id bigint PRIMARY KEY AUTO_INCREMENT,
    north float NOT NULL,
    south float NOT NULL,
    east float NOT NULL,
    west float NOT NULL
 );
    
-CREATE TABLE RectangleToBuilding (
-   rid int PRIMARY KEY,
-   bldid int,
-   UNIQUE (bldid),
-   FOREIGN KEY (rid) references Rectangle(rid),
-   FOREIGN KEY (bldid) references Building(bldid)
+CREATE TABLE Building_Rectangle (
+   rectangle_id bigint,
+   building_id bigint,
+   PRIMARY KEY (rectangle_id, building_id),
+   FOREIGN KEY (rectangle_id) references Rectangle(rectangle_id),
+   FOREIGN KEY (building_id) references Building(building_id)
 );
    
-CREATE TABLE BulletinToBuilding (
-   btnid int,
-   bldid int,
-   PRIMARY KEY (btnid, bldid),
-   FOREIGN KEY (btnid) references Bulletin(btnid),
-   FOREIGN KEY (bldid) references Building(bldid)
+CREATE TABLE Bulletin_Building (
+   bulletin_id bigint,
+   building_id bigint,
+   PRIMARY KEY (bulletin_id, building_id),
+   FOREIGN KEY (bulletin_id) references Bulletin(bulletin_id),
+   FOREIGN KEY (building_id) references Building(building_id)
 );
    
    
-CREATE TABLE BulletinToCreator (
-   btnid int PRIMARY KEY,
+CREATE TABLE Bulletin_Creator (
+   bulletin_id bigint PRIMARY KEY,
    username varchar(30) NOT NULL,
-   FOREIGN KEY (btnid) references Bulletin(btnid),
+   FOREIGN KEY (bulletin_id) references Bulletin(bulletin_id),
    FOREIGN KEY (username) references Creator(username)
 );
