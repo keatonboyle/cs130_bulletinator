@@ -32,20 +32,9 @@ import java.util.Set;
 public class MainActivity extends Activity {
     public static final String BULLETIN = "BULLETIN";
     public static final int CURRENT = 0, NEARBY = 1, ALL = 2;
-    private List<Building> buildings;
     private Set<String> nearbyExpandedBldgs, allExpandedBldgs;
     private int curTab;
     private ScrollManager sm;
-
-    // For testing
-    private String[] bNames = {"Boelter Hall", "Engineering V", "Humanities"};
-    private String[] bullDescriptions = {"Free food!",
-            "Tutoring positions available. This is a super super super super super duper looper" +
-                    "long foopder long description.", "",};
-    private int[] ids = {R.drawable.food_icon, R.drawable.tutoring_icon,
-            R.drawable.volunteering_icon};
-    private int[] fIds = {R.drawable.flyer, R.drawable.tutor_flyer,
-            R.drawable.volunteers_needed};
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
