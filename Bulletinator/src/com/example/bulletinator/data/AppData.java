@@ -99,7 +99,8 @@ public class AppData {
         instance.curBld = gpsr.curBld;
 
       /* insert the building if it isn't here yet */
-        if (!instance.buildings.containsKey(gpsr.curBld.getId())) {
+        if (gpsr.curBld != null &&
+            !instance.buildings.containsKey(gpsr.curBld.getId())) {
             instance.buildings.put(gpsr.curBld.getId(), gpsr.curBld);
         }
 
