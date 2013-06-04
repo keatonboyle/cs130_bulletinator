@@ -69,6 +69,7 @@ public abstract class ParentFragment extends Fragment {
     }
 
     // Save scroll position
+    // TODO: I'm pretty sure this will go to the wrong place when the app updates and gets/deletes bulletins
     @Override
     public void onPause() {
         super.onPause();
