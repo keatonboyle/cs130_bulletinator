@@ -32,8 +32,18 @@ public class Bulletin implements Serializable {
             category = "error";
         }
 
-        //TODO: figure out iconID
-        iconId = R.drawable.food_icon;
+        if (category.equals("propaganda")) {
+            iconId = R.drawable.propaganda;
+        }
+        else if (category.equals("scholarship")) {
+            iconId = R.drawable.scholarship;
+        }
+        else if (category.equals("job")) {
+            iconId = R.drawable.job;
+        }
+        else {
+            iconId = R.drawable.event;
+        }
     }
 
     public String getBodyText() {
