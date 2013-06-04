@@ -71,7 +71,6 @@
          <input type="hidden" name="username" value="<?php echo $usr; ?>">
          <input type="submit" value="Insert New Bulletin">
       </form>
-		<a href="form.php">Add bulletin</a><br>
 		<!--Bulletin editing will be an option displayed for each bulletin.-->
       <form action="accountInfo.php" method="post">
          <input type="hidden" name="username" value="<?php echo $usr ?>">
