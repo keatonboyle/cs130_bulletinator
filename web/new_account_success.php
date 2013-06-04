@@ -19,7 +19,7 @@
             //search database for existing username
             if(mysql_query("INSERT INTO Creator VALUES('" . $usr . "', '" . $email . "', '" . $pwd . "')"))
             {
-               echo 'Success. Click <a href="/">here</a> to login to your account.';
+               echo 'Success. Click <a href="/~cs130s/">here</a> to login to your account.';
             }
             else
             {

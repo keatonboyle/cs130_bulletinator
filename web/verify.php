@@ -23,7 +23,7 @@
          }
          else
          {
-            echo 'Username and Password not found, please <a href="/">try again.</a>'; 
+            echo 'Username and Password not found, please <a href="/~cs130s/">try again.</a>'; 
          }
          
          closeDB($db_handle);

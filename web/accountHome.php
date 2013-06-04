@@ -64,7 +64,7 @@
             closeDB($db_handle);
          }
       ?>
-		<form action="/~cs130s">
+		<form action="/~cs130s/">
 			<input type="submit" value="Logout">
 		</form> <!--Do whatever-->
       <form action="form.php" method="post">

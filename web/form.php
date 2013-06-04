@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-	<head>
+   <head>
       <?php
          //FUNCTION DEFINITIONS
          function openDB()
@@ -21,29 +21,29 @@
          
          $usr = $_POST["username"];
       ?>
-		<title>Form</title>
-		<!--Decide title for whether you're adding a bulletin or editing one-->
-	</head>
-	<body>
-		<form action="insertBulletin.php" method="post">
-			Title: <input type="text" name="title"><br>
-			Description: <input type="text" name="description"><br>
-			Image: <input type="file" name="image"><br>
-			Category: 
-				<select name="category">
-					<option value="job">Job</option>
-					<option value="event">Event</option>
-					<option value="scholarship">Scholarship</option>
-					<option value="propaganda">Propaganda</option>
-				</select><br>
-			Body text:<br> <textarea name="text" rows="20" cols="50"></textarea><br>
-			Expiration date: <input type="date" name="expiration"><br>
-			Contact information:<br> <textarea name="contact" rows="5" cols="50"></textarea><br>
-			Buildings:<br>
-				<select size="8" multiple="multiple" name="buildings">
-					<?php 
+      <title>Form</title>
+      <!--Decide title for whether you're adding a bulletin or editing one-->
+   </head>
+   <body>
+      <form action="insertBulletin.php" method="post" enctype="multipart/form-data">
+         Title: <input type="text" name="title"><br>
+         Description: <input type="text" name="description"><br>
+         Image: <input type="file" name="image"><br>
+         Category: 
+            <select name="category">
+               <option value="job">Job</option>
+               <option value="event">Event</option>
+               <option value="scholarship">Scholarship</option>
+               <option value="propaganda">Propaganda</option>
+            </select><br>
+         Body text:<br> <textarea name="text" rows="20" cols="50"></textarea><br>
+         Expiration date: <input type="date" name="expiration"><br>
+         Contact information:<br> <textarea name="contact" rows="5" cols="50"></textarea><br>
+         Buildings:<br>
+            <select size="8" multiple="multiple" name="buildings[]">
+               <?php 
                   $db_handle = openDB();
-                  if(!($result = mysql_query("SELECT name FROM Building")))
+                  if(!($result = mysql_query("SELECT building_id, name FROM Building")))
                   {
                      echo "<br>Query Error<br>";
                   }
@@ -52,14 +52,14 @@
                      
                      while($row = mysql_fetch_row($result))
                      {
-                        echo '<option value="' . $row[0] . '">' . $row[0] . '</option>';
+                        echo '<option value="' . $row[0] . '">' . $row[1] . '</option>';
                      }
                   }
                   closeDB($db_handle);
                ?>
-				</select><br>
+            </select><br>
          <input type="hidden" name="username" value="<?php echo $usr; ?>">
-			<input type="Submit" value="submit">
-		</form>
-	</body>
+         <input type="Submit" value="submit">
+      </form>
+   </body>
 </html>
