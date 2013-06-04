@@ -61,5 +61,11 @@
          <input type="hidden" name="username" value="<?php echo $usr; ?>">
          <input type="Submit" value="submit">
       </form>
+      <br><br>
+      <form action="accountHome.php" method="post">
+         <input type="hidden" name="username" value="<?php echo $usr; ?>">
+         <input type="submit" name="submit" value="Account Home">
+      </form>
+      
    </body>
 </html>
