@@ -46,6 +46,14 @@
                echo '<tr><td>Contact:</td><td>' . $row[4] . '</td></tr>';
                echo '<tr><td>Category:</td><td>' . $row[5] . '</td></tr>';
                echo '<tr><td>Expiration:</td><td>' . $row[6] . '</td></tr>';
+               
+               if($result = mysql_query("SELECT File.file_id, extension FROM File_Bulletin, File WHERE bulletin_id = " . $bulletin_id .
+                                          " AND File.file_id = File_Bulletin.file_id"))
+               {
+                  $row = mysql_fetch_row($result);
+                  echo '<tr><td>File:</td><td><img src="/~cs130s/public_html/resources/bulletins/' . $row[0] . '.' . $row[1] . '" alt="File: ' . $row[0] . '">';
+                  echo '</td></tr>';
+               }
                echo'</table>';
             }
             else
