@@ -14,7 +14,7 @@ public class GPSRequest extends ServerRequest {
     }
 
     public void callback(byte[] result) {
-        GPSResponse gpsr = new GPSResponse(result.toString());
+        GPSResponse gpsr = new GPSResponse(new String(result));
         AppData.update(gpsr);
         callWhenDone.call(gpsr);
     }

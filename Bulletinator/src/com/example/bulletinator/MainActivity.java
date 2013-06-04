@@ -23,6 +23,7 @@ import com.example.bulletinator.helpers.ScrollManager;
 import com.example.bulletinator.helpers.TabListener;
 import com.example.bulletinator.server.EverythingRequest;
 import com.example.bulletinator.server.EverythingResponse;
+import com.example.bulletinator.server.GPSRequest;
 import com.example.bulletinator.server.ServerResponse;
 
 import java.util.HashSet;
@@ -57,7 +58,23 @@ public class MainActivity extends Activity {
     }
 
     public void locationCallback(Location l) {
-        toast("TOAST!!!!!");
+        //toast(Double.toString(l.getLatitude()) + ", " +
+        //      Double.toString(l.getLongitude()));
+
+        GPSRequest gpsr =
+                new GPSRequest(
+                        new FunctionObj<ServerResponse>() {
+                            public void call(ServerResponse sr) {
+                                gotDataFromGPSResponse(sr);
+                            }
+                        },
+                        AppData.baseurl,
+                        l.getLatitude(),
+                        l.getLongitude()
+                );
+
+        gpsr.send();
+        toast("sent");
     }
 
     public void selectBulletin(Bulletin b) {
@@ -222,7 +239,7 @@ public class MainActivity extends Activity {
                 });
 
         // GPS requester
-        /*
+
         LocationModule mlm = new LocationModule(
                 new FunctionObj<Location>() {
                     public void call(Location l) {
@@ -231,7 +248,7 @@ public class MainActivity extends Activity {
                 },
                 this);
         mlm.run();
-        */
+
 
         EverythingRequest er = new EverythingRequest(
                 new FunctionObj<ServerResponse>() {
