@@ -11,8 +11,10 @@ import com.example.bulletinator.data.AppData;
 import com.example.bulletinator.helpers.FunctionObj;
 
 public class LocationModule {
-    public LocationModule(FunctionObj<Location> cb, Activity main) {
-        this.callback = cb;
+    private static final int MIN_TIME_INTERVAL = 500; // milliseconds;
+    private static final int MIN_DISTANCE_THRESHOLD = 3; // meters;
+
+    public LocationModule(Activity main) {
         this.mainActivity = main;
     }
 
@@ -21,8 +23,7 @@ public class LocationModule {
 
         LocationListener ll = new LocationListener() {
             public void onLocationChanged(Location location) {
-                AppData.setLoc(location);
-                callback.call(location);
+                AppData.update(location);
             }
 
             public void onStatusChanged(String provider, int status, Bundle extras) {
@@ -35,13 +36,16 @@ public class LocationModule {
             }
         };
 
-        lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, ll);
+        lm.requestLocationUpdates(LocationManager.GPS_PROVIDER,
+                                  MIN_TIME_INTERVAL,
+                                  MIN_DISTANCE_THRESHOLD,
+                                  ll);
 
-        callback.call(lm.getLastKnownLocation(LocationManager.GPS_PROVIDER));
+
+        AppData.update(lm.getLastKnownLocation(LocationManager.GPS_PROVIDER));
 
 
     }
 
-    private FunctionObj<Location> callback;
     private Activity mainActivity;
 }

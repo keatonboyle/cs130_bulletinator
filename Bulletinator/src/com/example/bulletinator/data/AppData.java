@@ -3,7 +3,9 @@ package com.example.bulletinator.data;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.location.Location;
+import android.view.View;
 
+import com.example.bulletinator.fragments.ParentFragment;
 import com.example.bulletinator.helpers.CallbackListener;
 import com.example.bulletinator.helpers.FunctionObj;
 import com.example.bulletinator.helpers.Rectangle;
@@ -11,6 +13,7 @@ import com.example.bulletinator.server.AllBuildingsResponse;
 import com.example.bulletinator.server.BinResponse;
 import com.example.bulletinator.server.BuildingResponse;
 import com.example.bulletinator.server.DummyResponse;
+import com.example.bulletinator.server.EverythingRequest;
 import com.example.bulletinator.server.EverythingResponse;
 import com.example.bulletinator.server.GPSRequest;
 import com.example.bulletinator.server.GPSResponse;
@@ -33,35 +36,39 @@ public class AppData {
     }
 
 
-    public static AppData getInstance(FunctionObj<ServerResponse> gpsCallback) {
+    public static AppData getInstance(FunctionObj<ServerResponse> notifyMain) {
         if (instance == null) {
             instance = new AppData();
         }
-        instance.gpsCallback = gpsCallback;
+        instance.notifyMain = notifyMain;
         return instance;
     }
 
-    public static void setLoc(Location loc) {
-        if (instance.isLocationRelevant(loc)) {
-            instance.lat = loc.getLatitude();
-            instance.lon = loc.getLongitude();
+    /* updaters */
+    public static AppData update(Location loc) {
+        //TODO: fix bad style
+        if (loc == null)
+        {
+            lat = 0;
+            lon = 0;
 
-            instance.getFromGPS(loc);
+            GPSRequest gpsr =
+                    new GPSRequest(instance.notifyMain, instance.baseurl,
+                            instance.lat, instance.lon);
+            gpsr.send();
         }
-    }
+        else if (isLocationRelevant(loc)) {
+            lat = loc.getLatitude();
+            lon = loc.getLongitude();
 
-    public static void getFromGPS(Location l) {
-        GPSRequest gpsr =
-                new GPSRequest(instance.gpsCallback, instance.baseurl,
-                        instance.lat, instance.lon);
+            GPSRequest gpsr =
+                    new GPSRequest(instance.notifyMain, instance.baseurl,
+                            instance.lat, instance.lon);
+            gpsr.send();
 
-        gpsr.send();
-    }
+        }
 
-
-    public static boolean isLocationRelevant(Location loc) {
-        return ((bounds == null) ||
-                (bounds.isOutside(loc.getLatitude(), loc.getLongitude())));
+        return instance;
     }
 
     public static AppData update(DummyResponse dr) {
@@ -96,26 +103,41 @@ public class AppData {
     }
 
     public static AppData update(GPSResponse gpsr) {
-        instance.curBld = gpsr.curBld;
-
-      /* insert the building if it isn't here yet */
-        if (gpsr.curBld != null &&
-            !instance.buildings.containsKey(gpsr.curBld.getId())) {
-            instance.buildings.put(gpsr.curBld.getId(), gpsr.curBld);
+        if ((gpsr.curBld == null) ||
+            ((instance.curBld != null) && (gpsr.curBld.getId() == instance.curBld.getId()))) {
+            /* TODO
+              once useful bounds rectangles or nearby buildings are returned,
+              they may change even when curBld does not change, so we shouldn't just
+              return instance
+             */
+            return instance;
         }
+        else
+        {
+            instance.curBld = gpsr.curBld;
 
-      /* insert any new bulletins */
-        instance.bulletins.putAll(gpsr.bulletins);
 
-      /* insert any buildings that haven't been downloaded */
-        for (Map.Entry<Integer, Building> bldEntry : gpsr.nearBuildings.entrySet()) {
-            if (!instance.buildings.containsKey(bldEntry.getKey())) {
-                instance.buildings.put(bldEntry.getKey(), bldEntry.getValue());
+
+            if (!instance.buildings.containsKey(gpsr.curBld.getId())) {
+                instance.buildings.put(gpsr.curBld.getId(), gpsr.curBld);
             }
-        }
 
-      /* set the bounds rectangle */
-        instance.bounds = gpsr.bounds;
+            instance.bulletins.putAll(gpsr.bulletins);
+
+
+
+            /* insert any buildings that haven't been downloaded */
+            for (Map.Entry<Integer, Building> bldEntry : gpsr.nearBuildings.entrySet()) {
+                if (!instance.buildings.containsKey(bldEntry.getKey())) {
+                    instance.buildings.put(bldEntry.getKey(), bldEntry.getValue());
+                }
+            }
+
+            /* set the bounds rectangle */
+            instance.bounds = gpsr.bounds;
+
+            tabForCurrent.dataArrived(gpsr);
+        }
 
         return instance;
     }
@@ -130,6 +152,14 @@ public class AppData {
         return instance;
     }
 
+
+    /* Helper functions */
+    public static boolean isLocationRelevant(Location loc) {
+        return ((bounds == null) ||
+                (bounds.isOutside(loc.getLatitude(), loc.getLongitude())));
+    }
+
+
     /* Accessor functions */
     public static Bulletin getBulletin(int btnid) {
         return instance.bulletins.get(btnid);
@@ -137,14 +167,6 @@ public class AppData {
 
     public static Building getBuilding(int bldid) {
         return instance.buildings.get(bldid);
-    }
-
-    public static List<Building> getAllBuildings() {
-        List<Building> bldList = new ArrayList<Building>();
-
-        bldList.addAll(instance.buildings.values());
-
-        return bldList;
     }
 
     public static List<Bulletin> getBulletinsIn(Building bld) {
@@ -191,16 +213,60 @@ public class AppData {
                         " " + (instance.lon >= 0 ? "E" : "W"));
     }
 
-    public static List<Building> getNearbyBuildings() {
-        return instance.getAllBuildings();
+
+    public static boolean wantNearbyBuildings(ParentFragment hungryTab) {
+        return instance.wantAllBuildings(hungryTab);
     }
 
-    public static List<Building> getCurrentBuilding() {
-        List<Building> lb = new ArrayList<Building>();
-        lb.add(instance.curBld != null ? instance.curBld :
-                instance.buildings.entrySet().iterator().next().getValue());
 
-        return lb;
+    public static boolean wantCurrentBuilding(ParentFragment hungryTab) {
+        tabForCurrent = hungryTab;
+
+        if(curBld != null)
+        {
+            if((hungryTab.getBldList().isEmpty()) ||
+               (hungryTab.getBldList().get(0) != curBld))
+            {
+                hungryTab.getBldList().clear();
+                hungryTab.getBldList().add(curBld);
+            }
+            return true;
+        }
+        else if (!buildings.isEmpty())
+        {
+            if((hungryTab.getBldList().isEmpty()) ||
+               (hungryTab.getBldList().get(0) != buildings.values().iterator().next()))
+            {
+                hungryTab.getBldList().clear();
+                hungryTab.getBldList().add(buildings.values().iterator().next());
+            }
+            return true;
+        }
+        else
+        {
+            return wantAllBuildings(hungryTab);
+        }
+    }
+
+
+    public static boolean wantAllBuildings(ParentFragment hungryTab) {
+        if(buildings.isEmpty())
+        {
+            EverythingRequest er =
+                    new EverythingRequest(hungryTab.dataArrivedFunc, instance.baseurl);
+            er.send();
+            return false;
+        }
+        else
+        {
+            hungryTab.getBldList().addAll(buildings.values());
+            return true;
+        }
+    }
+
+    public static Building getCurBld()
+    {
+        return curBld;
     }
 
     public static Bitmap getFileForBulletin(int btnid)
@@ -208,8 +274,14 @@ public class AppData {
         return instance.files.get(btnid);
     }
 
+    public static void loadEverything()
+    {
+        EverythingRequest er = new EverythingRequest(instance.notifyMain, instance.baseurl);
+        er.send();
+    }
+
     private static String dummy;
-    private static FunctionObj<ServerResponse> gpsCallback;
+    private static FunctionObj<ServerResponse> notifyMain;
     private static double lat;
     private static double lon;
     private static Rectangle bounds;
@@ -217,5 +289,6 @@ public class AppData {
     private static Map<Integer, Building> buildings;
     private static Map<Integer, Bitmap> files;
     private static Building curBld;
+    private static ParentFragment tabForCurrent;
 }
 

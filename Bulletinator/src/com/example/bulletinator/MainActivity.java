@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.location.Location;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.bulletinator.data.AppData;
@@ -16,6 +17,7 @@ import com.example.bulletinator.data.Bulletin;
 import com.example.bulletinator.fragments.AllFragment;
 import com.example.bulletinator.fragments.CurrentFragment;
 import com.example.bulletinator.fragments.NearbyFragment;
+import com.example.bulletinator.fragments.ParentFragment;
 import com.example.bulletinator.gps.LocationModule;
 import com.example.bulletinator.helpers.CallbackListener;
 import com.example.bulletinator.helpers.FunctionObj;
@@ -24,6 +26,7 @@ import com.example.bulletinator.helpers.TabListener;
 import com.example.bulletinator.server.EverythingRequest;
 import com.example.bulletinator.server.EverythingResponse;
 import com.example.bulletinator.server.GPSRequest;
+import com.example.bulletinator.server.GPSResponse;
 import com.example.bulletinator.server.ServerResponse;
 
 import java.util.HashSet;
@@ -41,11 +44,14 @@ public class MainActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
+
         sm = new ScrollManager();
         restorePreferences();
+        setUpGUI();
         setUpGPS();
     }
-
+/*
     public void locationCallback(Location l) {
         //toast(Double.toString(l.getLatitude()) + ", " +
         //      Double.toString(l.getLongitude()));
@@ -65,24 +71,24 @@ public class MainActivity extends Activity {
         gpsr.send();
         toast("sent");
     }
-
+*/
     public void selectBulletin(Bulletin b) {
         Intent intent = new Intent(this, BulletinActivity.class);
         intent.putExtra(BULLETIN, b);
         startActivity(intent);
     }
 
-    // Decides which buildings a fragment will receive
-    public List<Building> getBuildings() {
+    // fills a fragment's list of buildings, and requests more buildings if we're lacking the info
+    public boolean wantBuildingsFor(ParentFragment fragment) {
         switch (curTab) {
             case CURRENT: {
-                return AppData.getCurrentBuilding();
+                return AppData.wantCurrentBuilding(fragment);
             }
             case NEARBY: {
-                return AppData.getNearbyBuildings();
+                return AppData.wantNearbyBuildings(fragment);
             }
             default:
-                return AppData.getAllBuildings();
+                return AppData.wantAllBuildings(fragment);
         }
     }
 
@@ -181,7 +187,7 @@ public class MainActivity extends Activity {
         toast.show();
     }
 
-    public void gotDataFromServer(ServerResponse obj) {
+    public void setUpGUI() {
         ActionBar actionBar = getActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
@@ -212,10 +218,11 @@ public class MainActivity extends Activity {
                         new TabListener<AllFragment>(this, tab3,
                                 AllFragment.class));
         actionBar.addTab(tab, 2, curTab == 2);
+
     }
 
     public void gotDataFromGPSResponse(ServerResponse sr) {
-        toast("Data received from GPS query of DB");
+        toast(AppData.getNiceCoords());
     }
 
     public void setUpGPS() {
@@ -223,29 +230,26 @@ public class MainActivity extends Activity {
         AppData.getInstance(
                 new FunctionObj<ServerResponse>() {
                     public void call(ServerResponse sr) {
-                        gotDataFromGPSResponse(sr);
+                        notifyMain(sr);
                     }
                 });
 
-        // GPS requester
+        //AppData.loadEverything();
 
-        LocationModule mlm = new LocationModule(
-                new FunctionObj<Location>() {
-                    public void call(Location l) {
-                        locationCallback(l);
-                    }
-                },
-                this);
+        LocationModule mlm = new LocationModule(this);
         mlm.run();
 
-
-        EverythingRequest er = new EverythingRequest(
-                new FunctionObj<ServerResponse>() {
-                    public void call(ServerResponse sr) {
-                        gotDataFromServer(sr);
-                    }
-                },
-                AppData.baseurl);
-        er.send();
     }
+
+    public void notifyMain(ServerResponse sr) {
+        if(AppData.getCurBld() != null)
+        {
+            toast(AppData.getNiceCoords() + "||" + AppData.getCurBld().getName());
+        }
+        else
+        {
+            toast("main notified");
+        }
+    }
+
 }

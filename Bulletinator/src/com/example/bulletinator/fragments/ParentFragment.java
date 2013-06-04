@@ -15,7 +15,10 @@ import com.example.bulletinator.data.AppData;
 import com.example.bulletinator.data.Building;
 import com.example.bulletinator.data.Bulletin;
 import com.example.bulletinator.helpers.ExpandableListAdapter;
+import com.example.bulletinator.helpers.FunctionObj;
+import com.example.bulletinator.server.ServerResponse;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -24,6 +27,7 @@ public abstract class ParentFragment extends Fragment {
     private ExpandableListView expandableListView;
     protected MainActivity mainActivity;
     private ExpandableListAdapter adapter;
+    public FunctionObj<ServerResponse> dataArrivedFunc;
 
     public abstract int getTab();
 
@@ -31,18 +35,38 @@ public abstract class ParentFragment extends Fragment {
 
     public abstract void setPos(int index, int top);
 
+    public List<Building> getBldList() {
+        return buildings;
+    }
+
+    public void dataArrived(ServerResponse sr)
+    {
+        mainActivity.wantBuildingsFor(this);
+        adapter.notifyDataSetChanged();
+        expandBuildings();
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        buildings = new ArrayList<Building>();
         mainActivity = (MainActivity) getActivity();
+
+        dataArrivedFunc = new FunctionObj<ServerResponse>() {
+            @Override
+            public void call(ServerResponse arg) {
+                dataArrived(arg);
+            }
+        };
+
         // Inflate current buildings layout
         View view = inflater.inflate(R.layout.list_view, container, false);
 
-        // Populate bulletins that MainActivity retrieved
-        buildings = mainActivity.getBuildings();
-
-        // Populate list with bulletins
         expandableListView = (ExpandableListView) view.findViewById(R.id.expandableListView);
+
+        // Populate bulletins that MainActivity retrieved
+        mainActivity.wantBuildingsFor(this);
+
         adapter = new ExpandableListAdapter(
                 mainActivity, buildings, getTab());
 
@@ -89,9 +113,13 @@ public abstract class ParentFragment extends Fragment {
                             return true;
                         }
                     });
-            expandableListView.setAdapter(adapter);
-            expandableListView.expandGroup(0);
-            expandableListView.setGroupIndicator(null);
+            //expandableListView.setAdapter(adapter);
+            int count = adapter.getGroupCount();
+            if (count != 0)
+            {
+                expandableListView.expandGroup(0);
+                expandableListView.setGroupIndicator(null);
+            }
         }
         // Re-expand previously expanded groups
         else {

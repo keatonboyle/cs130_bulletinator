@@ -84,7 +84,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public long getGroupId(int groupPosition) {
-        return buildings.get(groupPosition).getId();
+        int id = buildings.get(groupPosition).getId();
+        return (long) id;
     }
 
     @Override
