@@ -5,35 +5,42 @@
    </head>
    <body>
       <?php
-         
-         $usr = $_POST["username"]; 
-         $pwd = $_POST["password"];
-         $pwdVer = $_POST["passwordVerify"];
-         $email = $_POST["email"];
-         
-         if($pwd == $pwdVer)
+         if($_POST["username"] != "" || $_POST["password"] != "")
          {
-            // Open the DB
-            $dbHandle = openDB();
+            $usr = $_POST["username"]; 
+            $pwd = $_POST["password"];
+            $pwdVer = $_POST["passwordVerify"];
+            $email = $_POST["email"];
             
-            //search database for existing username
-            if(mysql_query("INSERT INTO Creator VALUES('" . $usr . "', '" . $email . "', '" . $pwd . "')"))
+            if($pwd == $pwdVer)
             {
-               echo 'Success. Click <a href="/~cs130s/">here</a> to login to your account.';
+
+               // Open the DB
+               $dbHandle = openDB();
+               
+               //search database for existing username
+               if(mysql_query("INSERT INTO Creator VALUES('" . $usr . "', '" . $email . "', '" . $pwd . "')"))
+               {
+                  echo 'Success. Click <a href="/">here</a> to login to your account.';
+               }
+               else
+               {
+                  echo 'Username already exists. Click <a href="newAccount.php">here</a> to try again.';
+               }
+               
+               // Close the DB
+               closeDB($dbHandle);
+
             }
             else
             {
-               echo 'Username already exists. Click <a href="newAccount.php">here</a> to try again.';
+               echo 'Password mismatch. Click <a href="newAccount.php">here</a> to try again.';
             }
-            
-            // Close the DB
-            closeDB($dbHandle);
          }
          else
          {
-            echo "Password mismatch.";
+            echo 'Username and Password must be non-empty. Click <a href="newAccount.php">here</a> to try again.';
          }
-         
          // ****************************************************************************
 
          // FUNCTION DEFINITIONS *******************************************************

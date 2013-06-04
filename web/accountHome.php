@@ -63,8 +63,41 @@
             
             closeDB($db_handle);
          }
+         
+         $db_handle = openDB();
+         
+         if(!($result = mysql_query("SELECT title, shortdesc, Bulletin.bulletin_id FROM Bulletin, Bulletin_Creator WHERE username = '" . $usr .
+                                    "' AND Bulletin_Creator.bulletin_id = Bulletin.bulletin_id")))
+         {
+            echo "<br>Bulletin Display Error<br>";
+         }
+         else
+         {
+            echo "<div class='list_display'>";
+            while($row = mysql_fetch_row($result))
+            {
+               echo '<fieldset><legend>' . $row[0] . '</legend>';
+               echo '<form action="viewBulletin.php" method="post">';
+               echo '<table border="0">';
+               echo '<tr><td>Title:</td><td>' . $row[0] . '</td></tr>';
+               echo '<tr><td>Description:</td><td>' . $row[1] . '</td></tr>';
+               echo '</table>';
+               echo '<input type="hidden" name="username" value="' . $usr . '">';
+               echo '<input type="hidden" name="bulletin_id" value="' . $row[2] . '">';
+               echo '<input type="submit" name="submit" value="View Bulletin">';
+               echo '</form></fieldset><br>';
+            }
+            echo "</div>";
+            echo "<br>";
+            
+         }
+         
+         closeDB($db_handle);
+         
       ?>
-		<form action="/~cs130s/">
+
+      <div class='navigation'>
+		<form action="/~cs130s">
 			<input type="submit" value="Logout">
 		</form> <!--Do whatever-->
       <form action="form.php" method="post">
@@ -76,7 +109,7 @@
          <input type="hidden" name="username" value="<?php echo $usr ?>">
          <input type="submit" value="Account info">
       </form>
-
+      </div>
 		<!--Put all the bulletins here-->
 		<!--We somehow need to be able to split the bulletins into multiple pages if there are too many.-->
 
