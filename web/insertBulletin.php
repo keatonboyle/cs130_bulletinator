@@ -66,8 +66,8 @@
    $allowedExts = array("jpeg", "jpg", "png");
    $extension = end(explode(".", $_FILES["image"]["name"]));
    
-   if (isset($_FILES['image']))
-   {
+    if (isset($_FILES['image']))
+    {
       if ((($_FILES["image"]["type"] == "image/jpeg")
         || ($_FILES["image"]["type"] == "image/jpg")
         || ($_FILES["image"]["type"] == "image/pjpeg")
@@ -109,4 +109,8 @@
 
    closeDB($dbHandle);
 ?>
+  <form action="accountHome.php" method="post">
+  <input type="hidden" name="username" value="<?php echo $usr; ?>">
+  <input type="submit" name="submit" value="Account Home">
+  </form>
 </html>

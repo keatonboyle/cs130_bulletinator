@@ -19,14 +19,24 @@
          }
          //END FUNCTION DEFINITONS
       ?>
-		<title>User home</title>
-      <h1><center>Welcome <?php
-         $usr = $_POST["username"];
-         echo $usr;
-      ?></center></h1>
-		<h2><center>Your bulletins</center></h2>
+		<title>VBB: User Home</title>
+      <link rel="stylesheet" type="text/css" href="styles.css">
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 	</head>
 	<body>
+      <header>
+         <h1>
+            <center>Welcome 
+               <?php
+                  $usr = $_POST["username"];
+                  echo $usr;
+               ?>
+            </center>
+         </h1>
+         <h2>
+            <center>Your bulletins</center>
+         </h2>
+      <header>
       <?php
          if(isset($_POST["currentPassword"]) && isset($_POST["newPassword"]) && isset($_POST["passwordVerify"]))
          {
@@ -114,4 +124,5 @@
 		<!--We somehow need to be able to split the bulletins into multiple pages if there are too many.-->
 
 	</body>
+   <script src="/~cs130s/jsFunctions.js"></script>
 </html>

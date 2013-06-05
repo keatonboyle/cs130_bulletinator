@@ -1,20 +1,37 @@
 <!DOCTYPE html>
 <html>
    <head>
-      <title>Home</title>
+      <title>The VBB</title>
       <link rel="stylesheet" type="text/css" href="styles.css">
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
    </head>
    <body>
-      <h1><center>Bulletinator</center></h1>
-      <form action="verify.php" method="post">
-         <table border="0">
-            <tr>
-               <td>Username: <br><input type="text" name="username"></td>
-               <td>Password: <br><input type="password" name="password"></td>
-               <td><br><input type="Submit" value="Submit"></td>
-            </tr>
-         </table>
-      </form>
-      <a href="newAccount.php">Create account</a>
+      <header>
+         <div class="wrap">
+            <center id="logo">Bulletinator</center>
+         </div>
+      </header>
+      <main>
+         <div class="wrap">
+            <div id="login-form">
+               <form id="login" action="verify.php" method="post">
+                  <div class="label required" for="username">Username</div>
+                  <input type="text" name="username">
+                  <div class="label required" for="password">Password</div>
+                  <input type="password" name="password" onkeypress="hitEnter(event)">
+               </form>
+               <div id="button-spacing">
+                  <span class="button large blue first" onclick="submitForm()">Log In</span>
+                  <span class="button large green" onclick="goTo('newAccount.php')">Sign Up</span>
+               </div>
+            </div>
+            <img id="phone-demo" src="resources/images/n4-shell.png">
+         </div>
+      </main>
+      <footer>
+         <div class="wrap">
+         </div>
+      </footer>
    </body>
+   <script src="/~cs130s/jsFunctions.js"></script>
 </html>

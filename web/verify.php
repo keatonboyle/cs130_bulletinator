@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-	<head>
-		<title>Verify</title>
-      <h1><center>Account Verification</center></h1>
+   <head>
+      <title>VBB: Login</title>
+      <link rel="stylesheet" type="text/css" href="styles.css">
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
    </head>
-   
    <body>
       <?php
          $usr = $_POST["username"]; 
@@ -15,16 +15,31 @@
          
          if($row = mysql_fetch_row($result))
          {
-            echo "You logged in successfully!<br>";
             echo '<form action="accountHome.php" method="post">' .
-                  '<input type="hidden" name="username" value="' .
-                  $usr . '"><input type="submit" value="Continue to account"></form>';
+                     '<input id="form" type="hidden" name="username" value="' . $usr . '">' . 
+                  '</form>';
+            echo '<script>' . 
+                     '$("form").submit();' . 
+                  '</script>';
             
          }
          else
          {
-
-            echo 'Username and Password not found, please <a href="/~cs130s">try again.</a>'; 
+            echo '<header>' . 
+                     '<div class="wrap">' . 
+                        '<center id="logo">Bulletinator</center>' .
+                     '</div>' . 
+                  '</header>' .
+                  '<main>' .
+                     '<div class="wrap">' .
+                        '<div class="block-center">' .
+                           '<p>Username and password not found, please try again.</p>' .
+                           '<div id="button-spacing">' .
+                              '<span class="button large blue" onclick="goTo(\'.\')">Go Back</span>' .
+                           '</div>' .
+                        '</div>' .
+                     '</div>' .
+                  '</main>'; 
          }
          
          closeDB($db_handle);
@@ -46,6 +61,6 @@
                echo "DB close failure";
          }
       ?>
+      <script src="/~cs130s/jsFunctions.js"></script>
    </body>
-   
 </html>
