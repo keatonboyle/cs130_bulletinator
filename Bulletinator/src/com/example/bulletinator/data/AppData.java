@@ -3,10 +3,8 @@ package com.example.bulletinator.data;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.location.Location;
-import android.view.View;
 
 import com.example.bulletinator.fragments.ParentFragment;
-import com.example.bulletinator.helpers.CallbackListener;
 import com.example.bulletinator.helpers.FunctionObj;
 import com.example.bulletinator.helpers.Rectangle;
 import com.example.bulletinator.server.AllBuildingsResponse;
@@ -32,7 +30,8 @@ public class AppData {
     protected AppData() {
         bulletins = new HashMap<Integer, Bulletin>();
         buildings = new HashMap<Integer, Building>();
-        files     = new HashMap<Integer, Bitmap>();
+        files = new HashMap<Integer, Bitmap>();
+        lastBuildingName = null;
     }
 
 
@@ -47,8 +46,7 @@ public class AppData {
     /* updaters */
     public static AppData update(Location loc) {
         //TODO: fix bad style
-        if (loc == null)
-        {
+        if (loc == null) {
             lat = 0;
             lon = 0;
 
@@ -56,8 +54,7 @@ public class AppData {
                     new GPSRequest(instance.notifyMain, instance.baseurl,
                             instance.lat, instance.lon);
             gpsr.send();
-        }
-        else if (isLocationRelevant(loc)) {
+        } else if (isLocationRelevant(loc)) {
             lat = loc.getLatitude();
             lon = loc.getLongitude();
 
@@ -104,18 +101,15 @@ public class AppData {
 
     public static AppData update(GPSResponse gpsr) {
         if ((gpsr.curBld == null) ||
-            ((instance.curBld != null) && (gpsr.curBld.getId() == instance.curBld.getId()))) {
+                ((instance.curBld != null) && (gpsr.curBld.getId() == instance.curBld.getId()))) {
             /* TODO
               once useful bounds rectangles or nearby buildings are returned,
               they may change even when curBld does not change, so we shouldn't just
               return instance
              */
             return instance;
-        }
-        else
-        {
+        } else {
             instance.curBld = gpsr.curBld;
-
 
 
             if (!instance.buildings.containsKey(gpsr.curBld.getId())) {
@@ -172,6 +166,7 @@ public class AppData {
     }
 
     public static List<Bulletin> getBulletinsIn(Building bld) {
+
         List<Bulletin> btnList = new ArrayList<Bulletin>();
 
         for (Integer ii : bld.getBtnIds()) {
@@ -185,6 +180,10 @@ public class AppData {
     }
 
     public static List<Bulletin> getBulletinsIn(int bldid) {
+        /*TODO: fix this ugly workaround */
+        if (bldid == 0) return new ArrayList<Bulletin>();
+
+
         //TODO: Check if bulletins are missing
         Building bld = instance.buildings.get(bldid);
 
@@ -224,64 +223,62 @@ public class AppData {
     public static boolean wantCurrentBuilding(ParentFragment hungryTab) {
         tabForCurrent = hungryTab;
 
-        if(curBld != null)
-        {
-            if((hungryTab.getBldList().isEmpty()) ||
-               (hungryTab.getBldList().get(0) != curBld))
-            {
+        if (curBld != null) {
+            if ((hungryTab.getBldList().isEmpty()) ||
+                    (hungryTab.getBldList().get(0) != curBld)) {
                 hungryTab.getBldList().clear();
                 hungryTab.getBldList().add(curBld);
             }
             return true;
-        }
-        else if (!buildings.isEmpty())
-        {
-            if((hungryTab.getBldList().isEmpty()) ||
-               (hungryTab.getBldList().get(0) != buildings.values().iterator().next()))
-            {
+        } else if (!buildings.isEmpty()) {
+            if ((hungryTab.getBldList().isEmpty()) ||
+                    (hungryTab.getBldList().get(0) != buildings.values().iterator().next())) {
                 hungryTab.getBldList().clear();
                 hungryTab.getBldList().add(buildings.values().iterator().next());
             }
             return true;
-        }
-        else
-        {
+        } else {
             return wantAllBuildings(hungryTab);
         }
     }
 
 
     public static boolean wantAllBuildings(ParentFragment hungryTab) {
-        if(buildings.isEmpty())
-        {
+        if (buildings.isEmpty()) {
             EverythingRequest er =
                     new EverythingRequest(hungryTab.dataArrivedFunc, instance.baseurl);
             er.send();
             return false;
-        }
-        else
-        {
+        } else {
             hungryTab.getBldList().addAll(buildings.values());
             return true;
         }
     }
 
-    public static Building getCurBld()
-    {
+    public static Building getCurBld() {
         return curBld;
     }
 
-    public static Bitmap getFileForBulletin(int btnid)
-    {
+    public static Bitmap getFileForBulletin(int btnid) {
         return instance.files.get(btnid);
     }
 
-    public static void loadEverything()
-    {
+    public static void loadEverything() {
         EverythingRequest er = new EverythingRequest(instance.notifyMain, instance.baseurl);
         er.send();
     }
 
+    public static String singleGetLocation() {
+        if (curBld == null) return null;
+
+        if (lastBuildingName == null || !lastBuildingName.equals(curBld.getName())) {
+            lastBuildingName = curBld.getName();
+            return lastBuildingName;
+        }
+        return null;
+    }
+
+    private static String lastBuildingName = null;
     private static String dummy;
     private static FunctionObj<ServerResponse> notifyMain;
     private static double lat;

@@ -1,7 +1,6 @@
 package com.example.bulletinator.server;
 
 import com.example.bulletinator.data.AppData;
-import com.example.bulletinator.helpers.CallbackListener;
 import com.example.bulletinator.helpers.FunctionObj;
 
 public class BinRequest extends ServerRequest {

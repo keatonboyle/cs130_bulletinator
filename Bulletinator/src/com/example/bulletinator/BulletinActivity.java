@@ -2,7 +2,6 @@ package com.example.bulletinator;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.util.Log;
@@ -104,8 +103,7 @@ public class BulletinActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void gotPicture(ServerResponse sr, ImageView imageView, Bulletin btn)
-    {
+    public void gotPicture(ServerResponse sr, ImageView imageView, Bulletin btn) {
         Log.d("debug", "got picture");
         Bitmap bitmap = AppData.getFileForBulletin(btn.getBulletinId());
 

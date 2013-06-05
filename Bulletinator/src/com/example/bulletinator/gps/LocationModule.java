@@ -8,7 +8,6 @@ import android.location.LocationManager;
 import android.os.Bundle;
 
 import com.example.bulletinator.data.AppData;
-import com.example.bulletinator.helpers.FunctionObj;
 
 public class LocationModule {
     private static final int MIN_TIME_INTERVAL = 500; // milliseconds;
@@ -37,9 +36,9 @@ public class LocationModule {
         };
 
         lm.requestLocationUpdates(LocationManager.GPS_PROVIDER,
-                                  MIN_TIME_INTERVAL,
-                                  MIN_DISTANCE_THRESHOLD,
-                                  ll);
+                MIN_TIME_INTERVAL,
+                MIN_DISTANCE_THRESHOLD,
+                ll);
 
 
         AppData.update(lm.getLastKnownLocation(LocationManager.GPS_PROVIDER));

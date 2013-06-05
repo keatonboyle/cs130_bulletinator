@@ -34,14 +34,11 @@ public class Bulletin implements Serializable {
 
         if (category.equals("propaganda")) {
             iconId = R.drawable.propaganda;
-        }
-        else if (category.equals("scholarship")) {
+        } else if (category.equals("scholarship")) {
             iconId = R.drawable.scholarship;
-        }
-        else if (category.equals("job")) {
+        } else if (category.equals("job")) {
             iconId = R.drawable.job;
-        }
-        else {
+        } else {
             iconId = R.drawable.event;
         }
     }

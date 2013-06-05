@@ -39,8 +39,7 @@ public abstract class ParentFragment extends Fragment {
         return buildings;
     }
 
-    public void dataArrived(ServerResponse sr)
-    {
+    public void dataArrived(ServerResponse sr) {
         mainActivity.wantBuildingsFor(this);
         adapter.notifyDataSetChanged();
         expandBuildings();
@@ -115,8 +114,7 @@ public abstract class ParentFragment extends Fragment {
                     });
             //expandableListView.setAdapter(adapter);
             int count = adapter.getGroupCount();
-            if (count != 0)
-            {
+            if (count != 0) {
                 expandableListView.expandGroup(0);
                 expandableListView.setGroupIndicator(null);
             }
