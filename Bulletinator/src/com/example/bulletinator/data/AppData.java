@@ -136,7 +136,9 @@ public class AppData {
             /* set the bounds rectangle */
             instance.bounds = gpsr.bounds;
 
-            tabForCurrent.dataArrived(gpsr);
+            if (tabForCurrent != null) {
+                tabForCurrent.dataArrived(gpsr);
+            }
         }
 
         return instance;
