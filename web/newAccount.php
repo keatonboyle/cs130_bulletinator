@@ -25,7 +25,7 @@
                   <input type="password" name="passwordVerify" onkeypress="hitEnter(event)">
                </form>
                <div id="button-spacing">
-                  <span class="button large blue first" onclick="submitForm()">Submit</span>
+                  <span class="button large blue mr10" onclick="submitForm()">Submit</span>
                   <span class="button large red" onclick="goTo('.')">Cancel</span>
                </div>
             </div>

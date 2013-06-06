@@ -5,28 +5,41 @@ body { background: #f0f0ef; }
 
 .wrap {
    width: 800px;
-   margin: 20px auto;
+   margin: 0 auto;
 }
 
 main {
-   margin-top: 100px;
+   padding-top: 60px;
 }
+
+.rel { position: relative; }
+
+.nodisp { display: none; }
 
 /* END LAYOUT ****************************************************************/
 
 /* HEADER ********************************************************************/
 
-header .wrap { font-family: 'robotolight', sans-serif; }
+header {
+   /* background: lavender; */
+   font-family: 'robotolight', sans-serif;
+}
 #logo {
-   margin-top: 60px;
+   padding: 30px 0;
    font-size: 3rem;
+}
+#control-buttons {
+   float: right;
 }
 
 /* END HEADER ****************************************************************/
 
 /* MAIN **********************************************************************/
 
-main { font-family: Helvetica, sans-serif; }
+main { 
+   /* background: blue; */
+   font-family: Helvetica, sans-serif; 
+}
 
 #login-form {
    display: inline-block;
@@ -57,6 +70,8 @@ input[type="text"], input[type="password"] {
 
 .button {
    cursor: pointer;
+   box-sizing: border-box;
+   font-family: 'robotolight', Helvetica, sans-serif;
 }
 .button.large {
    padding: 8px 20px;
@@ -99,20 +114,20 @@ input[type="text"], input[type="password"] {
 }
 .button.red {
    background: #ff4444;
-   background-image: linear-gradient(top, rgb(255,68,68) 30%, rgb(189,49,49) 90%);
-   background-image: -o-linear-gradient(top, rgb(255,68,68) 30%, rgb(189,49,49) 90%);
-   background-image: -moz-linear-gradient(top, rgb(255,68,68) 30%, rgb(189,49,49) 90%);
-   background-image: -webkit-linear-gradient(top, rgb(255,68,68) 30%, rgb(189,49,49) 90%);
-   background-image: -ms-linear-gradient(top, rgb(255,68,68) 30%, rgb(189,49,49) 90%);
+   background-image: linear-gradient(top, rgb(255,68,68) 30%, rgb(216,55,55) 90%);
+   background-image: -o-linear-gradient(top, rgb(255,68,68) 30%, rgb(216,55,55) 90%);
+   background-image: -moz-linear-gradient(top, rgb(255,68,68) 30%, rgb(216,55,55) 90%);
+   background-image: -webkit-linear-gradient(top, rgb(255,68,68) 30%, rgb(216,55,55) 90%);
+   background-image: -ms-linear-gradient(top, rgb(255,68,68) 30%, rgb(216,55,55) 90%);
 
    background-image: -webkit-gradient(
       linear,
       left top,
       left bottom,
       color-stop(0.3, rgb(255,68,68)),
-      color-stop(0.9, rgb(189,49,49))
+      color-stop(0.9, rgb(216,55,55))
    );
-   border-bottom: 2px solid rgb(110,30,30);
+   border-bottom: 1px solid rgb(110,30,30);
 }
 
 .button:hover { background-image: none; }
@@ -120,14 +135,74 @@ input[type="text"], input[type="password"] {
 .button.green:active { background: #8ab606; }
 .button.red:active { background: #cf2f2f; }
 
-.button.first {
-   margin-right: 10px;
-}
+.mr10 { margin-right: 10px; }
 
+.bdr { border: 1px solid #999; }
+.bdr-l { border-left: 1px solid #999; }
+
+.ib { display: inline-block; }
 
 .red-text { color: red; }
 
 /* END MAIN ******************************************************************/
+
+/* ACCOUNT HOME BULLETIN INTERFACE *******************************************/
+
+#list-pane {
+   width: 33%;
+   float: left;
+   overflow: scroll;
+   overflow-x: hidden;
+   background: white;
+}
+.btn-tab {
+   height: 70px;
+   border-bottom: 1px solid #ccc;
+   cursor: pointer;
+   padding: 5px;
+}
+.btn-tab:hover { background: #dadada; }
+.btn-tab.last { border-bottom: none; }
+.btn-tab.selected { background: #d6e9f7; }
+
+.btn-title {}
+.btn-shortdesc {
+   margin: 5px 0;
+   font-size: .8em;
+}
+
+#btn-pane {
+   height: 400px;
+   width: 65%;
+   padding: 5px;
+   overflow: scroll;
+   overflow-x: hidden;
+   background: white;
+}
+.bulletin-wrap {}
+.bulletin-wrap.v-align {
+   position: absolute;
+   top: 191px;
+   width: 530px;
+}
+
+#delete-button {
+   position: absolute;
+   padding: 5px;
+   top: 5px;
+   right: 10px;
+   border-radius: 3px;
+   cursor: pointer;
+   background: #dadada;
+}
+#delete-button:hover { background: #d6e9f7; }
+
+/* END ACCOUNT HOME BULLETIN INTERFACE ***************************************/
+
+/* FOOTER ********************************************************************/
+footer {
+   /* background: red; */
+}
 
 /* FONTS *********************************************************************/
 

@@ -21,7 +21,7 @@
                   <input type="password" name="password" onkeypress="hitEnter(event)">
                </form>
                <div id="button-spacing">
-                  <span class="button large blue first" onclick="submitForm()">Log In</span>
+                  <span class="button large blue mr10" onclick="submitForm()">Log In</span>
                   <span class="button large green" onclick="goTo('newAccount.php')">Sign Up</span>
                </div>
             </div>
